@@ -22,7 +22,7 @@ public static void Main (string[] args){
 //         Console.Write("Enter a path to your repository located on your local device: ");
 //         var pathToRepo = Console.ReadLine();
 
-//         var repo = new Repository(pathToRepo);
+//      var repo = new Repository(pathToRepo);
    
 // 	    Console.Write("-a for authormode -f for freqyencemode: ");
 // 		var input = Console.ReadLine();
