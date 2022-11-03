@@ -1,3 +1,3 @@
 namespace GitInsight.Core;
 
-public record CommitSignatureUpdateDTO(string name, string email, DateTimeOffset date);
+public record CommitSignatureUpdateDTO(int repoId, string name, string email, DateTimeOffset date);
