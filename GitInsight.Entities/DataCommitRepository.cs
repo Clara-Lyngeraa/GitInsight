@@ -8,12 +8,12 @@ private GitInsightContext _context;
     }
 
     //creating a SignatureUpdateDTO from a signature
-    private static CommitUpdateDTO SignatureUpdateDTOFromSignature(DataCommit sign){
+    private CommitUpdateDTO SignatureUpdateDTOFromSignature(DataCommit dataCommit){
         return new CommitUpdateDTO (
-        repoId: sign.RepositoryId,
-        name: sign.Name!,
-        email: sign.Email!,
-        date: sign.Date
+        repoId: dataCommit.RepositoryId!,
+        name: dataCommit.Name!,
+        email: dataCommit.Email!,
+        date: dataCommit.Date
     );
     }
     
@@ -44,6 +44,12 @@ private GitInsightContext _context;
         
         return Response.NotFound;
     }
+
+    public (Response response, int id) Create(CommitCreateDTO commit){
+        
+        return (Response.NotFound, 0);
+    }
+
 
 
     public void Dispose(){
