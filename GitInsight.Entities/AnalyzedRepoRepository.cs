@@ -36,7 +36,7 @@ private GitInsightContext _context;
         //find already existing Datacommits in the database from their names (for now) 
         //if they are not there the method above creates a DataCommit from the given string
         //update the analyzedRepos list of DataCommits and save the changes
-       public Response Update(AnalyzedRepoUpdateDTO analyzedRepo){
+    public Response Update(AnalyzedRepoUpdateDTO analyzedRepo){
         
         //check if the repo exists in the database
         AnalyzedRepo currentAnalyzedRepo = _context.AnalyzedRepos.Find(analyzedRepo.RepositoryIdString)!;
