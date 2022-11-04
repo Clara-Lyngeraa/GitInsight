@@ -2,5 +2,7 @@
 
 public enum Response{
     Updated,
-    NotFound
+    NotFound,
+
+    Created
 }

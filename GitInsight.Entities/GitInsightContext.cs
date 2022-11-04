@@ -8,6 +8,7 @@ public partial class GitInsightContext : DbContext
         : base(options)
     { }
 
+    public virtual DbSet<AnalyzedRepo> AnalyzedRepos { get; set; } = null!;
     public virtual DbSet<CommmitSignature> Signatures { get; set; } = null!;
 
     //every time this class is instantiated we need to check if already configured

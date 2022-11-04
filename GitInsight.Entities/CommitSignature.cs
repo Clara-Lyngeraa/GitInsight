@@ -2,10 +2,10 @@ namespace GitInsight.Entities;
 
 public class CommmitSignature {
 
-    [Required]
-    public int RepositoryId {get;set;}
+    public int Id{get;set;}
 
-    public int CommitId {get;set;}
+    [Required]
+    public string? RepositoryId {get;set;}
 
     [Required]
     public string? Name {get; set;}
@@ -14,4 +14,7 @@ public class CommmitSignature {
     [Required]
     public DateTimeOffset Date {get;set;}
 
+    public CommmitSignature(string name){
+        Name = name;
+    }
 }

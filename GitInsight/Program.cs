@@ -1,44 +1,89 @@
 namespace GitInsight;
 
+using System.Security.Cryptography;
+using System.Text;
 using LibGit2Sharp;
 
 public class Program{
+
 
 public static void Main (string[] args){
 
     //creating the context
     using var context = new GitInsightContext();
+    
 
-    //added a new signature to the database test
-    var sig = new GitInsight.Entities.CommmitSignature{Name="Monica",Email="test@itu.dk",Date=new DateTimeOffset()};
-    context.Signatures.Add(sig);
-    context.SaveChanges();
-}
-}
-//     //in the terminal we want to check if agrs[0] is either something like -f or -a given this information to the user. 
-//     //if it input is -f run in frequency mode
-//     //if the input is -a run in author mode
+    //in the terminal we want to check if agrs[0] is either something like -f or -a given this information to the user. 
+    //if it input is -f run in frequency mode
+    //if the input is -a run in author mode
 
-//         Console.Write("Enter a path to your repository located on your local device: ");
-//         var pathToRepo = Console.ReadLine();
+    Console.Write("Enter a path to your repository located on your local device: ");
+    var pathToRepo = Console.ReadLine();
 
-//      var repo = new Repository(pathToRepo);
+    var repo = new Repository(pathToRepo);
    
-// 	    Console.Write("-a for authormode -f for freqyencemode: ");
-// 		var input = Console.ReadLine();
+	Console.Write("-a for authormode -f for freqyencemode: ");
+	var input = Console.ReadLine();
 
-// 		//Process input
-// 		if(input == "-a"){
-//             getFrequenceAuthorMode(repo);
-//         } else if(input == "-f"){
-//             getFrequence(repo);
-//         } else {
-//             throw new ArgumentException("Enter valid mode");
-//         }
+	//Process input
+	if(input == "-a"){
+       //do stuff
+    } else if(input == "-f"){
+        //do stuff
+    } else {
+         throw new ArgumentException("Enter valid mode");
+     }
+}
 
 
-// }
+public static void analyze(Repository repoToAnalyze, GitInsightContext context){
 
+    AnalyzedRepoRepository repo = new AnalyzedRepoRepository(context);
+
+    //check in the database if the repository to be analyzed has already been analyzed
+    AnalyzedRepo repoToUpdate = context.AnalyzedRepos.Find(getRepoHashedID(repoToAnalyze))!;
+
+     //if it is not already in the database we need to add an analysis
+        if(repoToUpdate == null){
+            Console.WriteLine("the repo was not already in the database and has therefor not been analyzed.. yet");
+            DateTime stateOfRepoToAnalyze = repoToAnalyze.Commits.Last().Author.When.DateTime;
+            //call create method with a createDTO to add the repo to the database
+            var createDTO = new AnalyzedRepoCreateDTO(getRepoHashedID(repoToAnalyze),stateOfRepoToAnalyze,repoToAnalyze.Commits.Select(c => c.Author.Name).ToList());
+            repo.Create(createDTO);
+            
+        } else {
+            Console.WriteLine("the repo was  already in the database we need to return it or update it");
+            //have a check if there are any new commits
+            //we do so by checking the date of the last commit in the repo we want to analyse
+            DateTime stateOfRepoToAnalyze = repoToAnalyze.Commits.Last().Author.When.DateTime;
+            //If State (last commit in the analysis) of the analyzed repository is the same as the repository we are trying to 
+            //analyse now we do not want to update
+            
+
+            if(stateOfRepoToAnalyze == repoToUpdate.State){
+                //want to return what is already in the database
+            } else {
+                //call update method
+            }
+        }
+
+}
+
+private static string getRepoHashedID(Repository repo){
+      string firstCommitToHash = repo.Commits.First().Author + repo.Commits.First().Message;
+      string hashedRepo = string.Empty;
+      using (SHA256 sha256 = SHA256.Create())
+        {
+            // Compute the hash of the given string
+            byte[] hashValue = sha256.ComputeHash(Encoding.UTF8.GetBytes(firstCommitToHash));
+ 
+            // Convert the byte array to string format
+            foreach (byte b in hashValue) {
+                hashedRepo += $"{b:X2}";
+            }
+        }
+        return hashedRepo;
+}
 //     //idea here: in frequence mode: a dictionary that maps an integer to a date
 //     //every time the date is "read" in the commitlog, the integer is incremented. 
 //     //doing this for all commits in the log
@@ -124,3 +169,10 @@ public static void Main (string[] args){
 
 //     }
 // }
+
+
+//added a new signature to the database test
+    // var sig = new GitInsight.Entities.CommmitSignature{Name="Monica",Email="test@itu.dk",Date=new DateTimeOffset()};
+    // context.Signatures.Add(sig);
+    // context.SaveChanges();
+}
