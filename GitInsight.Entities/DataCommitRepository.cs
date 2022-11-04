@@ -10,46 +10,28 @@ private GitInsightContext _context;
     //creating a SignatureUpdateDTO from a signature
     private CommitUpdateDTO SignatureUpdateDTOFromSignature(DataCommit dataCommit){
         return new CommitUpdateDTO (
-        repoId: dataCommit.RepositoryId!,
-        name: dataCommit.Name!,
-        email: dataCommit.Email!,
-        date: dataCommit.Date
+        RepoId: dataCommit.RepositoryId!,
+        Name: dataCommit.Name!,
+        Email: dataCommit.Email!,
+        Date: dataCommit.Date
     );
     }
     
-    // public Response Update(CommitSignatureUpdateDTO sign){
+    public (Response response, string id) Create(CommitCreateDTO commit){
 
-    //     //find the date of the mathcing signature
-    //     //var toUpdate = _context.Signatures.Find(sign.date);
-    //     var entity = _context.Signatures.Find(sign.repoId);
-    //     Response response;
-
-    //     if(entity is null)
-    //     {
-    //         response = Response.NotFound;
-    //     } else 
-    //     {
-    //         entity.Name = sign.name;
-    //         entity.Date = sign.date;
-    //         _context.SaveChanges();
-    //         response = Response.Updated;
-    //     }
-       
-    //     return response;
-    // }
+  //finding the commitSignatures in the database that belongs to those in the analyzes repos list of names of the commits
+    
+        var newCommit = new DataCommit{
+        RepositoryId = commit.RepoId,
+        StringId = commit.StringId,
+        Name = commit.Name,
+        Email = commit.Email,
+        };
 
 
-
-    public Response Update(CommitUpdateDTO commit){
-        
-        return Response.NotFound;
-    }
-
-    public (Response response, int id) Create(CommitCreateDTO commit){
-        var newCommit = new DataCommit{Name = commit.name};
-        _context.Add(newCommit);
+        _context.DataCommits.Add(newCommit);
         _context.SaveChanges();
-        return (Response.Created, newCommit.Id);
+        return (Response.Created, newCommit.StringId);
     }
 
 

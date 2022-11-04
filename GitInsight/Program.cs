@@ -39,6 +39,7 @@ public static void Main (string[] args){
 public static void analyze(Repository repoToAnalyze, GitInsightContext context){
 
     AnalyzedRepoRepository repo = new AnalyzedRepoRepository(context);
+    
 
     //check in the database if the repository to be analyzed has already been analyzed
     AnalyzedRepo repoToUpdate = context.AnalyzedRepos.Find(getRepoHashedID(repoToAnalyze))!;

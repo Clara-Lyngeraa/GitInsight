@@ -19,19 +19,16 @@ private GitInsightContext _context;
         _context.AnalyzedRepos.Add(newAnalyzedRepo);
         _context.SaveChanges();
         
-
         return (Response.Created, newAnalyzedRepo.Id);
     }
     
-    private DataCommit FindOrCreateCommitSignature(string Name)
+    private DataCommit FindOrCreateCommitSignature(string commitId)
     {
-        var commitSigInDB = _context.Signatures.Where(c => c.Name!.Equals(Name));
+        var commitSigInDB = _context.DataCommits.Where(c => c.Id!.Equals(commitId));
         if (commitSigInDB.Any()) return commitSigInDB.First();
 
-        return new DataCommit(name: Name);
+        return new DataCommit{StringId = commitId};
     }
-
-
 
         //find already existing Datacommits in the database from their names (for now) 
         //if they are not there the method above creates a DataCommit from the given string

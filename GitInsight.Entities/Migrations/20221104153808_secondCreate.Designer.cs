@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GitInsight.Entities.Migrations
 {
     [DbContext(typeof(GitInsightContext))]
-    [Migration("20221104142138_secondCreate")]
+    [Migration("20221104153808_secondCreate")]
     partial class secondCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,9 +54,8 @@ namespace GitInsight.Entities.Migrations
                     b.Property<int?>("AnalyzedRepoId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("character varying(48)");
+                    b.Property<DateTimeOffset>("Date")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -70,11 +69,14 @@ namespace GitInsight.Entities.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("StringId")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AnalyzedRepoId");
 
-                    b.ToTable("Signatures");
+                    b.ToTable("DataCommits");
                 });
 
             modelBuilder.Entity("GitInsight.Entities.DataCommit", b =>
