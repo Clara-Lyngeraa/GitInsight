@@ -8,7 +8,8 @@ public partial class GitInsightContext : DbContext
         : base(options)
     { }
 
-    public virtual DbSet<CommmitSignature> Signatures { get; set; } = null!;
+    public virtual DbSet<AnalyzedRepo> AnalyzedRepos { get; set; } = null!;
+    public virtual DbSet<DataCommit> Signatures { get; set; } = null!;
 
     //every time this class is instantiated we need to check if already configured
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
@@ -23,7 +24,7 @@ public partial class GitInsightContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<CommmitSignature>().Property(e => e.Date).HasConversion<string>();
+        modelBuilder.Entity<DataCommit>().Property(e => e.Date).HasConversion<string>();
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

@@ -27,19 +27,19 @@ public class CommitSignatureRepoTests: IDisposable
         _repo.Dispose();
     }
 
-    [Fact]
-    public void Inserting_CommitSignature_into_database()
-    {
-       //Arrange
-       var sig = new GitInsight.Entities.CommmitSignature{Name="Monica",Email="test@itu.dk",Date=new DateTimeOffset()};
+    // [Fact]
+    // public void Inserting_CommitSignature_into_database()
+    // {
+    //    //Arrange
+    //    var sig = new GitInsight.Entities.CommmitSignature{Name="Monica",Email="test@itu.dk",Date=new DateTimeOffset()};
 
-       //Act
-       _context.Signatures.Add(sig);
-        _context.SaveChanges();
+    //    //Act
+    //    _context.Signatures.Add(sig);
+    //     _context.SaveChanges();
 
-       //Assert
-       Assert.True(_context.Signatures.Count() == 1);
-    }
+    //    //Assert
+    //    Assert.True(_context.Signatures.Count() == 1);
+    // }
 
 }
 
