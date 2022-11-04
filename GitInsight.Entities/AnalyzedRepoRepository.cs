@@ -22,12 +22,12 @@ private GitInsightContext _context;
     return (Response.Created, newAnalyzedRepo.Id);
     }
     
-    private CommmitSignature FindOrCreateCommitSignature(string Name)
+    private DataCommit FindOrCreateCommitSignature(string Name)
     {
         var commitSigInDB = _context.Signatures.Where(c => c.Name.Equals(Name));
         if (commitSigInDB.Any()) return commitSigInDB.First();
 
-        return new CommmitSignature(name: Name);
+        return new DataCommit(name: Name);
     }
 
        public Response Update(AnalyzedRepoUpdateDTO sign){

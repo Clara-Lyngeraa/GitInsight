@@ -1,6 +1,6 @@
 namespace GitInsight.Entities;
 
-public class CommmitSignature {
+public class DataCommit {
 
     public int Id{get;set;}
 

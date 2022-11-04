@@ -1,6 +1,4 @@
 namespace GitInsight.Entities;
-
-using LibGit2Sharp;
 public class AnalyzedRepo {
 
     public int Id{get;set;}
@@ -11,6 +9,6 @@ public class AnalyzedRepo {
     //the last commit in the analysis
     public DateTime State {get;set;}
 
-    public ICollection<CommmitSignature> CommitsInRepo {get;set;} = new List<CommmitSignature>();
+    public ICollection<DataCommit> CommitsInRepo {get;set;} = new List<DataCommit>();
 
 }

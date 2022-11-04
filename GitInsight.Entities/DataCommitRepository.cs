@@ -1,14 +1,14 @@
 namespace GitInsight.Entities;
 
-public class CommitSignatureRepository: IDisposable{
+public class DataCommitRepository: IDisposable{
 
 private GitInsightContext _context;
-    public CommitSignatureRepository(GitInsightContext context){
+    public DataCommitRepository(GitInsightContext context){
         _context = context;
     }
 
     //creating a SignatureUpdateDTO from a signature
-    private static CommitUpdateDTO SignatureUpdateDTOFromSignature(CommmitSignature sign){
+    private static CommitUpdateDTO SignatureUpdateDTOFromSignature(DataCommit sign){
         return new CommitUpdateDTO (
         repoId: sign.RepositoryId,
         name: sign.Name!,
