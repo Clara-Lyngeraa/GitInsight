@@ -96,23 +96,23 @@ public class AnalyzedRepoTests: IDisposable
         _repo = new AnalyzedRepoRepository(_context);
 
         //creates repository through libGit2Sharp
-//         var path = Repository.Init(".");
+        var path = Repository.Init(".");
 
-//          //creates a repository object from the path above
-//          testRepo = new Repository(path);
+         //creates a repository object from the path above
+         testRepo = new Repository(path);
 
-// //         //Creates 3 commits to the same date
-//          Signature sig1 = new Signature("Person1", "person1@itu.dk", new DateTimeOffset(new DateTime(2022,10,25)));
-//          Signature sig2 = new Signature("Person2", "person2@itu.dk", new DateTimeOffset(new DateTime(2022,10,25)));
-//          Signature sig3 = new Signature("Person3", "person2@itu.dk", new DateTimeOffset(new DateTime(2022,10,25)));
-//          Signature sig4 = new Signature("Person3", "person2@itu.dk", new DateTimeOffset(new DateTime(2022,11,25)));
+//         //Creates 3 commits to the same date
+         Signature sig1 = new Signature("Person1", "person1@itu.dk", new DateTimeOffset(new DateTime(2022,10,25)));
+         Signature sig2 = new Signature("Person2", "person2@itu.dk", new DateTimeOffset(new DateTime(2022,10,25)));
+         Signature sig3 = new Signature("Person3", "person2@itu.dk", new DateTimeOffset(new DateTime(2022,10,25)));
+         Signature sig4 = new Signature("Person3", "person2@itu.dk", new DateTimeOffset(new DateTime(2022,11,25)));
 
-//          testRepo.Commit("Inital commit", sig1, sig1, new CommitOptions() {AllowEmptyCommit = true});
-//          testRepo.Commit("Inital commit1", sig2, sig2, new CommitOptions() {AllowEmptyCommit = true});
-//          testRepo.Commit("Inital commit2", sig3, sig3, new CommitOptions() {AllowEmptyCommit = true});
-//          testRepo.Commit("Inital commit3", sig4, sig4, new CommitOptions() {AllowEmptyCommit = true});
+         testRepo.Commit("Inital commit", sig1, sig1, new CommitOptions() {AllowEmptyCommit = true});
+         testRepo.Commit("Inital commit1", sig2, sig2, new CommitOptions() {AllowEmptyCommit = true});
+         testRepo.Commit("Inital commit2", sig3, sig3, new CommitOptions() {AllowEmptyCommit = true});
+         testRepo.Commit("Inital commit3", sig4, sig4, new CommitOptions() {AllowEmptyCommit = true});
         
-//        Console.WriteLine(repo.Commits.First().Message);
+       
     }
     public void Dispose()   
     {
@@ -138,16 +138,6 @@ public class AnalyzedRepoTests: IDisposable
        
     }
 
-[Fact]
-public void TestName()
-{
-    // Given
-
-    // When
-
-    // Then
-    Assert.True(_repo != null);
-}
 }
 // }
  
