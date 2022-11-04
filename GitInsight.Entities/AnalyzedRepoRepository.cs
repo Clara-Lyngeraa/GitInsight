@@ -24,7 +24,7 @@ private GitInsightContext _context;
     
     private DataCommit FindOrCreateCommitSignature(string Name)
     {
-        var commitSigInDB = _context.Signatures.Where(c => c.Name.Equals(Name));
+        var commitSigInDB = _context.Signatures.Where( c => c.Name.Equals(Name));
         if (commitSigInDB.Any()) return commitSigInDB.First();
 
         return new DataCommit(name: Name);

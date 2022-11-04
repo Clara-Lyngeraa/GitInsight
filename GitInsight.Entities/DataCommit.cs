@@ -14,7 +14,7 @@ public class DataCommit {
     [Required]
     public DateTimeOffset Date {get;set;}
 
-    public CommmitSignature(string name){
+    public DataCommit(string name){
         Name = name;
     }
 }
