@@ -9,12 +9,13 @@ public class DataCommit {
 
     [Required]
     public string? Name {get; set;}
+    
     [Required]
     public string? Email {get; set;}
     [Required]
     public DateTimeOffset Date {get;set;}
 
-    public DataCommit(string name){
-        Name = name;
-    }
+    // public DataCommit(string name){
+    //     Name = name;
+    // }
 }

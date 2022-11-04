@@ -49,7 +49,7 @@ private GitInsightContext _context;
         var newCommit = new DataCommit{Name = commit.name};
         _context.Add(newCommit);
         _context.SaveChanges();
-        return (Response.Created, 0);
+        return (Response.Created, newCommit.Id);
     }
 
 

@@ -138,16 +138,16 @@ public class AnalyzedRepoTests: IDisposable
        
     }
 
-[Fact]
-public void TestName()
-{
-    // Given
+    [Fact]
+    public void TestName()
+    {
+        // Given
 
-    // When
+        // When
 
-    // Then
-    Assert.True(_repo != null);
-}
+        // Then
+        Assert.True(_repo != null);
+    }
 }
 // }
  
