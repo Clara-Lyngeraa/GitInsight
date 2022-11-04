@@ -46,8 +46,10 @@ private GitInsightContext _context;
     }
 
     public (Response response, int id) Create(CommitCreateDTO commit){
-        
-        return (Response.NotFound, 0);
+        var newCommit = new DataCommit{Name = commit.name};
+        _context.Add(newCommit);
+        _context.SaveChanges();
+        return (Response.Created, 0);
     }
 
 
