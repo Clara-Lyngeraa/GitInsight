@@ -66,7 +66,7 @@
 
 //         //Assert
 //         response.Should().Be(expected);    
-//         id.Should().Be(1);    //since it is the first in the database the given id should be 1
+//         //id.Should().Be(1);    //since it is the first in the database the given id should be 1
 //     }
 
      
@@ -104,8 +104,9 @@
 //         response.Should().Be(expected);
 //     }
 
-//     [Fact]
-//     public void find()
+
+//        [Fact]
+//     public void find_with_stringId_should_work()
 //     {
 //         //Arrange
 //         var commitsStrings = new List<string>();
@@ -117,18 +118,34 @@
 //         var createDTO = new AnalyzedRepoCreateDTO("hejsa", testRepo.Commits.Last().Author.When.Date, commitsStrings);
 
 //         //Act
-//          _repo.Create(createDTO);
-        
+//         var (repsonse,id) = _repo.Create(createDTO);
 
 //         //Assert
-//         _repo.FindWithId(1).Should().Be(true);
-        
+//         var repoToFindId = _context.AnalyzedRepos.Find("hejsa").RepositoryIdString;
+//         id.Should().Be(repoToFindId);
+//     }
+
+//         [Fact]
+//     public void find_with_stringId_should_work_new()
+//     {
+//         //Arrange
+//         var commitsStrings = new List<string>();
+
+//         foreach(Commit c in testRepo.Commits){
+//             commitsStrings.Add(c.Id.ToString());
+//         }
+
+//         var createDTO = new AnalyzedRepoCreateDTO("hejsa", testRepo.Commits.Last().Author.When.Date, commitsStrings);
+
+//         //Act
+//         var (repsonse,id) = _repo.Create(createDTO);
+
+//         //Assert
+//         AnalyzedRepo actualFoundRepo = _repo.FindWithStringId("hejsa");
+//         actualFoundRepo.RepositoryIdString.Should().Be(createDTO.RepositoryIdString);
 //     }
   
 
-
-   
-   
 // }
 
  

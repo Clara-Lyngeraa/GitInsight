@@ -7,8 +7,16 @@ private GitInsightContext _context;
         this._context = context;
     }
 
-   public (Response response, int id) Create (AnalyzedRepoCreateDTO analyzedRepo)
+   public (Response response, string id) Create (AnalyzedRepoCreateDTO analyzedRepo)
    {
+        //checking if it already exist:
+        AnalyzedRepo repo = _context.AnalyzedRepos.Find(analyzedRepo.RepositoryIdString);
+        
+        if(repo != null){
+            Console.WriteLine("Create was called with already in db repo");
+            return (Response.Created, repo.RepositoryIdString);
+        }
+
         //finding the commitSignatures in the database that belongs to those in the analyzes repos list of names of the commits
         List<DataCommit> commitSignatures = analyzedRepo.commitsInRepo.Select(c => FindOrCreateDataCommit(c)).ToList();
 
@@ -20,7 +28,7 @@ private GitInsightContext _context;
         _context.AnalyzedRepos.Add(newAnalyzedRepo);
         _context.SaveChanges();
         
-        return (Response.Created, newAnalyzedRepo.Id);
+        return (Response.Created, newAnalyzedRepo.RepositoryIdString);
     }
     
     private DataCommit FindOrCreateDataCommit(string commitId)
@@ -39,7 +47,7 @@ private GitInsightContext _context;
     public Response Update(AnalyzedRepoUpdateDTO analyzedRepo){
         
         //check if the repo exists in the database
-        AnalyzedRepo currentAnalyzedRepo = _context.AnalyzedRepos.Where(r => r.RepositoryIdString == analyzedRepo.RepositoryIdString).FirstOrDefault()!;
+        AnalyzedRepo currentAnalyzedRepo = _context.AnalyzedRepos.Find(analyzedRepo.RepositoryIdString);
 
         if(currentAnalyzedRepo is null){
             return Response.NotFound;
@@ -65,11 +73,11 @@ private GitInsightContext _context;
         return repo != null ? true : false;
 
     }
-    //  public AnalyzedRepo FindWithStringId(string repoStringId)
-    // {
-    //     var idOfFoundRepo = _context.AnalyzedRepos.Select(r => r.RepositoryIdString == repoStringId);
-    //     return idOfFoundRepo;
-    // }
+     public AnalyzedRepo FindWithStringId(string repoStringId)
+    {
+        var idOfFoundRepo = _context.AnalyzedRepos.Find(repoStringId);
+        return idOfFoundRepo;
+    }
 
     public void Dispose(){
         _context.Dispose();

@@ -69,11 +69,32 @@ public class ProgramTests: IDisposable
         IEnumerable<string> expected = new List<string>{"1 25/11/2022", "3 25/10/2022"};
     
         // Act
-        var actual = Program.getFrequence(testRepo,id,_context);
+        var actual = Program.getFrequency(testRepo,_context);
+    
+        // Assert
+        expected.Should().BeEquivalentTo(actual);
+   }
 
-         foreach(DataCommit dc in analyzedRepo.CommitsInRepo){
-            Console.WriteLine(dc.Date);
+   [Fact]
+   public void getFrequencyauthor_returns_correct_db_data()
+   {
+
+    // Arrange
+        var commitsStrings = new List<string>();
+        foreach(var Commit in testRepo.Commits){
+            commitsStrings.Add(Commit.Id.ToString());
         }
+
+        var hashedId = Program.getRepoHashedID(testRepo);
+
+        var createDTO = new AnalyzedRepoCreateDTO(hashedId,testRepo.Commits.Last().Author.When.Date, commitsStrings);
+        var (response,id) = _repo.Create(createDTO);
+
+        var analyzedRepo = _context.AnalyzedRepos.Find(id);
+        IEnumerable<string> expected = new List<string>{"Person3",  "1 25/11/2022", "1 25/10/2022", "Person1", "1 25/10/2022", "Person2", "1 25/10/2022"};
+    
+        // Act
+        var actual = Program.getFrequencyAuthorMode(testRepo,_context);
     
         // Assert
         expected.Should().BeEquivalentTo(actual);

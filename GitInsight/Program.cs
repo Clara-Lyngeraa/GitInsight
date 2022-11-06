@@ -27,36 +27,37 @@ public class Options{
    
    if(input.Value.AuthorMode){
     //analyze with authormode
+    analyze(repo,context,true);
    } else {
         //do not analyze with authormode
-        //analyze(repo,context);
+    
+    analyze(repo,context,false);
    }
 }
 
-
-public static void analyze(Repository repoToAnalyze, GitInsightContext context){
+public static void analyze(Repository repoToAnalyze, GitInsightContext context, Boolean author){
 
     AnalyzedRepoRepository analyzedRepoRepo = new AnalyzedRepoRepository(context);
     
-    //get latest commit here
+
     DateTime stateOfRepoToAnalyze = repoToAnalyze.Commits.Last().Author.When.DateTime;
-
     List<string> commits = repoToAnalyze.Commits.Select(c => c.Id.ToString()).ToList();
-    var reponse = analyzedRepoRepo.Update(new AnalyzedRepoUpdateDTO(getRepoHashedID(repoToAnalyze),stateOfRepoToAnalyze,commits));
-    
-    //if the repo to be analyzed is not in the database we create it
-    if(reponse == Response.NotFound){
-        var createDTO = new AnalyzedRepoCreateDTO(getRepoHashedID(repoToAnalyze),stateOfRepoToAnalyze,commits);
-        var (response, id) = analyzedRepoRepo.Create(createDTO);
 
-   
-    foreach(string s in getFrequence(repoToAnalyze,id,context)){
-        Console.WriteLine(s);
+    //calling create
+    var createDTO = new AnalyzedRepoCreateDTO(getRepoHashedID(repoToAnalyze),stateOfRepoToAnalyze,commits);
+    analyzedRepoRepo.Create(createDTO);
+
+    //calling update
+    analyzedRepoRepo.Update(new AnalyzedRepoUpdateDTO(getRepoHashedID(repoToAnalyze),stateOfRepoToAnalyze,commits));
+    
+    if(author){
+        getFrequencyAuthorMode(repoToAnalyze,context).ToList().ForEach(Console.WriteLine);
+    } else {
+        getFrequency(repoToAnalyze,context).ToList().ForEach(Console.WriteLine);
     }
-    } 
 }
 
-    public static IEnumerable<string> getFrequence(Repository repo, int idOfRepo, GitInsightContext context)
+    public static IEnumerable<string> getFrequency(Repository repo, GitInsightContext context)
     {
          //THIS IS NOT THE WAY TO DO THIS BUT I DO NOT KNOW HOW!!!!!!!!!!!!
         foreach(Commit c in repo.Commits){
@@ -65,7 +66,7 @@ public static void analyze(Repository repoToAnalyze, GitInsightContext context){
         context.SaveChanges();
     }
         //in the context we want to find the repository and then count the number of commits per day
-        var analyzedRepo = context.AnalyzedRepos.Find(idOfRepo);
+        AnalyzedRepo analyzedRepo = context.AnalyzedRepos.Find(getRepoHashedID(repo));
         
         return from c in analyzedRepo.CommitsInRepo
         .GroupBy(c => c.Date.ToShortDateString().ToString())
@@ -75,9 +76,32 @@ public static void analyze(Repository repoToAnalyze, GitInsightContext context){
                 let date = c.First().Date.ToShortDateString().ToString()
                 select $"{amount} {date}";
         }
+    public static IEnumerable<string> getFrequencyAuthorMode(Repository repo, GitInsightContext context)
+    {
+         //THIS IS NOT THE WAY TO DO THIS BUT I DO NOT KNOW HOW!!!!!!!!!!!!
+        foreach(Commit c in repo.Commits){
+        var commitToUpdateWithDate = context.DataCommits.Find(c.Id.ToString());
+        commitToUpdateWithDate.Date = c.Author.When.Date;
+        commitToUpdateWithDate.Name = c.Author.Name;
+        context.SaveChanges();
+    }
+        //in the context we want to find the repository and then count the number of commits per day
+        AnalyzedRepo analyzedRepo = context.AnalyzedRepos.Find(getRepoHashedID(repo));
         
+        //group on name on the result of the method above
 
+        foreach(var commitAuthor in analyzedRepo.CommitsInRepo.GroupBy(c => c.Name)){
+            yield return commitAuthor.First().Name;
 
+            foreach(var commit in commitAuthor.GroupBy(c => c.Date.ToShortDateString().ToString())){
+                var amount = commit.Count();
+                var dated = commit.First().Date.ToShortDateString().ToString();
+                yield return amount + " " + dated;
+            }
+        }
+        }
+
+  
     //hashing the repository to get a repoStringID
     public static string getRepoHashedID(Repository repo){
       string firstCommitToHash = repo.Commits.First().Author + repo.Commits.First().Message;

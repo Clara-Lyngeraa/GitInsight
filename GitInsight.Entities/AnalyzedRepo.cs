@@ -1,10 +1,10 @@
 namespace GitInsight.Entities;
 public class AnalyzedRepo {
 
-    public int Id{get;set;}
+    //public int Id{get;set;}
 
-    // [Required]
-    // [Key]
+    [Required]
+    [Key]
     public string RepositoryIdString {get;set;}
 
     //the last commit in the analysis
