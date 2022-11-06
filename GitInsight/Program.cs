@@ -3,35 +3,34 @@ namespace GitInsight;
 using System.Security.Cryptography;
 using System.Text;
 using LibGit2Sharp;
+using CommandLine;
+using System;
 
 public class Program{
 
 
-public static void Main (string[] args){
+public class Options{
+    [Option('f', "repoPath", Required=true, HelpText="Enter a path to your repository located on your local device:")]
+    public string RepoPath { get; set;} = null!;
+
+    [Option('a', "authorMode", HelpText="insert a for authorMode")]
+    public bool AuthorMode {get;set;}
+    }
+
+    public static void Main (string[] args){
 
     //creating the context
     using var context = new GitInsightContext();
     
-    //in the terminal we want to check if agrs[0] is either something like -f or -a given this information to the user. 
-    //if it input is -f run in frequency mode
-    //if the input is -a run in author mode
-
-    Console.Write("Enter a path to your repository located on your local device: ");
-    var pathToRepo = Console.ReadLine();
-
-    var repo = new Repository(pathToRepo);
+    var input = Parser.Default.ParseArguments<Options>(args);
+    var repo = new Repository(input.Value.RepoPath);
    
-	Console.Write("-a for authormode -f for freqyencemode: ");
-	var input = Console.ReadLine();
-
-	//Process input
-	if(input == "-a"){
-       analyze(repo,context);
-    } else if(input == "-f"){
-        analyze(repo,context);
-    } else {
-         throw new ArgumentException("Enter valid mode");
-     }
+   if(input.Value.AuthorMode){
+    //analyze with authormode
+   } else {
+        //do not analyze with authormode
+        //analyze(repo,context);
+   }
 }
 
 
@@ -39,8 +38,9 @@ public static void analyze(Repository repoToAnalyze, GitInsightContext context){
 
     AnalyzedRepoRepository analyzedRepoRepo = new AnalyzedRepoRepository(context);
     
-    //calling update method
+    //get latest commit here
     DateTime stateOfRepoToAnalyze = repoToAnalyze.Commits.Last().Author.When.DateTime;
+
     List<string> commits = repoToAnalyze.Commits.Select(c => c.Id.ToString()).ToList();
     var reponse = analyzedRepoRepo.Update(new AnalyzedRepoUpdateDTO(getRepoHashedID(repoToAnalyze),stateOfRepoToAnalyze,commits));
     
@@ -77,6 +77,8 @@ public static void analyze(Repository repoToAnalyze, GitInsightContext context){
         }
         
 
+
+    //hashing the repository to get a repoStringID
     public static string getRepoHashedID(Repository repo){
       string firstCommitToHash = repo.Commits.First().Author + repo.Commits.First().Message;
       string hashedRepo = string.Empty;
