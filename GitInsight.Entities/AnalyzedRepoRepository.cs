@@ -36,7 +36,7 @@ private GitInsightContext _context;
     public Response Update(AnalyzedRepoUpdateDTO analyzedRepo){
         
         //check if the repo exists in the database
-        AnalyzedRepo currentAnalyzedRepo = _context.AnalyzedRepos.Find(analyzedRepo.RepositoryIdString)!;
+        AnalyzedRepo currentAnalyzedRepo = _context.AnalyzedRepos.Where(r => r.RepositoryIdString == analyzedRepo.RepositoryIdString).FirstOrDefault();
 
         if(currentAnalyzedRepo is null){
             return Response.NotFound;

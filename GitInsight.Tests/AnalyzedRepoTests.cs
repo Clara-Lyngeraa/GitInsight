@@ -53,17 +53,49 @@ public class AnalyzedRepoTests: IDisposable
     public void create_returns_response_created()
     {
         //Arrange
-        var expectedDTO = new AnalyzedRepoCreateDTO("hejsa", testRepo.Commits.Last().Author.When.Date, new List<string>());
+        var createDTO = new AnalyzedRepoCreateDTO("hejsa", testRepo.Commits.Last().Author.When.Date, new List<string>());
 
         //Act
-        var createDTO = new AnalyzedRepoCreateDTO("hejsa", testRepo.Commits.Last().Author.When.Date, new List<string>());
         var (response, id) = _repo.Create(createDTO);
+        var expected = Response.Created;
 
         //Assert
-        response.Should().Be(Response.Created);        
+        response.Should().Be(expected);    
+        id.Should().Be(1);    //since it is the first in the database the given id should be 1
     }
 
+    [Fact]
+    public void Update_with_repo_not_in_db_returns_notfound_response()
+    {
+        // Arrange
+        var updateDTO = new AnalyzedRepoUpdateDTO("SomethingNotInDB", new DateTime(2022,11,06), new List<string>());
+    
+        // Act
+        var expected = Response.NotFound;
+        var response = _repo.Update(updateDTO);
+    
+        // Assert
+        response.Should().Be(expected);
+    }
 
+    [Fact]
+    public void Update_with_repo_in_db_returns_updated_response()
+    {
+        // Arrange
+        //adding a repo to the db to test
+        var createDTO = new AnalyzedRepoCreateDTO("hejsa", new DateTime(2022,11,06), new List<string>());
+
+        //Act
+        _repo.Create(createDTO);
+        var updateDTO = new AnalyzedRepoUpdateDTO("hejsa", new DateTime(2022,11,06), new List<string>());
+    
+        // Act
+        var expected = Response.Updated;
+        var response = _repo.Update(updateDTO);
+    
+        // Assert
+        response.Should().Be(expected);
+    }
 }
 
  
