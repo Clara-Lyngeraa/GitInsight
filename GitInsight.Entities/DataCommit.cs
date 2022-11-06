@@ -2,21 +2,23 @@ namespace GitInsight.Entities;
 
 public class DataCommit {
 
-    public int Id {get;set;}
-
-    public string? StringId {get;set;}
+    //public int Id {get;set;}
 
     [Required]
+    [Key]
+    public string StringId {get;set;}
+
+    
     public string? RepositoryId {get;set;}
 
-    [Required]
+    
     public string? Name {get; set;}
     
-    [Required]
-    public string? Email {get; set;}
-    [Required]
-    
-    public DateTimeOffset Date {get;set;}
 
-   
+    public string? Email {get; set;}
+  
+    
+    public DateTime Date {get;set;}
+
+    
 }

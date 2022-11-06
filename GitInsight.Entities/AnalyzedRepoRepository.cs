@@ -10,7 +10,8 @@ private GitInsightContext _context;
    public (Response response, int id) Create (AnalyzedRepoCreateDTO analyzedRepo)
    {
         //finding the commitSignatures in the database that belongs to those in the analyzes repos list of names of the commits
-        var commitSignatures = analyzedRepo.commitsInRepo.Select(c => FindOrCreateCommitSignature(c)).ToList();
+        List<DataCommit> commitSignatures = analyzedRepo.commitsInRepo.Select(c => FindOrCreateDataCommit(c)).ToList();
+
         var newAnalyzedRepo = new AnalyzedRepo();
         newAnalyzedRepo.RepositoryIdString = analyzedRepo.RepositoryIdString;
         newAnalyzedRepo.State = analyzedRepo.State;
@@ -22,12 +23,14 @@ private GitInsightContext _context;
         return (Response.Created, newAnalyzedRepo.Id);
     }
     
-    private DataCommit FindOrCreateCommitSignature(string commitId)
+    private DataCommit FindOrCreateDataCommit(string commitId)
     {
-        var commitSigInDB = _context.DataCommits.Where(c => c.Id!.Equals(commitId));
-        if (commitSigInDB.Any()) return commitSigInDB.First();
+        var dataCommitInDB = _context.DataCommits.Where(c => c.StringId.Equals(commitId));
+        if (dataCommitInDB.Any()) return dataCommitInDB.First();
 
-        return new DataCommit{StringId = commitId};
+        return new DataCommit{
+            StringId = commitId,
+        };
     }
 
         //find already existing Datacommits in the database from their names (for now) 
@@ -36,13 +39,18 @@ private GitInsightContext _context;
     public Response Update(AnalyzedRepoUpdateDTO analyzedRepo){
         
         //check if the repo exists in the database
-        AnalyzedRepo currentAnalyzedRepo = _context.AnalyzedRepos.Where(r => r.RepositoryIdString == analyzedRepo.RepositoryIdString).FirstOrDefault();
+        AnalyzedRepo currentAnalyzedRepo = _context.AnalyzedRepos.Where(r => r.RepositoryIdString == analyzedRepo.RepositoryIdString).FirstOrDefault()!;
 
         if(currentAnalyzedRepo is null){
             return Response.NotFound;
         }
 
-        var newCommitsInRepo = analyzedRepo.commitsInRepo.Select(c => FindOrCreateCommitSignature(c)).ToList();
+        //if the repo is already up to date we want to stop here
+        if(analyzedRepo.State == currentAnalyzedRepo.State){
+            return Response.UpToDate;
+        }
+
+        var newCommitsInRepo = analyzedRepo.commitsInRepo.Select(c => FindOrCreateDataCommit(c)).ToList();
         currentAnalyzedRepo.CommitsInRepo = newCommitsInRepo;
 
         _context.SaveChanges();
@@ -51,7 +59,20 @@ private GitInsightContext _context;
         return Response.Updated;
     }
 
+     public bool FindWithId(int repoId)
+    {
+        var repo = _context.AnalyzedRepos.Find(repoId);
+        return repo != null ? true : false;
+
+    }
+    //  public AnalyzedRepo FindWithStringId(string repoStringId)
+    // {
+    //     var idOfFoundRepo = _context.AnalyzedRepos.Select(r => r.RepositoryIdString == repoStringId);
+    //     return idOfFoundRepo;
+    // }
+
     public void Dispose(){
         _context.Dispose();
     }    
+
 }

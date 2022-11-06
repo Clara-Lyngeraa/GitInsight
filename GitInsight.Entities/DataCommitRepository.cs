@@ -19,22 +19,17 @@ private GitInsightContext _context;
     
     public (Response response, string id) Create(CommitCreateDTO commit){
 
-  //finding the commitSignatures in the database that belongs to those in the analyzes repos list of names of the commits
-    
+    //finding the commitSignatures in the database that belongs to those in the analyzes repos list of names of the commits
         var newCommit = new DataCommit{
-        RepositoryId = commit.RepoId,
         StringId = commit.StringId,
+        RepositoryId = commit.RepoId,
         Name = commit.Name,
-        Email = commit.Email,
-        };
-
+        Email = commit.Email};
 
         _context.DataCommits.Add(newCommit);
         _context.SaveChanges();
         return (Response.Created, newCommit.StringId);
     }
-
-
 
     public void Dispose(){
         _context.Dispose();

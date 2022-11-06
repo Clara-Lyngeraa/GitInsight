@@ -4,5 +4,7 @@ public enum Response{
     Updated,
     NotFound,
 
-    Created
+    Created,
+
+    UpToDate,
 }
