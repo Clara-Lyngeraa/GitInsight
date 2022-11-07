@@ -10,9 +10,8 @@ private GitInsightContext _context;
     //creating a SignatureUpdateDTO from a signature
     private CommitUpdateDTO SignatureUpdateDTOFromSignature(DataCommit dataCommit){
         return new CommitUpdateDTO (
-        RepoId: dataCommit.RepositoryId!,
+        StringId: dataCommit.StringId,
         Name: dataCommit.Name!,
-        Email: dataCommit.Email!,
         Date: dataCommit.Date
     );
     }
@@ -22,10 +21,9 @@ private GitInsightContext _context;
     //finding the commitSignatures in the database that belongs to those in the analyzes repos list of names of the commits
         var newCommit = new DataCommit{
         StringId = commit.StringId,
-        RepositoryId = commit.RepoId,
-        Name = commit.Name,
-        Email = commit.Email};
-
+        Date = commit.Date,
+        Name = commit.Name};
+    
         _context.DataCommits.Add(newCommit);
         _context.SaveChanges();
         return (Response.Created, newCommit.StringId);

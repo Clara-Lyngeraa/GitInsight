@@ -9,15 +9,15 @@ public class DataCommit {
     public string StringId {get;set;}
 
     
-    public string? RepositoryId {get;set;}
+    //public string? RepositoryId {get;set;}
 
     
     public string? Name {get; set;}
     
 
-    public string? Email {get; set;}
+    //public string? Email {get; set;}
   
-    
+     [Required]
     public DateTime Date {get;set;}
 
     
