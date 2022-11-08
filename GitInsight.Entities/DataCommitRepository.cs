@@ -15,6 +15,13 @@ private GitInsightContext _context;
         Date: dataCommit.Date
     );
     }
+
+    public DataCommit DataCommitFromCommit(Commit c) => new DataCommit
+    {
+        StringId = c.Id.ToString(),
+        Name = c.Author.Name,
+        Date = c.Author.When.Date
+    };
     
     public (Response response, string id) Create(CommitCreateDTO commit){
 

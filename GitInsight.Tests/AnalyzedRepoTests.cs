@@ -161,49 +161,10 @@ public class AnalyzedRepoTests: IDisposable
         var expected = 4;
        //Act
        var actual = _repo.findCommitsInRepo(testRepo).Count();
-       foreach(DataCommit dc in _repo.findCommitsInRepo(testRepo)){
-        Console.WriteLine(dc.Date);
-       }
-
        //Assert
        expected.Should().Be(actual);
         
     }
-
-
-   [Fact]
-   public void getFrequency_returns_correct_db_data()
-   {
-
-        //Arrange
-        var commitsToAnalyze = _repo.findCommitsInRepo(testRepo);
-        
-        IEnumerable<string> expected = new List<string>{"1 25/11/2022", "3 25/10/2022"};
-    
-        // Act
-        var actual = _repo.getFrequency(commitsToAnalyze);
-    
-        // Assert
-        expected.Should().BeEquivalentTo(actual);
-   }
-
-   [Fact]
-   public void getFrequencyauthor_returns_correct_db_data()
-   {
-
-    // Arrange
-        var commitsToAnalyze = _repo.findCommitsInRepo(testRepo);
-
-        Console.WriteLine(commitsToAnalyze.Count());
-
-        IEnumerable<string> expected = new List<string>{"Person3",  "1 25/11/2022", "1 25/10/2022", "Person1", "1 25/10/2022", "Person2", "1 25/10/2022"};
-    
-        // Act
-        var actual = _repo.getFrequencyAuthorMode(commitsToAnalyze);
-    
-        // Assert
-        expected.Should().BeEquivalentTo(actual);
-   }
 }
 
  

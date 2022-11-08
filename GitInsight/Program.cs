@@ -25,14 +25,17 @@ public class Options{
     var input = Parser.Default.ParseArguments<Options>(args);
     var analyzedRepoRepo = new AnalyzedRepoRepository(context);
     var repo = new Repository(input.Value.RepoPath);
+    var commitAnalyzer = new CommitAnalyzer();
    
 
     var allCommits = analyzedRepoRepo.findCommitsInRepo(repo);
 
     if(input.Value.AuthorMode){
-            analyzedRepoRepo.getFrequencyAuthorMode(allCommits).ToList().ForEach(Console.WriteLine);
+            Console.WriteLine("AUTHORMODE SELECTED");
+            commitAnalyzer.getFrequencyAuthorMode(allCommits).ToList().ForEach(Console.WriteLine);
         } else {
-            analyzedRepoRepo.getFrequency(allCommits).ToList().ForEach(Console.WriteLine);
+            Console.WriteLine("DEFAULT MODE SELECTED");
+            commitAnalyzer.getFrequency(allCommits).ToList().ForEach(Console.WriteLine);
         }
     }
 }
