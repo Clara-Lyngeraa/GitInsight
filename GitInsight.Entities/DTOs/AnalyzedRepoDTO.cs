@@ -1,20 +1,19 @@
 using System.Security.Cryptography;
 using System.Text;
+using GitInsight.Entities.DTOs;
 
 namespace GitInsight.Entities.DTOs;
 
 public record AnalyzedRepoDTO(int Id, string RepositoryIdString, DateTime State, ICollection<DataCommit> commitsInRepo);
-public record AnalyzedRepoUpdateDTO(string RepositoryIdString, DateTime State, ICollection<DataCommit> CommitsInRepo);
-
-public record AnalyzedRepoCreateDTO
-{
-    public string RepositoryIdString;
+public record AnalyzedRepoUpdateDTO{
+ public string RepositoryIdString;
     public DateTime State;
     public ICollection<DataCommit> CommitsInRepo;
-    public AnalyzedRepoCreateDTO(Repository repo)
+    public AnalyzedRepoUpdateDTO(Repository repo)
     {
-        RepositoryIdString = getRepoHashedID(repo);  
-        State = DateTime.Now;
+        RepositoryIdString = Utilities.getRepoHashedID(repo);  
+        //Console.WriteLine(RepositoryIdString);
+        State = repo.Commits.Last().Author.When.Date;
         CommitsInRepo = new List<DataCommit>();;
         
         foreach(Commit c in repo.Commits)
@@ -26,21 +25,32 @@ public record AnalyzedRepoCreateDTO
             });
         }
     }
-    public static string getRepoHashedID(Repository repo){
-      string firstCommitToHash = repo.Commits.First().Author + repo.Commits.First().Message;
-      string hashedRepo = string.Empty;
-      using (SHA256 sha256 = SHA256.Create())
+}
+
+public record AnalyzedRepoCreateDTO
+{
+    public string RepositoryIdString;
+    public DateTime State;
+    public ICollection<DataCommit> CommitsInRepo = null!;
+    public AnalyzedRepoCreateDTO(Repository repo)
+    {
+        RepositoryIdString = Utilities.getRepoHashedID(repo);  
+        //Console.WriteLine(RepositoryIdString);
+
+        var list = repo.Commits.OrderBy(c => c.Author.When.Date);
+        State = list.Last().Author.When.Date;
+        CommitsInRepo = new List<DataCommit>();;
+        
+        foreach(Commit c in repo.Commits)
         {
-            // Compute the hash of the given string
-            byte[] hashValue = sha256.ComputeHash(Encoding.UTF8.GetBytes(firstCommitToHash));
- 
-            // Convert the byte array to string format
-            foreach (byte b in hashValue) {
-                hashedRepo += $"{b:X2}";
-            }
+            CommitsInRepo.Add(new DataCommit{
+            StringId = c.Id.ToString(),
+            Name = c.Author.Name,
+            Date = c.Author.When.Date
+            });
         }
-        return hashedRepo;
     }
+
 }
 
 

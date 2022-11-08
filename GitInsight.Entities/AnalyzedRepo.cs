@@ -5,7 +5,7 @@ public class AnalyzedRepo {
 
     [Required]
     [Key]
-    public string? RepositoryIdString {get;set;}
+    public string RepositoryIdString {get;set;} = null!;
 
     //the last commit in the analysis
     public DateTime State {get;set;}

@@ -1,8 +1,7 @@
 global using Xunit;
 global using FluentAssertions;
 global using LibGit2Sharp;
-global using System.Reflection;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Data.Sqlite;
-global using GitInsight.Core;
 global using GitInsight.Entities;
+global using GitInsight.Entities.DTOs;

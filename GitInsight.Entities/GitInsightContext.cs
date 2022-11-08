@@ -24,7 +24,7 @@ public partial class GitInsightContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<AnalyzedRepo>().HasMany(e => e.CommitsInRepo);
+        modelBuilder.Entity<AnalyzedRepo>().HasMany(e => e.CommitsInRepo).WithOne(e => e.Repo);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

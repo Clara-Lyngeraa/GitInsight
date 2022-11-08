@@ -25,7 +25,7 @@ private GitInsightContext _context;
 
         if(!repoIsUpToDate(repo,currentAnalyzedRepo)){
             //if it is not up to date we want to call update
-            Update(new AnalyzedRepoUpdateDTO(currentAnalyzedRepo.RepositoryIdString, currentAnalyzedRepo.State, currentAnalyzedRepo.CommitsInRepo));
+            Update(new AnalyzedRepoUpdateDTO(repo));
         }
 
         foreach(DataCommit dc in currentAnalyzedRepo.CommitsInRepo){
@@ -63,13 +63,15 @@ private GitInsightContext _context;
         var newAnalyzedRepo = new AnalyzedRepo{
             RepositoryIdString = analyzedRepoDTO.RepositoryIdString,
             State = analyzedRepoDTO.State,
-            CommitsInRepo = analyzedRepoDTO.CommitsInRepo
+            CommitsInRepo = analyzedRepoDTO.CommitsInRepo,
         };
-        
+
+        newAnalyzedRepo.CommitsInRepo.ToList().ForEach(c => c.Repo = newAnalyzedRepo);
+    
         _context.AnalyzedRepos.Add(newAnalyzedRepo);
         _context.SaveChanges();
         
-        return (Response.Created);
+        return Response.Created;
     }
     
    
@@ -77,20 +79,27 @@ private GitInsightContext _context;
         //if they are not there the method above creates a DataCommit from the given string
         //update the analyzedRepos list of DataCommits and save the changes
     public Response Update(AnalyzedRepoUpdateDTO updateDTO){
-        
         var repoInDB = _context.AnalyzedRepos.Find(updateDTO.RepositoryIdString);
-        var sortedRepoCommits = updateDTO.CommitsInRepo.OrderBy(c => c.Date);
-
-        foreach(var c in sortedRepoCommits){
-            if(c.Date > repoInDB.State){
-                //if this is true the commit is new
-                repoInDB.CommitsInRepo.Add(new DataCommit{
-                    StringId = c.StringId,
-                    Name = c.Name,
-                    Date = c.Date
-                });
-            }
+        if(repoInDB == null){
+            Console.WriteLine("WTF");
         }
+
+        var listSorted = updateDTO.CommitsInRepo.OrderBy(c => c.Date);
+       
+        var sortedRepoCommits = updateDTO.CommitsInRepo.Where(c => c.Date > repoInDB.State).Select(c => new DataCommit{
+            StringId = c.StringId,
+            Name = c.Name,
+            Date = c.Date
+        });
+
+        foreach(DataCommit dc in sortedRepoCommits){
+            repoInDB.CommitsInRepo.Add(dc);
+        }
+    
+        foreach(DataCommit dc in repoInDB.CommitsInRepo){
+            Console.WriteLine(dc.Date);
+        }
+        
         repoInDB.State = sortedRepoCommits.Last().Date;
         _context.SaveChanges();
 

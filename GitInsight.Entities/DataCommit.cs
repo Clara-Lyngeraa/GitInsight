@@ -11,5 +11,7 @@ public class DataCommit {
      [Required]
     public DateTime Date {get;set;}
 
+    public AnalyzedRepo Repo {get; set;}
+
     
 }
