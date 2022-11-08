@@ -1,42 +1,38 @@
-namespace GitInsight.Entities;
+// using GitInsight.Entities.DTOs;
 
-public class DataCommitRepository: IDisposable{
+// namespace GitInsight.Entities;
 
-private GitInsightContext _context;
-    public DataCommitRepository(GitInsightContext context){
-        _context = context;
-    }
 
-    //creating a SignatureUpdateDTO from a signature
-    private CommitUpdateDTO SignatureUpdateDTOFromSignature(DataCommit dataCommit){
-        return new CommitUpdateDTO (
-        StringId: dataCommit.StringId,
-        Name: dataCommit.Name!,
-        Date: dataCommit.Date
-    );
-    }
+// public class DataCommitRepository: IDisposable{
 
-    public DataCommit DataCommitFromCommit(Commit c) => new DataCommit
-    {
-        StringId = c.Id.ToString(),
-        Name = c.Author.Name,
-        Date = c.Author.When.Date
-    };
+// private GitInsightContext _context;
+//     public DataCommitRepository(GitInsightContext context){
+//         _context = context;
+//     }
+
+//     //creating a SignatureUpdateDTO from a signature
+//     private CommitUpdateDTO SignatureUpdateDTOFromSignature(DataCommit dataCommit){
+//         return new CommitUpdateDTO (
+//         StringId: dataCommit.StringId,
+//         Name: dataCommit.Name!,
+//         Date: dataCommit.Date
+//     );
+//     }
+
+//     public (Response response, string id) Create(CommitUpdateDTO commit){
+
+//     //finding the commitSignatures in the database that belongs to those in the analyzes repos list of names of the commits
+//         var newCommit = new DataCommit{
+//         StringId = commit.StringId,
+//         Date = commit.Date,
+//         Name = commit.Name};
     
-    public (Response response, string id) Create(CommitCreateDTO commit){
+//         _context.DataCommits.Add(newCommit);
+//         _context.SaveChanges();
+//         return (Response.Created, newCommit.StringId);
+//     }
 
-    //finding the commitSignatures in the database that belongs to those in the analyzes repos list of names of the commits
-        var newCommit = new DataCommit{
-        StringId = commit.StringId,
-        Date = commit.Date,
-        Name = commit.Name};
-    
-        _context.DataCommits.Add(newCommit);
-        _context.SaveChanges();
-        return (Response.Created, newCommit.StringId);
-    }
-
-    public void Dispose(){
-        _context.Dispose();
-    }
-}
+//     public void Dispose(){
+//         _context.Dispose();
+//     }
+// }
