@@ -1,4 +1,4 @@
-namespace BlazorApp.Data;
+namespace GitInsight.Client.Data;
 
 public class WeatherForecast
 {

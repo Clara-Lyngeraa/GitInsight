@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using BlazorApp.Data;
+using GitInsight.Client.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
