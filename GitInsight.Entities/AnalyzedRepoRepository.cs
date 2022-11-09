@@ -18,7 +18,7 @@ private GitInsightContext _context;
         if(currentAnalyzedRepo is null){
             //calling create if the repository is not in the database
             var createDTO = new AnalyzedRepoCreateDTO(repo);
-            Create(createDTO);
+            CreateAsync(createDTO);
         }
 
         currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
@@ -28,7 +28,7 @@ private GitInsightContext _context;
           
             var updateDTO = new AnalyzedRepoUpdateDTO(repo);
             //if it is not up to date we want to call update
-            Update(updateDTO);
+            UpdateAsync(updateDTO);
 
             currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
 
@@ -48,29 +48,40 @@ private GitInsightContext _context;
         return repo.Commits.Last().Author.When.Date;
    }
 
-   public (Response response, AnalyzedRepo analyzedRepo) Create (AnalyzedRepoCreateDTO analyzedRepoDTO)
+   public async Task<(Response,AnalyzedRepoDTO)> CreateAsync (AnalyzedRepoCreateDTO analyzedRepoDTO)
    {
-        var newAnalyzedRepo = new AnalyzedRepo{
-            //RepositoryIdString = analyzedRepoDTO.RepositoryIdString,
+
+    var analyzedRepo = await _context.AnalyzedRepos.FirstOrDefaultAsync(c => c.Path == analyzedRepoDTO.Path);
+    Response response; 
+
+    if(analyzedRepo == null){
+
+            analyzedRepo = new AnalyzedRepo{
             State = analyzedRepoDTO.State,
             CommitsInRepo = analyzedRepoDTO.CommitsInRepo,
             Path = analyzedRepoDTO.Path
         };
 
-        newAnalyzedRepo.CommitsInRepo.ToList().ForEach(c => c.Repo = newAnalyzedRepo);
-    
-        _context.AnalyzedRepos.Add(newAnalyzedRepo);
-        _context.SaveChanges();
+        _context.AnalyzedRepos.Add(analyzedRepo);
+        await _context.SaveChangesAsync();
+
+        response = Response.Created;
+    } else {
+        response = Response.Conflict;
+    }
+
+        var created = new AnalyzedRepoDTO(analyzedRepo.Id, analyzedRepo.Path, analyzedRepo.State, analyzedRepo.CommitsInRepo);
+        //analyzedRepo.CommitsInRepo.ToList().ForEach(c => c.Repo = analyzedRepo);
         
-        return (Response.Created, newAnalyzedRepo);
+        return (response, created);
     }
     
    
         //find already existing Datacommits in the database from their names (for now) 
         //if they are not there the method above creates a DataCommit from the given string
         //update the analyzedRepos list of DataCommits and save the changes
-    public Response Update(AnalyzedRepoUpdateDTO updateDTO){
-        var repoInDB = _context.AnalyzedRepos.Find(updateDTO.Path);
+    public async Task<Response> UpdateAsync(AnalyzedRepoUpdateDTO updateDTO){
+        var repoInDB = await _context.AnalyzedRepos.FindAsync(updateDTO.Path);
 
         if(repoInDB == null){
             Console.WriteLine("WTF");

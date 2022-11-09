@@ -1,7 +1,7 @@
 namespace GitInsight.Entities;
 public class AnalyzedRepo {
 
-    //public int Id{get;set;}
+    public int Id{get;set;}
 
    
    // public string RepositoryIdString {get;set;}

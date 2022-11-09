@@ -50,13 +50,13 @@ public class AnalyzedRepoTests: IDisposable
 
 
     [Fact]
-    public void create_returns_response_created()
+    public async void createAsync_returns_response_created()
     {       
         //Arrange
         var createDTO = new AnalyzedRepoCreateDTO(testRepo);
 
         //Act
-        var (response, analyzedRepo) = _repo.Create(createDTO);
+        var (response, analyzedRepo) = await _repo.CreateAsync(createDTO);
         var expected = Response.Created;
 
         //Assert
@@ -65,26 +65,26 @@ public class AnalyzedRepoTests: IDisposable
     }
 
 
-
-    [Fact]
-    public void Create_creates_correct_AnalyzedRepo_with_DataCommits()
+    
+    [Fact ]
+    public async void CreateASync_creates_correct_AnalyzedRepo_with_DataCommits()
     {
         //Arrange
         var createDTO = new AnalyzedRepoCreateDTO(testRepo);
 
         //Act
-        _repo.Create(createDTO);
+        _repo.CreateAsync(createDTO);
         
         //Assert
         Assert.Equal(4,_context.DataCommits.Count()); 
     }
 
     [Fact]
-    public void check_if_datacommits_are_updated_in_datacommit_database_on_create()
+    public async void check_if_datacommits_are_updated_in_datacommit_database_on_createAsync()
     {
         //Arrange
         var createDTO = new AnalyzedRepoCreateDTO(testRepo);
-        _repo.Create(createDTO);
+        _repo.CreateAsync(createDTO);
 
         //Act
         var dbRepo = _context.AnalyzedRepos.Find(testRepo.Info.Path);
@@ -103,26 +103,28 @@ public class AnalyzedRepoTests: IDisposable
 }
 
         [Fact]
-        public void finding_a_repo_is_db_should_return_correct_analyzedRepo()
+        public async void finding_a_repo_is_db_should_return_correct_analyzedRepo()
         {
             //Arrange
             var createDTO = new AnalyzedRepoCreateDTO(testRepo);
-            var (response,  dbRepoFromCreate) = _repo.Create(createDTO);
+            var (response,  created) = await _repo.CreateAsync(createDTO);
           
             //Act
             var dbRepo = _context.AnalyzedRepos.Find(testRepo.Info.Path);
         
             //Assert
-            Assert.Equal(dbRepoFromCreate,dbRepo);
+            Assert.Equal(response, Response.Created);
+            Assert.Equal(created.path,dbRepo.Path);
+            
         }
 
 
          [Fact]
-        public void repo_path_with_new_commit_in_repo_should_be_the_same()
+        public async void repo_path_with_new_commit_in_repo_should_be_the_same()
         {
             //Arrange
             var createDTO = new AnalyzedRepoCreateDTO(testRepo);
-            var (response, dbRepoFromCreate) = _repo.Create(createDTO);
+            var (response, dbRepoFromCreate) = await _repo.CreateAsync(createDTO);
 
             Signature sig5 = new Signature("Person4", "person5@itu.dk", new DateTimeOffset(new DateTime(2022,11,30)));
             testRepo.Commit("new Commit", sig5,sig5, new CommitOptions (){AllowEmptyCommit = true});
@@ -131,23 +133,23 @@ public class AnalyzedRepoTests: IDisposable
             var dbRepo = _context.AnalyzedRepos.Find(testRepo.Info.Path);
 
             //Assert
-            Assert.Equal(dbRepoFromCreate,dbRepo);
+            Assert.Equal(dbRepoFromCreate.path,dbRepo.Path);
         }
 
 
     [Fact]
-    public void Update_updates_list_of_datacommits_in_db()
+    public async void Update_updates_list_of_datacommits_in_db()
     {
         //Arrange
         var createDTO = new AnalyzedRepoCreateDTO(testRepo);
-         _repo.Create(createDTO);
+         _repo.CreateAsync(createDTO);
 
         //giving testrepo a new commit
         Signature sig5 = new Signature("Person4", "person5@itu.dk", new DateTimeOffset(new DateTime(2022,11,30)));
         testRepo.Commit("new Commit", sig5,sig5, new CommitOptions (){AllowEmptyCommit = true});
        
         //Act
-        _repo.Update(new AnalyzedRepoUpdateDTO(testRepo));
+        _repo.UpdateAsync(new AnalyzedRepoUpdateDTO(testRepo));
         
         // Act
         var expected = 5;
@@ -159,11 +161,11 @@ public class AnalyzedRepoTests: IDisposable
 
 
     [Fact]
-    public void Update_updates_list_of_datacommits_in_db_to_correctlist()
+    public async void Update_updates_list_of_datacommits_in_db_to_correctlist()
     {
         //Arrange
         var createDTO = new AnalyzedRepoCreateDTO(testRepo);
-         _repo.Create(createDTO);
+         _repo.CreateAsync(createDTO);
 
         //giving testrepo a new commit
         Signature sig5 = new Signature("Person4", "person5@itu.dk", new DateTimeOffset(new DateTime(2022,11,30)));
@@ -173,7 +175,7 @@ public class AnalyzedRepoTests: IDisposable
         testRepo.Commit("new Commit", sig6,sig6, new CommitOptions (){AllowEmptyCommit = true});
        
         //Act
-        _repo.Update(new AnalyzedRepoUpdateDTO(testRepo));
+        _repo.UpdateAsync(new AnalyzedRepoUpdateDTO(testRepo));
         
     
         // Assert 
@@ -199,7 +201,7 @@ public class AnalyzedRepoTests: IDisposable
         {
             //Assert
              var createDTO = new AnalyzedRepoCreateDTO(testRepo);
-            _repo.Create(createDTO);
+            _repo.CreateAsync(createDTO);
 
             Signature sig5 = new Signature("Person4", "person5@itu.dk", new DateTimeOffset(new DateTime(2022,11,30)));
              testRepo.Commit("new Commit", sig5,sig5, new CommitOptions (){AllowEmptyCommit = true});
@@ -218,7 +220,7 @@ public class AnalyzedRepoTests: IDisposable
         {
             //Assert
              var createDTO = new AnalyzedRepoCreateDTO(testRepo);
-            _repo.Create(createDTO);
+            _repo.CreateAsync(createDTO);
 
             //Act
             var actualList = _repo.findCommitsInRepo(testRepo);

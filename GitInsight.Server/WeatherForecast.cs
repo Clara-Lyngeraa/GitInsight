@@ -1,4 +1,4 @@
-namespace GitInsight.Client.Data;
+namespace GitInsight.Server;
 
 public class WeatherForecast
 {
