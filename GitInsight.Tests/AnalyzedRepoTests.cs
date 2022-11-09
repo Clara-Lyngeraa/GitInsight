@@ -49,60 +49,95 @@ public class AnalyzedRepoTests: IDisposable
     }
 
 
-    [Fact]
-    public void create_returns_response_created()
-    {       
-        //Arrange
-        var createDTO = new AnalyzedRepoCreateDTO(testRepo);
+//     [Fact]
+//     public void create_returns_response_created()
+//     {       
+//         //Arrange
+//         var createDTO = new AnalyzedRepoCreateDTO(testRepo);
 
-        //Act
-        var response = _repo.Create(createDTO);
-        var expected = Response.Created;
+//         //Act
+//         var response = _repo.Create(createDTO);
+//         var expected = Response.Created;
 
-        //Assert
-        response.Should().Be(expected);    
-        Assert.Equal(_context.AnalyzedRepos.Count(),1);
-        //Assert.Equal(_context.AnalyzedRepos.Find(AnalyzedRepoRepository.getRepoHashedID(testRepo)).State.ToShortDateString().ToString(),testRepo.Commits.Last().Author.When.Date.ToShortDateString().ToString());
+//         //Assert
+//         response.Should().Be(expected);    
+//         Assert.Equal(_context.AnalyzedRepos.Count(),1);
+//         //Assert.Equal(_context.AnalyzedRepos.Find(AnalyzedRepoRepository.getRepoHashedID(testRepo)).State.ToShortDateString().ToString(),testRepo.Commits.Last().Author.When.Date.ToShortDateString().ToString());
         
-    }
+//     }
 
 
 
-    [Fact]
-    public void Create_creates_correct_AnalyzedRepo_with_DataCommits()
-    {
-        //Arrange
-        var createDTO = new AnalyzedRepoCreateDTO(testRepo);
+//     [Fact]
+//     public void Create_creates_correct_AnalyzedRepo_with_DataCommits()
+//     {
+//         //Arrange
+//         var createDTO = new AnalyzedRepoCreateDTO(testRepo);
 
-        //Act
-        _repo.Create(createDTO);
+//         //Act
+//         _repo.Create(createDTO);
         
-        //Assert
-        Assert.Equal(4,_context.DataCommits.Count()); 
-    }
+//         //Assert
+//         Assert.Equal(4,_context.DataCommits.Count()); 
+//     }
 
-    [Fact]
-    public void check_if_datacommits_are_updated_in_datacommit_database_on_create()
-    {
-        //Arrange
-        var createDTO = new AnalyzedRepoCreateDTO(testRepo);
-        _repo.Create(createDTO);
+//     [Fact]
+//     public void check_if_datacommits_are_updated_in_datacommit_database_on_create()
+//     {
+//         //Arrange
+//         var createDTO = new AnalyzedRepoCreateDTO(testRepo);
+//         _repo.Create(createDTO);
 
-        //Act
-        var dbRepo = _context.AnalyzedRepos.Find(AnalyzedRepoRepository.getRepoHashedID(testRepo));
+//         //Act
+//         var dbRepo = _context.AnalyzedRepos.Find(AnalyzedRepoRepository.getRepoHashedID(testRepo));
 
-        var expectedListOfDatacommits = new List<DataCommit>();
-        foreach(Commit c in testRepo.Commits){
-            expectedListOfDatacommits.Add(new DataCommit{
-            StringId = c.Id.ToString(),
-            Name = c.Author.Name,
-            Date = c.Author.When.Date,
-            Repo = dbRepo
-            });
+//         var expectedListOfDatacommits = new List<DataCommit>();
+//         foreach(Commit c in testRepo.Commits){
+//             expectedListOfDatacommits.Add(new DataCommit{
+//             StringId = c.Id.ToString(),
+//             Name = c.Author.Name,
+//             Date = c.Author.When.Date,
+//             Repo = dbRepo
+//             });
+//         }
+//         //Assert
+//         _context.DataCommits.Count().Should().Be(expectedListOfDatacommits.Count()); 
+// }
+
+        [Fact]
+        public void finding_a_repo_is_db_should_return_correct_analyzedRepo()
+        {
+            //Arrange
+            var createDTO = new AnalyzedRepoCreateDTO(testRepo);
+            AnalyzedRepo dbRepoFromCreate = _repo.Create(createDTO);
+            Console.WriteLine(dbRepoFromCreate.Path);
+
+            //Act
+            var dbRepo = _context.AnalyzedRepos.Find(testRepo.Info.Path);
+            Console.WriteLine(dbRepo.Path);
+
+
+            //Assert
+            Assert.Equal(dbRepoFromCreate,dbRepo);
         }
-        //Assert
-        _context.DataCommits.Count().Should().Be(expectedListOfDatacommits.Count()); 
-}
+
+
+         [Fact]
+        public void repo_path_with_new_commit_in_repo_should_be_the_same()
+        {
+            //Arrange
+            var createDTO = new AnalyzedRepoCreateDTO(testRepo);
+            AnalyzedRepo dbRepoFromCreate = _repo.Create(createDTO);
+
+            Signature sig5 = new Signature("Person4", "person5@itu.dk", new DateTimeOffset(new DateTime(2022,11,30)));
+            testRepo.Commit("new Commit", sig5,sig5, new CommitOptions (){AllowEmptyCommit = true});
+
+            //Act
+            var dbRepo = _context.AnalyzedRepos.Find(testRepo.Info.Path);
+
+            //Assert
+            Assert.Equal(dbRepoFromCreate,dbRepo);
+        }
 
 
     [Fact]
@@ -112,14 +147,9 @@ public class AnalyzedRepoTests: IDisposable
         var createDTO = new AnalyzedRepoCreateDTO(testRepo);
          _repo.Create(createDTO);
 
-        //Console.WriteLine(createDTO.RepositoryIdString);
-
-        Console.WriteLine(Utilities.getRepoHashedID(testRepo));
         //giving testrepo a new commit
         Signature sig5 = new Signature("Person4", "person5@itu.dk", new DateTimeOffset(new DateTime(2022,11,30)));
         testRepo.Commit("new Commit", sig5,sig5, new CommitOptions (){AllowEmptyCommit = true});
-        
-        Console.WriteLine(Utilities.getRepoHashedID(testRepo));
        
         //Act
         _repo.Update(new AnalyzedRepoUpdateDTO(testRepo));
@@ -129,21 +159,56 @@ public class AnalyzedRepoTests: IDisposable
     
         // Assert 
         //_context.DataCommits.Count().Should().Be(expected);
-        Assert.Equal(_context.AnalyzedRepos.Find("hej").CommitsInRepo.Count(),5);
+        Assert.Equal(_context.AnalyzedRepos.Find(testRepo.Info.Path).CommitsInRepo.Count(),5);
+        }
+
+
+    [Fact]
+    public void Update_updates_list_of_datacommits_in_db_to_correctlist()
+    {
+        //Arrange
+        var createDTO = new AnalyzedRepoCreateDTO(testRepo);
+         _repo.Create(createDTO);
+
+        //giving testrepo a new commit
+        Signature sig5 = new Signature("Person4", "person5@itu.dk", new DateTimeOffset(new DateTime(2022,11,30)));
+        testRepo.Commit("new Commit", sig5,sig5, new CommitOptions (){AllowEmptyCommit = true});
+
+        Signature sig6 = new Signature("Person4", "person5@itu.dk", new DateTimeOffset(new DateTime(2022,11,30)));
+        testRepo.Commit("new Commit", sig6,sig6, new CommitOptions (){AllowEmptyCommit = true});
+       
+        //Act
+        _repo.Update(new AnalyzedRepoUpdateDTO(testRepo));
+        
+    
+        // Assert 
+        Assert.Equal(_context.AnalyzedRepos.Find(testRepo.Info.Path).CommitsInRepo.Count(),6);
+        }
+
+    
+        [Fact]
+        public void FindCommitsInRepo_returns_correct_list_of_datacommits_with_firsttime_repo()
+        {
+            //Assert
+           
+
+
+            //Act
+            var actualList = _repo.findCommitsInRepo(testRepo);
+
+
+
+            //Arrange
+            actualList.Count().Should().Be(4);
+        }
+
+
+  
     }
 
 
-    // [Fact]
-    // public void findCommitsInRepo_return_correct_list_of_datacommits()
-    // {
-    //    //Arrange
-    //     var expected = 4;
-    //    //Act
-    //    var actual = _repo.findCommitsInRepo(testRepo).Count();
-    //    //Assert
-    //    expected.Should().Be(actual);
-    // }
-}
+
+
 
  
 

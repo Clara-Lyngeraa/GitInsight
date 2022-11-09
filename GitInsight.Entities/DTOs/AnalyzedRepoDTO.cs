@@ -9,11 +9,12 @@ public record AnalyzedRepoUpdateDTO{
  public string RepositoryIdString;
     public DateTime State;
     public ICollection<DataCommit> CommitsInRepo;
+    public string Path;
     public AnalyzedRepoUpdateDTO(Repository repo)
     {
-        RepositoryIdString = Utilities.getRepoHashedID(repo);  
-        //Console.WriteLine(RepositoryIdString);
+        //RepositoryIdString = Utilities.getRepoHashedID(repo);  
         State = repo.Commits.Last().Author.When.Date;
+        Path = repo.Info.Path;
         CommitsInRepo = new List<DataCommit>();;
         
         foreach(Commit c in repo.Commits)
@@ -29,16 +30,19 @@ public record AnalyzedRepoUpdateDTO{
 
 public record AnalyzedRepoCreateDTO
 {
-    public string RepositoryIdString;
+    //public string RepositoryIdString;
     public DateTime State;
     public ICollection<DataCommit> CommitsInRepo = null!;
+
+    public string Path;
     public AnalyzedRepoCreateDTO(Repository repo)
     {
-        RepositoryIdString = Utilities.getRepoHashedID(repo);  
+        //RepositoryIdString = Utilities.getRepoHashedID(repo);  
         //Console.WriteLine(RepositoryIdString);
 
         var list = repo.Commits.OrderBy(c => c.Author.When.Date);
         State = list.Last().Author.When.Date;
+        Path = repo.Info.Path;
         CommitsInRepo = new List<DataCommit>();;
         
         foreach(Commit c in repo.Commits)

@@ -12,23 +12,35 @@ private GitInsightContext _context;
     }
 
     public IEnumerable<DataCommit> findCommitsInRepo(Repository repo){
-        AnalyzedRepo currentAnalyzedRepo = _context.AnalyzedRepos.Find(getRepoHashedID(repo))!;
+        AnalyzedRepo currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
+        Console.WriteLine("current analyzed repo is first: " + currentAnalyzedRepo);
 
         if(currentAnalyzedRepo is null){
+            Console.WriteLine("Found a repo for the first time");
             //calling create if the repository is not in the database
             var createDTO = new AnalyzedRepoCreateDTO(repo);
             Create(createDTO);
         }
 
-        currentAnalyzedRepo = _context.AnalyzedRepos.Find(getRepoHashedID(repo))!;
-        
+        currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
+        Console.WriteLine("current analyzed repo is second: " + currentAnalyzedRepo);
 
         if(!repoIsUpToDate(repo,currentAnalyzedRepo)){
+            Console.WriteLine("repo was not up to date");
+          
+            var updateDTO = new AnalyzedRepoUpdateDTO(repo);
+            Console.WriteLine("Calling update with update dto: " + updateDTO.Path);
             //if it is not up to date we want to call update
-            Update(new AnalyzedRepoUpdateDTO(repo));
-        }
+            Update(updateDTO);
 
+            currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
+
+            Console.WriteLine("after update the repo contains this many datacommits: " + currentAnalyzedRepo.CommitsInRepo.Count());
+        }
+         
+       
         foreach(DataCommit dc in currentAnalyzedRepo.CommitsInRepo){
+            Console.WriteLine(dc.Date);
             yield return dc;
         }
     }
@@ -40,30 +52,14 @@ private GitInsightContext _context;
    public DateTime getTimeOfLastestCommit(Repository repo){
         return repo.Commits.Last().Author.When.Date;
    }
-  
-    //hashing the repository to get a repoStringID
-    public static string getRepoHashedID(Repository repo){
-      string firstCommitToHash = repo.Commits.First().Author + repo.Commits.First().Message;
-      string hashedRepo = string.Empty;
-      using (SHA256 sha256 = SHA256.Create())
-        {
-            // Compute the hash of the given string
-            byte[] hashValue = sha256.ComputeHash(Encoding.UTF8.GetBytes(firstCommitToHash));
- 
-            // Convert the byte array to string format
-            foreach (byte b in hashValue) {
-                hashedRepo += $"{b:X2}";
-            }
-        }
-        return hashedRepo;
-}
 
-   public Response Create (AnalyzedRepoCreateDTO analyzedRepoDTO)
+   public AnalyzedRepo Create (AnalyzedRepoCreateDTO analyzedRepoDTO)
    {
         var newAnalyzedRepo = new AnalyzedRepo{
-            RepositoryIdString = analyzedRepoDTO.RepositoryIdString,
+            //RepositoryIdString = analyzedRepoDTO.RepositoryIdString,
             State = analyzedRepoDTO.State,
             CommitsInRepo = analyzedRepoDTO.CommitsInRepo,
+            Path = analyzedRepoDTO.Path
         };
 
         newAnalyzedRepo.CommitsInRepo.ToList().ForEach(c => c.Repo = newAnalyzedRepo);
@@ -71,7 +67,7 @@ private GitInsightContext _context;
         _context.AnalyzedRepos.Add(newAnalyzedRepo);
         _context.SaveChanges();
         
-        return Response.Created;
+        return newAnalyzedRepo;
     }
     
    
@@ -79,7 +75,7 @@ private GitInsightContext _context;
         //if they are not there the method above creates a DataCommit from the given string
         //update the analyzedRepos list of DataCommits and save the changes
     public Response Update(AnalyzedRepoUpdateDTO updateDTO){
-        var repoInDB = _context.AnalyzedRepos.Find(updateDTO.RepositoryIdString);
+        var repoInDB = _context.AnalyzedRepos.Find(updateDTO.Path);
         if(repoInDB == null){
             Console.WriteLine("WTF");
         }
@@ -95,10 +91,6 @@ private GitInsightContext _context;
         foreach(DataCommit dc in sortedRepoCommits){
             repoInDB.CommitsInRepo.Add(dc);
         }
-    
-        foreach(DataCommit dc in repoInDB.CommitsInRepo){
-            Console.WriteLine(dc.Date);
-        }
         
         repoInDB.State = sortedRepoCommits.Last().Date;
         _context.SaveChanges();
@@ -107,11 +99,6 @@ private GitInsightContext _context;
         return Response.Updated;
     }
 
-     public AnalyzedRepo FindWithStringId(string repoStringId)
-    {
-        var idOfFoundRepo = _context.AnalyzedRepos.Find(repoStringId);
-        return idOfFoundRepo;
-    }
 
     public void Dispose(){
         _context.Dispose();

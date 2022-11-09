@@ -24,7 +24,7 @@ public class Options{
     
     var input = Parser.Default.ParseArguments<Options>(args);
     var analyzedRepoRepo = new AnalyzedRepoRepository(context);
-    var repo = new Repository(input.Value.RepoPath);
+    var repo = new Repository(input.Value.RepoPath.Split("https://github.com/").Last());
     var commitAnalyzer = new CommitAnalyzer();
    
 
