@@ -27,6 +27,10 @@ public class CommitAnalyzerTests
 
         // Act
         var actual = commitAnalyzer.getFrequency(commitsToAnalyze);
+
+        foreach(string s in actual){
+          Console.WriteLine(s);
+        }
     
         // Assert
         expected.Should().BeEquivalentTo(actual);
@@ -48,10 +52,13 @@ public class CommitAnalyzerTests
 
 
         //maybe it would be nicde without the commas?
-        IEnumerable<string> expected = new List<string>{"Person1", "2 25/10/2022", "Person2", "1 25/11/2022"};
+        IEnumerable<string> expected = new List<string>{"Person1", "2 25/10/2022", "", "Person2", "1 25/11/2022", ""};
 
         // Act
         var actual = commitAnalyzer.getFrequencyAuthorMode(commitsToAnalyze);
+         foreach(string s in actual){
+          Console.WriteLine(s);
+        }
     
         // Assert
         expected.Should().BeEquivalentTo(actual);

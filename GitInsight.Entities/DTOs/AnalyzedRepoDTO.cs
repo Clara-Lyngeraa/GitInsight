@@ -4,7 +4,7 @@ using GitInsight.Entities.DTOs;
 
 namespace GitInsight.Entities.DTOs;
 
-public record AnalyzedRepoDTO(int Id, string RepositoryIdString, DateTime State, ICollection<DataCommit> commitsInRepo);
+public record AnalyzedRepoDTO(int Id, string path, DateTime State, ICollection<DataCommit> commitsInRepo);
 public record AnalyzedRepoUpdateDTO{
  public string RepositoryIdString;
     public DateTime State;
@@ -27,19 +27,13 @@ public record AnalyzedRepoUpdateDTO{
         }
     }
 }
-
 public record AnalyzedRepoCreateDTO
 {
-    //public string RepositoryIdString;
     public DateTime State;
     public ICollection<DataCommit> CommitsInRepo = null!;
-
     public string Path;
     public AnalyzedRepoCreateDTO(Repository repo)
     {
-        //RepositoryIdString = Utilities.getRepoHashedID(repo);  
-        //Console.WriteLine(RepositoryIdString);
-
         var list = repo.Commits.OrderBy(c => c.Author.When.Date);
         State = list.Last().Author.When.Date;
         Path = repo.Info.Path;

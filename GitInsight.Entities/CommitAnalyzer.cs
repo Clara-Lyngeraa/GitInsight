@@ -26,7 +26,9 @@ public class CommitAnalyzer{
             foreach(var commit in getFrequency(commitAuthor)){
                 yield return commit;
             }
+             yield return string.Empty;
         }
+       
     }
 
 }

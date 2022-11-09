@@ -13,34 +13,29 @@ private GitInsightContext _context;
 
     public IEnumerable<DataCommit> findCommitsInRepo(Repository repo){
         AnalyzedRepo currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
-        Console.WriteLine("current analyzed repo is first: " + currentAnalyzedRepo);
+       
 
         if(currentAnalyzedRepo is null){
-            Console.WriteLine("Found a repo for the first time");
             //calling create if the repository is not in the database
             var createDTO = new AnalyzedRepoCreateDTO(repo);
             Create(createDTO);
         }
 
         currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
-        Console.WriteLine("current analyzed repo is second: " + currentAnalyzedRepo);
 
         if(!repoIsUpToDate(repo,currentAnalyzedRepo)){
-            Console.WriteLine("repo was not up to date");
+            
           
             var updateDTO = new AnalyzedRepoUpdateDTO(repo);
-            Console.WriteLine("Calling update with update dto: " + updateDTO.Path);
             //if it is not up to date we want to call update
             Update(updateDTO);
 
             currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
 
-            Console.WriteLine("after update the repo contains this many datacommits: " + currentAnalyzedRepo.CommitsInRepo.Count());
         }
          
        
         foreach(DataCommit dc in currentAnalyzedRepo.CommitsInRepo){
-            Console.WriteLine(dc.Date);
             yield return dc;
         }
     }
@@ -53,7 +48,7 @@ private GitInsightContext _context;
         return repo.Commits.Last().Author.When.Date;
    }
 
-   public AnalyzedRepo Create (AnalyzedRepoCreateDTO analyzedRepoDTO)
+   public (Response response, AnalyzedRepo analyzedRepo) Create (AnalyzedRepoCreateDTO analyzedRepoDTO)
    {
         var newAnalyzedRepo = new AnalyzedRepo{
             //RepositoryIdString = analyzedRepoDTO.RepositoryIdString,
@@ -67,7 +62,7 @@ private GitInsightContext _context;
         _context.AnalyzedRepos.Add(newAnalyzedRepo);
         _context.SaveChanges();
         
-        return newAnalyzedRepo;
+        return (Response.Created, newAnalyzedRepo);
     }
     
    
@@ -76,6 +71,7 @@ private GitInsightContext _context;
         //update the analyzedRepos list of DataCommits and save the changes
     public Response Update(AnalyzedRepoUpdateDTO updateDTO){
         var repoInDB = _context.AnalyzedRepos.Find(updateDTO.Path);
+
         if(repoInDB == null){
             Console.WriteLine("WTF");
         }
@@ -88,11 +84,13 @@ private GitInsightContext _context;
             Date = c.Date
         });
 
-        foreach(DataCommit dc in sortedRepoCommits){
-            repoInDB.CommitsInRepo.Add(dc);
+        if(sortedRepoCommits.ToList().Count()!=0){
+            foreach(DataCommit dc in sortedRepoCommits){
+                repoInDB.CommitsInRepo.Add(dc);
+            }
+            
+            repoInDB.State = sortedRepoCommits.Last().Date;
         }
-        
-        repoInDB.State = sortedRepoCommits.Last().Date;
         _context.SaveChanges();
 
         //update the list of CommitSignatures in the analyzesRepo
