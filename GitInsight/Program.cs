@@ -28,14 +28,15 @@ public class Options{
     var commitAnalyzer = new CommitAnalyzer();
    
 
-    var allCommits = analyzedRepoRepo.findCommitsInRepo(repo);
+    // var allCommits = analyzedRepoRepo.findCommitsInRepo(repo);
 
-    if(input.Value.AuthorMode){
-            Console.WriteLine("AUTHORMODE SELECTED");
-            commitAnalyzer.getFrequencyAuthorMode(allCommits).ToList().ForEach(Console.WriteLine);
-        } else {
-            Console.WriteLine("DEFAULT MODE SELECTED");
-            commitAnalyzer.getFrequency(allCommits).ToList().ForEach(Console.WriteLine);
-        }
-    }
+    // if(input.Value.AuthorMode){
+    //         Console.WriteLine("AUTHORMODE SELECTED");
+    //         commitAnalyzer.getFrequencyAuthorMode(allCommits).ToList().ForEach(Console.WriteLine);
+    //     } else {
+    //         Console.WriteLine("DEFAULT MODE SELECTED");
+    //         commitAnalyzer.getFrequency(allCommits).ToList().ForEach(Console.WriteLine);
+    //     }
+    // }
+}
 }

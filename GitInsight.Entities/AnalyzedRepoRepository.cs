@@ -11,33 +11,31 @@ private GitInsightContext _context;
         this._context = context;
     }
 
-    public IEnumerable<DataCommit> findCommitsInRepo(Repository repo){
-        AnalyzedRepo currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
-       
+    public async Task<IEnumerable<DataCommit>> findCommitsInRepoAsync(Repository repo){
 
-        if(currentAnalyzedRepo is null){
-            //calling create if the repository is not in the database
-            var createDTO = new AnalyzedRepoCreateDTO(repo);
-            CreateAsync(createDTO);
-        }
+        //calling create 
+        //create has check if it is already in the db, if not it creates it
+        var createDTO = new AnalyzedRepoCreateDTO(repo);
+        var (response, dto) = await CreateAsync(createDTO);
+        
+        //if(response != Response.Conflict){
+        var currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
 
-        currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
-
+        //checking if it is up to date
         if(!repoIsUpToDate(repo,currentAnalyzedRepo)){
-            
-          
             var updateDTO = new AnalyzedRepoUpdateDTO(repo);
             //if it is not up to date we want to call update
             UpdateAsync(updateDTO);
 
+            //we find the updates version here
             currentAnalyzedRepo = _context.AnalyzedRepos.Find(repo.Info.Path)!;
-
         }
-         
        
-        foreach(DataCommit dc in currentAnalyzedRepo.CommitsInRepo){
-            yield return dc;
-        }
+        // foreach(DataCommit dc in currentAnalyzedRepo.CommitsInRepo){
+        //     Console.WriteLine(dc.Date);
+        //     yield return dc;
+        // }
+        return currentAnalyzedRepo.CommitsInRepo;
     }
 
     public bool repoIsUpToDate(Repository repo, AnalyzedRepo dbRepo){

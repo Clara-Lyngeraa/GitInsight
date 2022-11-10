@@ -184,12 +184,12 @@ public class AnalyzedRepoTests: IDisposable
 
     
         [Fact]
-        public void FindCommitsInRepo_returns_correct_list_of_datacommits_with_firsttime_repo()
+        public async void FindCommitsInRepo_returns_correct_list_of_datacommits_with_firsttime_repo()
         {
             //Assert
         
             //Act
-            var actualList = _repo.findCommitsInRepo(testRepo);
+            var actualList = await _repo.findCommitsInRepoAsync(testRepo);
 
             //Arrange
             actualList.Count().Should().Be(4);
@@ -197,7 +197,7 @@ public class AnalyzedRepoTests: IDisposable
 
 
         [Fact]
-        public void FindCommitsInRepo_returns_correct_list_of_datacommits_with_known_repo_not_up_to_date()
+        public async void FindCommitsInRepo_returns_correct_list_of_datacommits_with_known_repo_not_up_to_date()
         {
             //Assert
              var createDTO = new AnalyzedRepoCreateDTO(testRepo);
@@ -208,7 +208,7 @@ public class AnalyzedRepoTests: IDisposable
 
         
             //Act
-            var actualList = _repo.findCommitsInRepo(testRepo);
+            var actualList = await _repo.findCommitsInRepoAsync(testRepo);
 
             //Arrange
             actualList.Count().Should().Be(5);
@@ -216,14 +216,14 @@ public class AnalyzedRepoTests: IDisposable
         }
 
         [Fact]
-        public void FindCommitsInRepo_returns_correct_list_of_datacommits_with_known_repo_up_to_date()
+        public async void FindCommitsInRepo_returns_correct_list_of_datacommits_with_known_repo_up_to_date()
         {
             //Assert
              var createDTO = new AnalyzedRepoCreateDTO(testRepo);
             _repo.CreateAsync(createDTO);
 
             //Act
-            var actualList = _repo.findCommitsInRepo(testRepo);
+            var actualList = await _repo.findCommitsInRepoAsync(testRepo);
 
             //Arrange
             actualList.Count().Should().Be(4);
