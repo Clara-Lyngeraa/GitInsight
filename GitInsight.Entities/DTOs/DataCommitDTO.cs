@@ -1,5 +1,5 @@
-namespace GitInsight.Core;
+namespace GitInsight.Entities.DTOs;
 
-public record CommitDTO(string StringId, string Name, DateTime Date);
-public record CommitCreateDTO(string StringId, string Name, DateTime Date);
-public record CommitUpdateDTO(string StringId, string Name, DateTime Date);
+public record DataCommitDTO(string StringId, string Name, DateTime Date);
+public record DataCommitCreateDTO(string StringId, string Name, DateTime Date);
+public record DataCommitUpdateDTO(string StringId, string Name, DateTime Date);

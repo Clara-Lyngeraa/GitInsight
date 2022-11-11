@@ -1,38 +1,72 @@
-// using GitInsight.Entities.DTOs;
+using GitInsight.Entities.DTOs;
 
-// namespace GitInsight.Entities;
+namespace GitInsight.Entities;
 
 
-// public class DataCommitRepository: IDisposable{
+public class DataCommitRepository: IDataCommitRepository, IDisposable{
 
-// private GitInsightContext _context;
-//     public DataCommitRepository(GitInsightContext context){
-//         _context = context;
-//     }
+private GitInsightContext _context;
+    public DataCommitRepository(GitInsightContext context){
+        _context = context;
+    }
 
-//     //creating a SignatureUpdateDTO from a signature
-//     private CommitUpdateDTO SignatureUpdateDTOFromSignature(DataCommit dataCommit){
-//         return new CommitUpdateDTO (
-//         StringId: dataCommit.StringId,
-//         Name: dataCommit.Name!,
-//         Date: dataCommit.Date
-//     );
-//     }
+    public async Task<(Response, string)> CreateAsync(DataCommitCreateDTO commit){
 
-//     public (Response response, string id) Create(CommitUpdateDTO commit){
+        var entity = await _context.DataCommits.FirstOrDefaultAsync(c => c.StringId == commit.StringId);
+         Response response; 
 
-//     //finding the commitSignatures in the database that belongs to those in the analyzes repos list of names of the commits
-//         var newCommit = new DataCommit{
-//         StringId = commit.StringId,
-//         Date = commit.Date,
-//         Name = commit.Name};
-    
-//         _context.DataCommits.Add(newCommit);
-//         _context.SaveChanges();
-//         return (Response.Created, newCommit.StringId);
-//     }
+        if(entity == null){
+            var newCommit = new DataCommit{
+            StringId = commit.StringId,
+            Date = commit.Date,
+            Name = commit.Name};
 
-//     public void Dispose(){
-//         _context.Dispose();
-//     }
-// }
+            _context.DataCommits.Add(newCommit);
+            await _context.SaveChangesAsync();
+
+            response = Response.Created;
+        } else {
+            //the commit is already there
+            response = Response.Conflict;
+        }
+
+        var created = new DataCommitDTO(entity.StringId, entity.Name,entity.Date);
+        
+        return (response, created.StringId);
+    }
+
+
+    public async Task<DataCommitDTO?> FindAsync(string dataCommitId)
+    {
+         var dataCommit = from c in _context.DataCommits
+                     where c.StringId == dataCommitId
+                     select new DataCommitDTO(c.StringId, c.Name,c.Date);
+
+        return await dataCommit.FirstOrDefaultAsync();
+    }
+
+    public async Task<Response> UpdateAsync(DataCommitUpdateDTO dataCommit)
+    {
+        var dataCommitInDB = await _context.DataCommits.FindAsync(dataCommit.StringId);
+        Response response;
+
+         if (dataCommitInDB == null)
+        {
+            response = Response.NotFound;
+        }
+        else
+        {
+            dataCommitInDB.Name = dataCommit.Name;
+            dataCommitInDB.Date = dataCommit.Date;
+            dataCommitInDB.StringId = dataCommit.StringId;
+            await _context.SaveChangesAsync();
+            response = Response.Updated;
+        }
+
+        return response;
+    }
+
+      public void Dispose(){
+        _context.Dispose();
+    }
+}
