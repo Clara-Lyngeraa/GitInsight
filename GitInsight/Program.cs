@@ -36,6 +36,7 @@ public class Options{
             // commitAnalyzer.getFrequencyAuthorMode(allCommits).ToList().ForEach(Console.WriteLine);
         } else {
             Console.WriteLine("Choose without authormode with repo path: " + w.RepoPath);
+            var repo = new Repository(Repository.Clone(w.RepoPath,"ClonedRepo"));
             
             //repo = new Repository(Repository.Clone(w.RepoPath,"./testFolder"));
             //repo = new Repository(o.RepoPath.Split("https://github.com/").Last());

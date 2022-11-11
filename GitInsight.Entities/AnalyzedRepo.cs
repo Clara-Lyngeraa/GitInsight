@@ -13,6 +13,7 @@ public class AnalyzedRepo {
     //the last commit in the analysis
     public DateTime State {get;set;}
 
+
     public ICollection<DataCommit>? CommitsInRepo {get;set;}
 
 }
