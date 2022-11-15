@@ -1,35 +1,57 @@
-// using Microsoft.AspNetCore.Mvc;
-// using GitInsight.Entities;
-// using GitInsight.Entities.DTOs;
-// using LibGit2Sharp;
+using Microsoft.AspNetCore.Mvc;
+using GitInsight.Entities;
+using GitInsight.Entities.DTOs;
+using LibGit2Sharp;
 
-// namespace GitInsight.Server.Controllers;
+namespace GitInsight.Server.Controllers;
 
-// [ApiController]
-// [Route("[controller]")]
+[ApiController]
+[Route("[controller]")]
 
-// public class AnalyzedRepoController: ControllerBase{
+public class AnalyzedRepoController: ControllerBase{
 
-//   private readonly ILogger<AnalyzedRepoController> _logger;
-//   private readonly IAnalyzedRepoRepository _repository;
+  private readonly ILogger<AnalyzedRepoController> _logger;
+  private readonly IAnalyzedRepoRepository _repository;
 
-//   public AnalyzedRepoController(ILogger<AnalyzedRepoController> logger, IAnalyzedRepoRepository repo)
-//   {
-//     _logger = logger;
-//     _repository = repo;
-//   }
+  public AnalyzedRepoController(IAnalyzedRepoRepository repo)
+  {
+    _repository = repo;
+    
+  }
+
+  [HttpGet("{id}")]
+    public async Task<AnalyzedRepoDTO> Get(int id)
+    {
+        //creates repository through libGit2Sharp
+        var path = Repository.Init(".");
+
+         //creates a repository object from the path above
+        Repository testRepo = new Repository(path);
+        var (response, repoFound) =  await _repository.CreateAsync(new AnalyzedRepoCreateDTO(testRepo));
+
+        var repo = await _repository.FindAsync(repoFound.Id);
+
+        if (repo is null)
+        {
+            return new AnalyzedRepoDTO(0, "hejmeddig", new DateTime(2022,11,18),new List<DataCommit>());
+        }
+        return repo;
+    }
+
 
 //   [HttpGet("{url}")]
-//   public async Task<IEnumerable<string>> Get(string url) 
+//   public async Task<string> Get(string url) 
 //   {
-//     var repo = new Repository(Repository.Clone(url,"ClonedRepo"));
+//     return await Task.Run(() => url);
+
+//     // var repo = new Repository(Repository.Clone(url,"ClonedRepo"));
     
-//     var allCommitsToAnalyze = await findCommitsInRepoAsync(repo);
+//     // var allCommitsToAnalyze = await findCommitsInRepoAsync(repo);
 
-//     var commitAnalyzer = new CommitAnalyzer();
-//     var resultOfAnalysis = commitAnalyzer.getFrequency(allCommitsToAnalyze);
+//     // var commitAnalyzer = new CommitAnalyzer();
+//     // var resultOfAnalysis = commitAnalyzer.getFrequency(allCommitsToAnalyze);
 
-//     return resultOfAnalysis;
+//     // return resultOfAnalysis;
 //   }
 
 
@@ -61,4 +83,5 @@
 //         return repo.Commits.Last().Author.When.Date;
 //    }
 // }
+}
 

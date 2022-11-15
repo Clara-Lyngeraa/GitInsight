@@ -3,6 +3,7 @@ using System;
 using GitInsight.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GitInsight.Entities.Migrations
 {
     [DbContext(typeof(GitInsightContext))]
-    partial class GitInsightContextModelSnapshot : ModelSnapshot
+    [Migration("20221115133352_someNewMaybe")]
+    partial class someNewMaybe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,21 +26,16 @@ namespace GitInsight.Entities.Migrations
 
             modelBuilder.Entity("GitInsight.Entities.AnalyzedRepo", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
                     b.Property<string>("Path")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("character varying(48)");
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.Property<DateTime>("State")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Path");
 
                     b.ToTable("AnalyzedRepos");
                 });
@@ -48,8 +45,8 @@ namespace GitInsight.Entities.Migrations
                     b.Property<string>("StringId")
                         .HasColumnType("text");
 
-                    b.Property<int?>("AnalyzedRepoId")
-                        .HasColumnType("integer");
+                    b.Property<string>("AnalyzedRepoPath")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
@@ -59,7 +56,7 @@ namespace GitInsight.Entities.Migrations
 
                     b.HasKey("StringId");
 
-                    b.HasIndex("AnalyzedRepoId");
+                    b.HasIndex("AnalyzedRepoPath");
 
                     b.ToTable("DataCommits");
                 });
@@ -68,7 +65,7 @@ namespace GitInsight.Entities.Migrations
                 {
                     b.HasOne("GitInsight.Entities.AnalyzedRepo", null)
                         .WithMany("CommitsInRepo")
-                        .HasForeignKey("AnalyzedRepoId");
+                        .HasForeignKey("AnalyzedRepoPath");
                 });
 
             modelBuilder.Entity("GitInsight.Entities.AnalyzedRepo", b =>

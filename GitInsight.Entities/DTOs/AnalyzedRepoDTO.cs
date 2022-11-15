@@ -35,9 +35,16 @@ public record AnalyzedRepoCreateDTO
     public AnalyzedRepoCreateDTO(Repository repo)
     {
         var list = repo.Commits.OrderBy(c => c.Author.When.Date);
-        State = list.Last().Author.When.Date;
+        
         Path = repo.Info.Path;
-        CommitsInRepo = new List<DataCommit>();;
+        CommitsInRepo = new List<DataCommit>();
+        if(list.Count() > 0){
+             State = list.Last().Author.When.Date;
+        } else {
+            State = DateTime.Now;
+        }
+       
+        
         
         foreach(Commit c in repo.Commits)
         {

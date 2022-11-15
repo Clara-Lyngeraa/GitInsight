@@ -32,7 +32,6 @@ private GitInsightContext _context;
         return (response, created);
     }
 
-    //NOT TESTED
     public async Task<AnalyzedRepoDTO?> FindAsync(int analyzedRepoId)
     {
         var repo = from c in _context.AnalyzedRepos
