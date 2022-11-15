@@ -16,6 +16,8 @@ private GitInsightContext _context;
     Response response; 
 
     if(analyzedRepo == null){
+
+        Console.WriteLine("The repo did not already exists");
             analyzedRepo = new AnalyzedRepo{
             State = analyzedRepoDTO.State,
             CommitsInRepo = analyzedRepoDTO.CommitsInRepo,

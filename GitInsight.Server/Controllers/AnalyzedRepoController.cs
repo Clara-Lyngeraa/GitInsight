@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using GitInsight.Entities;
 using GitInsight.Entities.DTOs;
 using LibGit2Sharp;
+using System.Net;
 
 namespace GitInsight.Server.Controllers;
 
@@ -10,7 +11,7 @@ namespace GitInsight.Server.Controllers;
 
 public class AnalyzedRepoController: ControllerBase{
 
-  private readonly ILogger<AnalyzedRepoController> _logger;
+  //private readonly ILogger<AnalyzedRepoController> _logger;
   private readonly IAnalyzedRepoRepository _repository;
 
   public AnalyzedRepoController(IAnalyzedRepoRepository repo)
@@ -19,39 +20,67 @@ public class AnalyzedRepoController: ControllerBase{
     
   }
 
-  [HttpGet("{id}")]
-    public async Task<AnalyzedRepoDTO> Get(int id)
-    {
-        //creates repository through libGit2Sharp
-        var path = Repository.Init(".");
+//THIS GET REQUEST WORKS
+//   [HttpGet("{id}")]
+//     public async Task<AnalyzedRepoDTO> Get(int id)
+//     {
+//         //creates repository through libGit2Sharp
+//         var path = Repository.Init(".");
 
-         //creates a repository object from the path above
-        Repository testRepo = new Repository(path);
-        var (response, repoFound) =  await _repository.CreateAsync(new AnalyzedRepoCreateDTO(testRepo));
+//          //creates a repository object from the path above
+//         Repository testRepo = new Repository(path);
+//         var (response, repoFound) =  await _repository.CreateAsync(new AnalyzedRepoCreateDTO(testRepo));
 
-        var repo = await _repository.FindAsync(repoFound.Id);
+//         var repo = await _repository.FindAsync(repoFound.Id);
 
-        if (repo is null)
-        {
-            return new AnalyzedRepoDTO(0, "hejmeddig", new DateTime(2022,11,18),new List<DataCommit>());
-        }
-        return repo;
-    }
+//         if (repo is null)
+//         {
+//             return new AnalyzedRepoDTO(0, "hejmeddig", new DateTime(2022,11,18),new List<DataCommit>());
+//         }
+//         return repo;
+//     }
+
+[HttpGet("{url}")]
+  public async Task<IEnumerable<string>> Get(string url) 
+  {
+    var urlToUse = WebUtility.UrlDecode(url);
+    var repo = new Repository(Repository.Clone(urlToUse,"ClonedRepo"));
+    var createDTO = new AnalyzedRepoCreateDTO(repo);
+    Console.WriteLine(createDTO.State);
+    var (response, dto) = await _repository.CreateAsync(createDTO);
+
+    var currentAnalyzedRepo = await _repository.FindAsync(dto.Id);
+    var commitAnalyzer = new CommitAnalyzer();
+  
+    var resultOfAnalysis = commitAnalyzer.getFrequency(currentAnalyzedRepo.commitsInRepo);
+
+    return resultOfAnalysis;
+  }
+
 
 
 //   [HttpGet("{url}")]
-//   public async Task<string> Get(string url) 
+//   public async Task<IEnumerable<string>> Get(string url) 
 //   {
-//     return await Task.Run(() => url);
+//     var urlToUse = WebUtility.UrlDecode(url);
+//     var repo = new Repository(Repository.Clone(urlToUse,"ClonedRepo"));
+//     var createDTO = new AnalyzedRepoCreateDTO(repo);
+//     Console.WriteLine(createDTO.State);
+//     var (response, dto) = await _repository.CreateAsync(createDTO);
 
-//     // var repo = new Repository(Repository.Clone(url,"ClonedRepo"));
-    
-//     // var allCommitsToAnalyze = await findCommitsInRepoAsync(repo);
+//     var currentAnalyzedRepo = await _repository.FindAsync(dto.Id);
+//     var commitAnalyzer = new CommitAnalyzer();
+  
+//     //var resultOfAnalysis = commitAnalyzer.getFrequency(currentAnalyzedRepo.commitsInRepo);
 
-//     // var commitAnalyzer = new CommitAnalyzer();
-//     // var resultOfAnalysis = commitAnalyzer.getFrequency(allCommitsToAnalyze);
+//     //return resultOfAnalysis;
 
-//     // return resultOfAnalysis;
+//     var listofStrings = new List<string>();
+
+//     foreach(var dc in currentAnalyzedRepo.commitsInRepo){
+//         listofStrings.Add(dc.Name);
+//     }
+//     return listofStrings;
 //   }
 
 
@@ -82,6 +111,5 @@ public class AnalyzedRepoController: ControllerBase{
 //    public DateTime getTimeOfLastestCommit(Repository repo){
 //         return repo.Commits.Last().Author.When.Date;
 //    }
-// }
 }
 

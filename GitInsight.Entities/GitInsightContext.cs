@@ -27,6 +27,8 @@ public partial class GitInsightContext : DbContext
         //modelBuilder.Entity<AnalyzedRepo>().HasMany(e => e.CommitsInRepo).WithOne(e => e.Repo);
         //this did not make any difference
         modelBuilder.Entity<AnalyzedRepo>().Property(c => c.State).HasConversion<string>();
+
+        modelBuilder.Entity<DataCommit>().Property(c => c.Date).HasConversion<string>();
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
