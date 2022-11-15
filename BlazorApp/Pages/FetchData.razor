@@ -2,8 +2,8 @@
 
 <PageTitle>Weather forecast</PageTitle>
 
-@using BlazorApp.Data
-@inject WeatherForecastService ForecastService
+@using GitInsight.Server
+@inject HttpClient Http
 
 <h1>Weather forecast</h1>
 
@@ -39,10 +39,14 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private IEnumerable<WeatherForecast> forecasts;
+    //private WeatherForecast[]? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        //forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        forecasts = await Http.GetFromJsonAsync<IEnumerable<WeatherForecast>>("https://localhost:5259/api/forecasts");
+        //forecasts = await Http.GetFromJsonAsync<IEnumerable<WeatherForecast>>("WeatherForecast");
+    
     }
 }
