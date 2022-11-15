@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace GitInsight.Server.Controllers;
+using GitInsight.Entities;
 
 [ApiController]
 [Route("[controller]")]
