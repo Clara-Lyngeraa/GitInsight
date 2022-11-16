@@ -1,4 +1,4 @@
-﻿@page "/fetchdata"
+﻿@* @page "/fetchdata"
 @inject HttpClient Http
 @using GitInsight.Entities
 
@@ -52,4 +52,64 @@ else
         
     }
 
+} *@
+
+@page "/fetchdata"
+@inject HttpClient Http
+@using GitInsight.Entities
+
+<PageTitle>GitInsight</PageTitle>
+
+<h1>GitInsight frequency</h1>
+
+
+@if (results == null)
+{
+    <p><em>Could not run get request</em></p>
 }
+else
+{
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Number of commits</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (string s in results)
+            {
+                <tr>
+                    <td>@s.Split(" ").First()</td>
+                    <td>@s.Split(" ").Last()</td>
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+} 
+
+ @* <input type="text" @bind="@inputURL" @oninput="@((e) => { inputURL=(string)e.Value;})"/> *@
+
+@code {
+    private IEnumerable<string> results;
+    private string inputURL;
+    protected override async Task OnInitializedAsync()
+    {
+        inputURL = "https:%2F%2Fgithub.com%2Fmonicahardt%2FtestingRepo";
+        try 
+        {
+            results = await Http.GetFromJsonAsync<IEnumerable<string>>($"AnalyzedRepo/{inputURL}");
+                
+        
+        } catch (Exception e)
+        {
+            Console.WriteLine("Stooooop");
+            Console.WriteLine(results.First());
+        }
+        
+    }
+
+}
+

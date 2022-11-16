@@ -43,10 +43,11 @@ public class AnalyzedRepoController: ControllerBase{
 [HttpGet("{url}")]
   public async Task<IEnumerable<string>> Get(string url) 
   {
+    Console.WriteLine("Got the url: " + url);
     var urlToUse = WebUtility.UrlDecode(url);
     var repo = new Repository(Repository.Clone(urlToUse,"ClonedRepo"));
     var createDTO = new AnalyzedRepoCreateDTO(repo);
-    Console.WriteLine(createDTO.State);
+   
     var (response, dto) = await _repository.CreateAsync(createDTO);
 
     var currentAnalyzedRepo = await _repository.FindAsync(dto.Id);
