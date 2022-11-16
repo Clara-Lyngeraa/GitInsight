@@ -42,7 +42,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-            forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("weatherforecast");
+            forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("https://localhost:7241");
                 
     }
 }
