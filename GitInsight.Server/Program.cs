@@ -1,18 +1,20 @@
 using GitInsight.Entities;
-using GitInsight.Server.Controllers;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContext<GitInsightContext>();
 builder.Services.AddScoped<IAnalyzedRepoRepository, AnalyzedRepoRepository>();
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 var app = builder.Build();
 
@@ -24,10 +26,19 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseBlazorFrameworkFiles();
+app.UseStaticFiles();
 
 app.UseAuthorization();
 
+app.UseRouting();
+
+app.MapRazorPages();
 app.MapControllers();
+app.MapBlazorHub();
+app.MapFallbackToFile("index.html");
 
 app.Run();
+
+
+public partial class Program { }

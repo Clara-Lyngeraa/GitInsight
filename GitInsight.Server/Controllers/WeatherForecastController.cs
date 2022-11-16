@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-
 namespace GitInsight.Server.Controllers;
 using GitInsight.Entities;
 
@@ -19,9 +18,10 @@ public class WeatherForecastController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
+    [HttpGet]
     public IEnumerable<WeatherForecast> Get()
     {
+        Console.WriteLine("this get was called");
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateTime.Now.AddDays(index),
