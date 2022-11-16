@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GitInsight.Entities\GitInsight.Entities.csproj" />
+    <ProjectReference Include="..\GitInsight.Client\GitInsight.Client.csproj" />
   </ItemGroup>
 
 </Project>
