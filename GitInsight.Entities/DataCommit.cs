@@ -4,9 +4,9 @@ public class DataCommit {
 
     [Required]
     [Key]
-    public string StringId {get;set;}
+    public string StringId {get;set;} = null!;
 
-    public string? Name {get; set;}
+    public string Name {get; set;} = null!;
       
      [Required]
     public DateTime Date {get;set;}

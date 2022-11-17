@@ -33,7 +33,7 @@ private GitInsightContext _context;
       Console.WriteLine("A repo with id: " + analyzedRepo.Id + " and path: " + analyzedRepo.Path + " already exists in the database");
     
     }
-        var created = new AnalyzedRepoDTO(analyzedRepo.Id, analyzedRepo.Path, analyzedRepo.State, analyzedRepo.CommitsInRepo);
+        var created = new AnalyzedRepoDTO(analyzedRepo.Id, analyzedRepo.Path, analyzedRepo.State, analyzedRepo.CommitsInRepo!);
         return (response, created);
     }
 
@@ -42,15 +42,16 @@ private GitInsightContext _context;
         var repo = from c in _context.AnalyzedRepos
                         let path = c.Path
                         where c.Id == analyzedRepoId
-                        select new AnalyzedRepoDTO(c.Id,path,c.State,c.CommitsInRepo);
+                        select new AnalyzedRepoDTO(c.Id,path,c.State,c.CommitsInRepo!);
 
         return await repo.FirstOrDefaultAsync();
     }
     
     public async Task<Response> UpdateAsync(AnalyzedRepoUpdateDTO updateDTO){
        
-       Console.WriteLine("update was called");
-        var repoInDB =  _context.AnalyzedRepos.Where(c => c.Path == updateDTO.Path).FirstOrDefault();
+       Console.WriteLine("*****UPDATE WAS CALLED******");
+        var repoInDB = _context.AnalyzedRepos.Where(c => c.Path == updateDTO.Path).FirstOrDefault();
+        Console.WriteLine("finding out what the state is: " + repoInDB.State);
 
          if (repoInDB == null)
         {
@@ -67,12 +68,14 @@ private GitInsightContext _context;
 
         if(sortedRepoCommits.ToList().Count()!=0){
             foreach(DataCommit dc in sortedRepoCommits){
-                repoInDB.CommitsInRepo.Add(dc);
+                repoInDB.CommitsInRepo!.Add(dc);
             }
             
             repoInDB.State = sortedRepoCommits.Last().Date;
         }
-        _context.SaveChanges();
+
+
+       await _context.SaveChangesAsync();
         return Response.Updated;
     }
 

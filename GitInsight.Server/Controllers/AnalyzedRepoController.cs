@@ -29,20 +29,17 @@ public class AnalyzedRepoController: ControllerBase{
     var createDTO = new AnalyzedRepoCreateDTO(repo, url);
    
     var (response, dto) = await _repository.CreateAsync(createDTO);
-
     var currentAnalyzedRepo = await _repository.FindAsync(dto.Id);
 
-    if(currentAnalyzedRepo.State != repo.Commits.Last().Author.When){
-      _repository.UpdateAsync(new AnalyzedRepoUpdateDTO(repo,url));
-
+    if(response == global::Response.Conflict){
+      //inserted repo was already in the db
+    if(currentAnalyzedRepo!.State != repo.Commits.Last().Author.When){
+      await _repository.UpdateAsync(new AnalyzedRepoUpdateDTO(repo,url));
       currentAnalyzedRepo = await _repository.FindAsync(dto.Id);
-      Console.WriteLine("trying to find repo with id: " + dto.Id + " in the database to update");
-    }
-
+      }
+    } 
     var commitAnalyzer = new CommitAnalyzer();
-  
-    var resultOfAnalysis = commitAnalyzer.getFrequency(currentAnalyzedRepo.commitsInRepo);
-
+    var resultOfAnalysis = commitAnalyzer.getFrequency(currentAnalyzedRepo!.commitsInRepo);
     Directory.Delete("/Users/monicahardt/Desktop/GitInsight/GitInsight.Server/ClonedRepo",true);
     return resultOfAnalysis;
   }

@@ -72,7 +72,7 @@ public class AnalyzedRepoTests: IDisposable
         var createDTO = new AnalyzedRepoCreateDTO(testRepo,testRepo.Info.Path);
 
         //Act
-        _repo.CreateAsync(createDTO);
+        await _repo.CreateAsync(createDTO);
         
         //Assert
         Assert.Equal(4,_context.DataCommits.Count()); 
@@ -148,14 +148,12 @@ public class AnalyzedRepoTests: IDisposable
             testRepo.Commit("new Commit", sig5,sig5, new CommitOptions (){AllowEmptyCommit = true});
         
             //Act
-            _repo.UpdateAsync(new AnalyzedRepoUpdateDTO(testRepo, testRepo.Info.Path));
+            await _repo.UpdateAsync(new AnalyzedRepoUpdateDTO(testRepo, testRepo.Info.Path));
             
-            // Act
-            var expected = 5;
         
             // Assert 
             //_context.DataCommits.Count().Should().Be(expected);
-            Assert.Equal(_context.AnalyzedRepos.Find(dto.Id).CommitsInRepo.Count(),5);
+            Assert.Equal(_context.AnalyzedRepos.Find(dto.Id)!.CommitsInRepo!.Count(),5);
             }
 
 
@@ -177,7 +175,7 @@ public class AnalyzedRepoTests: IDisposable
             await _repo.UpdateAsync(new AnalyzedRepoUpdateDTO(testRepo, testRepo.Info.Path));
         
             // Assert 
-            Assert.Equal(_context.AnalyzedRepos.Find(dto.Id).CommitsInRepo.Count(),6);
+            Assert.Equal(_context.AnalyzedRepos.Find(dto.Id)!.CommitsInRepo!.Count(),6);
         }
 
         [Fact]
@@ -191,7 +189,7 @@ public class AnalyzedRepoTests: IDisposable
             AnalyzedRepoDTO found = await _repo.FindAsync(dto.Id);
 
             //Assert
-            Assert.Equal(dto.Id,found.Id);
+            Assert.Equal(dto.Id,found!.Id);
         }
 
         

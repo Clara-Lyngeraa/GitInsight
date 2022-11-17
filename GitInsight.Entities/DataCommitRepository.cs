@@ -30,7 +30,7 @@ private GitInsightContext _context;
             response = Response.Conflict;
         }
 
-        var created = new DataCommitDTO(entity.StringId, entity.Name,entity.Date);
+        var created = new DataCommitDTO(entity!.StringId, entity.Name,entity.Date);
         
         return (response, created.StringId);
     }
