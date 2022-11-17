@@ -14,7 +14,7 @@ public record AnalyzedRepoUpdateDTO{
     {
         //RepositoryIdString = Utilities.getRepoHashedID(repo);  
         State = repo.Commits.Last().Author.When.Date;
-        Path = path;
+        Path = repo.Info.Path;
         CommitsInRepo = new List<DataCommit>();;
         
         foreach(Commit c in repo.Commits)

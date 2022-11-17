@@ -50,7 +50,7 @@ private GitInsightContext _context;
     public async Task<Response> UpdateAsync(AnalyzedRepoUpdateDTO updateDTO){
        
        Console.WriteLine("update was called");
-        var repoInDB = await _context.AnalyzedRepos.FindAsync(updateDTO.Path);
+        var repoInDB =  _context.AnalyzedRepos.Where(c => c.Path == updateDTO.Path).FirstOrDefault();
 
          if (repoInDB == null)
         {
