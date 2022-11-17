@@ -1,0 +1,2348 @@
+    1  cd desktop
+    2  dc 
+    3  ls
+    4  $ echo $SHELL
+    5  echo $SHELL
+    6  chsh -s /bin/zsh 
+    7  cd
+    8  where am i
+    9  pwd
+   10  % git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions % git clone https://github.com/zsh-users/zsh -syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting % source ~/.zshrc\n
+   11  git clone https://github.com/zsh-users/zsh-autosuggestions
+   12  git clone https://github.com/zsh-users/zsh -syntax-highlighting.git
+   13  git clone https://github.com/zsh-users/zsh 
+   14  /.oh-my-zsh/custom/plugins/zsh-autosuggestions
+   15  ls
+   16  cd zsh
+   17  ls
+   18  cd ..
+   19  pqd
+   20  pwd
+   21  ls
+   22  cd zsh-autosuggestions
+   23  ls
+   24  cd ..
+   25  cd
+   26  .zshrc,
+   27  .zshrc
+   28  /.zshrc
+   29  ls
+   30  zsh
+   31  ls ~/.oh-my-zsh/plugins
+   32  brew install zsh
+   33  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+   34  zsh --version
+   35  upgrade_oh_my_zsh
+   36  nano ~/.zshrc
+   37  git pull
+   38  createdb bdsa_kanban
+   39  psql
+   40  $CONNECTION_STRING="Host=localhost;Database=bdsa_kanban;Username=monicahardt;Password=Nicoline1"
+   41  CONNECTION_STRING="Host=localhost;Database=bdsa_kanban;Username=monicahardt;Password=Nicoline1"
+   42  ls
+   43  cd Assignment3.Entities.tests
+   44  ls
+   45  dotnet user.
+   46  dotnet user-secrets set "ConnectionStrings:Kanban" "$CONNECTION_STRING"
+   47  CONNECTION_STRING="Host=localhost;Database=bdsa_kanban;Username=monicahardt;Password=Nicoline1"
+   48  dotnet user-secrets set "ConnectionStrings:Kanban" "$CONNECTION_STRING"
+   49  dotnet ef
+   50  cd ..
+   51  dotnet ef database update -s Assignment3 -p Assignment3.Entities
+   52  ls
+   53  cd Assignment3.Entities
+   54  cd ..
+   55  ls
+   56  cd Assignment3
+   57  cd ..
+   58  dotnet ef database update -s Assignment3 -p Assignment3.Entities
+   59  psql bdsa_kanban
+   60  ls
+   61  dotnet test
+   62  plugins=(git wd)
+   63  export ZSH=/home/<user>/.oh-my-zsh
+   64  ls
+   65  cd zsh
+   66  ls
+   67  cd
+   68  which zsh
+   69  chsh -s $(which zsh)
+   70  sudo dnf install git curl
+   71  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+   72  vim .zshrc
+   73  echo -n 'export PATH=~/bin:$PATH' >> ~/.zshrc
+   74  zsh
+   75  ls
+   76  echo $PATH
+   77  echo -n 'export PATH=$HOME/bin:$PATH' >> ~/.zshrc
+   78  nano ~/.zshrc
+   79  open ~/.zshrc
+   80  $ sudo chsh -s $(which zsh)
+   81  $ sudo chsh -s (which zsh)
+   82  which zsh
+   83  echo $SHELL
+   84  $ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"\nWhen you install OhMyZsh, many plugins come with it for your rescue!\n\nTo add useful plugins, Open ~/.zshrc in TextEdit/Notepad/Vim/VSCode.\n\nIn the list of plugins that you see in the file, just add a plugin named npm, like this 👇\nplugins=(\n  git\n  bundler\n  dotenv\n  osx\n  rake\n  rbenv\n  ruby\n  npm # you added this\n)\nVoila! You are done with OhMyZsh! To see the changes, run source ~/.zshrc in the terminal, and now you have the features of an OhMyZsh shell.\n\n🔰 Installing HyperTerm by Zeit\nZeit (the creator of now.sh and Next.js) has created an awesome terminal app for us that is built in Electron.\n\nDownload Hyper from here.\n\n⚛️ Configure Hyper with OhMyZsh\nOpen Hyper Terminal. You won't see OhMyZsh running there. So, go to Hyper Settings. On OSX, it's Hyper > Preferences.\n\nThat would open a .hyper.js file in your favorite editor. This file contains all the settings of your terminal that are super easy to control!\n\nTo enable OhMyZsh as a default shell in Hyper, make this change in .hyper.js 👇\n- shell: '/bin/bash'\n+ shell: '/bin/zsh'\nAnd that would make OhMyZsh your default Hyper Terminal shell!\n\n\U0001f929 Autocomplete while you type a command\nGit Clone the zsh-autocomplete plugin in the OhMyZsh plugin folder.\n$ sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\nOnce that is done, add the plugin in the ~/.zshrc file's plugin list.\nplugins=(\n  ...\n  zsh-autosuggestions\n)\n🎉 Zsh sytax highlighting\nGit Clone the zsh-syntax-highlighting plugin in the OhMyZsh plugin folder.\n$ sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting\nAnd once again add it in the plugins list of the .zshrc file.\nplugins=(\n  ... \n  zsh-syntax-highlighting\n)\nNote: To reflect every change you make, do source ~/.zshrc in the terminal.\n\n📯 Enabling Hyper related features and themes\nOpen .hyper.js by toggling Settings of Hyper Terminal.\n\nCheck out the plugins: [...] section and paste these plugin names there.\nplugins: [\n  ...\n  'hypercwd',\n  'hyper-statusline',\n  'hyper-alt-click',\n  'hyperterm-safepaste',\n  'hyper-search',\n  'hypergoogle',\n  'hyperborder',\n  'hyper-tab-icons',\n  'hyper-hide-title',\n  'shades-of-purple-hyper'\n],\nSave the file and Hyper would automatically install those plugins and themes for you. To reflect the changes, just close and start Hyper Terminal again.\n\nHooray! You now have all the features in your terminal which were listed in the start of this DEV.to article.\n\nBONUS: Setting up the same terminal configuration for Integrated Terminal in VSCode\nIn the VSCode Settings, add the following JSON key-value pairs and you'll be good to go!\n{\n  ...\n  "terminal.integrated.shell.osx": "/bin/zsh",\n  "terminal.integrated.fontSize": 16\n}\nAnd that is it folks!\n\n🔥 Resources\nhttps://ohmyz.sh\nhttps://hyper.is\n🏆 About me\nI am Kumar Abhirup, a 16-year-old JavaScript React developer from India who keeps learning a new thing every single day.\n\nConnect with me on Twitter 🐦\nMy personal website and portfolio 🖥️\n\nComment below your better ways, and suggestions to improve this article. :)\n\nTop comments (9)\n\nSubscribe\npic\nAdd to the discussion\n \nryannerd profile image\nRyan Jentzsch\n•\n25. aug. 21\n\nNo need to use sudo with git commands. In fact it's not a good idea\n\n\n6\n likes\nLike\nReply\n \nnetpenguins profile image\nChad Wilson\n•\n13. feb.\n\nYea great article but please edit to remove the sudo. This is just a bad idea on many levels as these commands don't need it under any normal circumstance.\n\n\nLike\nReply\n \nchuxmykel profile image\nChukwudi Ngwobia\n•\n12. jan.\n\nI agree. It's an amazing article still. 🔥\nI ran the commands without sudo and they work just fine.\n\n\nLike\nReply\n \ngbouras profile image\nGreg\n•\n4. dec. 20\n\nwell done.\n\n\n4\n likes\nLike\nReply\n \nmelezhik profile image\nAlexey Melezhik\n•\n20. aug. 21\n\ngood overview of ohmyzsh. other might also be interested in (alternative?) tool named Tomtit/Sparrow - see my post - dev.to/melezhik/oh-my-tomtit-alter...\n\n\n1\n like\nLike\nReply\n \nahmadhidayatullah profile image\nAhmad Hidayatullah\n•\n6. okt. 21\n\nsudo git clone github.com/zsh-users/zsh-autosugge... ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\n\ncommand above will be reflected when you're using/enable ZSH_CUSTOM in .zshrc but if you are not enable ZSH_CUSTOM you can use this command:\n\nsudo git clone github.com/zsh-users/zsh-autosugge... ${ZSH:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\n\nthanks for your sharing bro, helpfully!\n\n\n1\n like\nLike\nReply\n \nsabbir2609 profile image\nsabbir2609\n•\n17. sep.\n\nThanks BTW 😊\n\n\n1\n like\nLike\nReply\n \ndannysofftie profile image\nDanny Sofftie\n•\n4. jun. 21\n\nThis is a great write up Kumar\n\n\n1\n like\nLike\nReply\n \njosep11 profile image\njosep11\n•\n14. feb.\n\nAt the moment with VS Code zsh is configured as so:\nAdd this to settings:\n{\n"terminal.integrated.defaultProfile.osx": "zsh"\n}\n\n\n1\n like\nLike\nReply\nCode of Conduct • Report abuse\n🔠 Find your favorite font\n \nYou can change your default font in Settings.\n\nRead next\nmadza profile image\n14 Killer Web Applications to Boost Your Productivity 🚀💯\nMadza - Aug 17\n\njansche profile image\nAnnouncing Postman v10: The API Platform for an API-First World\nJan Schenk (he/him) - Sep 16\n\nnathan20 profile image\nWhy I stopped writing articles\nNathan - Sep 13\n\nasheeshh profile image\nHow blogging helped me land a part time job in tech?\nashish - Sep 9\n\n\nKumar Abhirup\nFollow\nBuilding itsbeam.com\nLOCATION\nIndia\nEDUCATION\n10th Grade\nJOINED\n22. feb. 2019\nTrending on DEV Community 👩\u200d💻👨\u200d💻 \nRoy profile image\nHow to Optimize Your Code for Performance\n#beginners #programming #productivity #codenewbie\nJelle Smeets profile image\nHow the 2-minute rule improved my life\n#beginners #productivity #management #watercooler\nJamie Swift profile image\nBoost Your Productivity: Best Software For Dev Teams\n#webdev #programming #productivity #devops
+   85  $ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"\n
+   86  vim ~/.zshrc
+   87  $ sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\n
+   88  zsh
+   89  /Users/monicahardt/zsh/install-sh ; exit;
+   90  la
+   91  ls
+   92  \n\nIf you have not yet manually created a .zshrc file, the file will not exist by default.\n\nYou can create one with:\n\ntouch ~/.zshrc\n\nOr by launching a text editor to create .zshrc, like nano:\n\nnano ~/.zshrc\n\nYou can then place whatever you’d like to in the .zshrc file, for example, any aliases, path modifications, export customizations, ZSH_THEME configs, etc.\n\nChanges will take effect when you reload zsh profile or launch a new terminal window.\n\nWhere is the universal system-wide zshrc file?\nWhile the user customizable .zshrc file resides in the users home directory, there is also a system level zshrc file.\n\nThe system zshrc file is located at the following path in macOS:\n\n/etc/zshrc\n\nAny modification made to /etc/zshrc will apply to the zsh shell for all users, regardless of whether or not they have an individual user level .zshrc file in their home directory.\n\nGenerally speaking, it is not recommended to modify /etc/zshrc, and instead all user level notifications to zsh should be made in the user .zshrc file found in the root of their home directory.\n\nWhat about setting environment variables with zsh?\nYou can set environmental variables for zsh at:\n\n~/.zshenv\n\nYou can modify that file with any command line text editor, like nano, vim, emacs.\n\nFor example, you could add:\n\nJAVA_HOME=$(/usr/libexec/java_home)\n\nSHELL_SESSION_HISTFILE=/Users/o/.zsh_sessions/zshHistory.history\n\nYou can learn more about setting environment variables here.\n\nMore\nRelated\nhow to uninstall oh my zsh on Mac\nHow to Uninstall Oh My Zsh on Mac\nTerminal in macOS\nHow to Reload bash_profile, zsh profiles from Command Line\nInstall Oh My Zsh on Mac\nHow to Install Oh My Zsh on Mac\nEnjoy this tip? Subscribe to our newsletter!\nGet more of our great Apple tips, tricks, and important news delivered to your inbox with the OSXDaily newsletter. \n\nEmail\nSubscribe\n\nRelated articles:\nMaking Python 3 Default in MacOS\nFix Oh My Zsh “Insecure completion-dependent directories detected”\nHow to Convert Firmware Zip to IPSW Easily\nHow to Open Winmail.dat Attachment Files on Mac OS X\nPosted by: Paul Horowitz in Command Line, Mac OS, Tips & Tricks\nOne Comment\n» Comments RSS Feed\n\nTheresa says:\nJanuary 15, 2022 at 2:39 pm\n“nano ~/.zsrch” is a typo.\nshould be “nano ~/.zshrc”\n\nfound here: https://osxdaily.com/2021/11/18/where-the-zshrc-file-is-located-on-mac/\n\nReply\nLeave a Reply\n Name (required)\n\n Mail (will not be published) (required)\n\n Website\n\n« How to Edit & Enhance Voice Memos on MacHow to Add Public Calendars to iPhone & iPad »\n \n\nShop on Amazon.com and help support OSXDaily!\nSubscribe to OSXDaily\nSubscribe to RSS Subscribe to Twitter Feed Follow on Facebook Subscribe to eMail Updates\n\n\n\nTips & Tricks\n- 12 Ultra Useful Touch ID Tricks for Mac\n- How to Set Messages to Automatically Delete on iPhone or iPad\n- Tweeten is the Best TweetDeck Alternative for Mac\n- iOS 16 Problems: 10 Common iPhone Issues and How to Fix Them\n- How to Save Images from Safari to iPhone & iPad\n\n\nNews\n- iOS 16.0.2 Update Released with Bug Fixes\n- iOS 16.1 Beta 2 & iPadOS 16.1 Beta 3 Released for Testing\n- MacOS Ventura Beta 8 Available for Testing\n- iOS 16 “Allow Paste” Between Apps Popup Bug Can’t be Disabled, for Now\n- 7 of the Best iOS 16 Features to Check Out Right Away\niPhone / iPad\n- How to Set Messages to Automatically Delete on iPhone or iPad\n- iOS 16 Problems: 10 Common iPhone Issues and How to Fix Them\n- How to Save Images from Safari to iPhone & iPad\n- iOS 16.0.2 Update Released with Bug Fixes\n- How to Easily Transfer Old iPhone to iPhone 14 Pro / iPhone 14\n\nMac\n- 12 Ultra Useful Touch ID Tricks for Mac\n- Tweeten is the Best TweetDeck Alternative for Mac\n- Convert WEBP to JPG on Mac from Finder with a Quick Action\n- MacOS Monterey 12.6 & MacOS Big Sur 11.7 Released\n- MacOS Ventura Beta 7 Available for Testing\n\nTroubleshooting\n- iOS 16 Problems: 10 Common iPhone Issues and How to Fix Them\n- How to Easily Transfer Old iPhone to iPhone 14 Pro / iPhone 14\n- How to Downgrade iOS 16 and Revert to iOS 15\n- iOS 16 “Allow Paste” Between Apps Popup Bug Can’t be Disabled, for Now\n- iOS 16 Battery Life Draining Fast on iPhone? Here’s Why & How to Fix It\nShop on Amazon to help support this site\n
+   93  oh-my-zsh
+   94  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"\n\n
+   95  zsh
+   96  vim ~/.zshrc
+   97  cd ~/.oh-my-zsh
+   98  ls
+   99  cd plugins
+  100  ls
+  101  cd ..
+  102  cd plugins
+  103  ls
+  104  sudo git clone https://github.com/zsh-users/zsh-autosuggestions
+  105  ls
+  106  vim ~./zshrc
+  107  vim ~/.zshrc
+  108  cd ~/.oh-my-zsh
+  109  ls
+  110  cd plugins
+  111  sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+  112  vim ~/.zshrc
+  113  cd ~/.oh-my-zsh
+  114  ls
+  115  cd plugins
+  116  vim ~/.zshrc
+  117  cd ..
+  118  cd
+  119  cd de
+  120  cd desktop
+  121  ls
+  122  cd assignment-03
+  123  ls
+  124  cd desktop
+  125  ls
+  126  cd de
+  127  cd dek
+  128  s
+  129  cd desktop
+  130  cd Hand-in02
+  131  CODE
+  132  CD ..
+  133  cd ..
+  134  pqd
+  135  pwd
+  136  code.
+  137  code .
+  138  cd
+  139  cd assignment-03
+  140  cd desktop
+  141  cd assignment-03
+  142  code .
+  143  git pull
+  144  git status
+  145  git pull
+  146  git checkout main
+  147  git pull
+  148  code .
+  149  cd
+  150  z
+  151  .zshrc
+  152  open ~/.zshrc
+  153  oh-my-zsh
+  154  cd ~/.oh-my-zsh
+  155  ls
+  156  vim ~/.zshrc
+  157  code .
+  158  git add .
+  159  git commit -m"committing to liveshare"
+  160  git push
+  161  git pull
+  162  cd ~/.oh-my-zsh
+  163  cd plugins
+  164  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git
+  165  cd ..
+  166  ls
+  167  cd plugins
+  168  rm powerlevel10k
+  169  rm -r powerlevel10k
+  170  sudo rm -r powerlevel10k
+  171  ls
+  172  cdc ..
+  173  cd ..
+  174  ls
+  175  cd themes
+  176  git clone https://github.com/romkatv/powerlevel10k.git
+  177  cd
+  178  .zshrc
+  179  vim ~/.zshrc
+  180  exec zsh
+  181  cd de
+  182  cd desktop
+  183  echo path
+  184  echo $path
+  185  ls
+  186  cd assignment-03
+  187  code .
+  188  ls
+  189  cd Lecture2_basicSQL
+  190  ls
+  191  cd sports.sql
+  192  code .
+  193  cd desktop
+  194  ls
+  195  cd assignment-03
+  196  code .
+  197  git pull
+  198  dotnet test
+  199  git pull
+  200  git checkout -b Monica
+  201  git status
+  202  git pull
+  203  ls
+  204  cd Assignment3.Entities.tests
+  205  dotnet add Assignment3.Entities.Tests.csproj package Microsoft.Data.Sqlite
+  206  dotnet add Assignment3.Entities.Tests.csproj package Microsoft.EntityFrameworkCore.Sqlite
+  207  dotnet test 
+  208  cd
+  209  cd desktop
+  210  git clone https://github.com/duckth/assignment-04.git
+  211  ls
+  212  cd assignment-04
+  213  code .
+  214  cd
+  215  cd desktop
+  216  cd assignment-03
+  217  code .
+  218  git checkout main
+  219  git branch -d Monica
+  220  cd desktop
+  221  cd Database
+  222  ls
+  223  cd Lecture2_basicSQL
+  224  ls
+  225  code .
+  226  open week2_exercises.sql
+  227  cd desktop
+  228  ls
+  229  cd Database
+  230  ls
+  231  ls Lecture3_complex
+  232  ls 03-SQL
+  233  ls
+  234  cd Lecture2_basicSQL
+  235  ls
+  236  cd ..
+  237  ls Homework1
+  238  ps -ef | grep postgres
+  239  ceratedb -U postgres HEJ
+  240  createdb -U postgres Hej
+  241  createdb Hej
+  242  dropdb Hej
+  243  cd desktop
+  244  ls
+  245  cd assignment-03
+  246  code .
+  247  git pull
+  248  dotnet restore
+  249  git pull
+  250  git checkout main
+  251  git pull
+  252  docker version
+  253  brew install protoc-gen-go
+  254  brew install protobuf
+  255  brew install protoc-gen-go-grpc
+  256  go mod init [github.com/monicahardt/DisysgRPC]
+  257  go mod init github.com/monicahardt/DisysgRPC
+  258  cd desktop
+  259  git clone https://github.com/monicahardt/DisysgRPC.git
+  260  cd DisysgRPC
+  261  code .
+  262  option go_package = "DSYS-gRPC-template/gRPC"
+  263  go mod init github.com/monicahardt/DisysgRPC
+  264  go: creating new go.mod: module github.com/monicahardt/DisysgRPC
+  265  git pull
+  266  git status
+  267  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/template.proto
+  268  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative gRPC/template.proto
+  269  go mod tidy
+  270  git add .
+  271  git commit -m"initial commit"
+  272  git push
+  273  git status
+  274  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/template.proto
+  275  go mod tidy
+  276  go mod init DisysNotGit
+  277  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/proto.proto
+  278  go mod tidy
+  279  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/proto.proto
+  280  createdb week5
+  281  cd desktop
+  282  ls
+  283  cd Database
+  284  ls
+  285  cd Lecture4_triggers,functions,transactions
+  286  ls
+  287  cd 04B-SQL
+  288  ls
+  289  cd ..
+  290  ls
+  291  cd Lecture2_basicSQL
+  292  ls
+  293  code .
+  294  cd desktop
+  295  git clone https://github.com/theauk/grpcTimeRequestExample.git
+  296  code .
+  297  cd desktop'\n
+  298  cd desktop\n
+  299  cd BDSA_lectures
+  300  git clone https://github.com/NotMyself/GildedRose.git
+  301  .\build.bat
+  302  ls
+  303  cd GildedRose
+  304  .\build.bat
+  305  ls
+  306  build.bat
+  307  .\build.bat
+  308  cd build.bat
+  309  .\build.bat
+  310  build.bat
+  311  run build.bat
+  312  go run build.bat
+  313  go get build.bat
+  314  .\build.bat
+  315  ls
+  316  build.bat
+  317  dotnet run build.bat
+  318  code .
+  319  ls
+  320  @ECHO OFF
+  321  echo off
+  322  la
+  323  cd desktop
+  324  git clone https://github.com/Megabd/assignment-05.git
+  325  code .
+  326  dotnet test
+  327  dotnet build
+  328  ls
+  329  dotnet build
+  330  cd desktop
+  331  cd assignment-05
+  332  dotnet build
+  333  dotnet test
+  334  dotnet build
+  335  git status
+  336  git pull
+  337  cd desktop
+  338  git clone https://github.com/Megabd/assignment-05.git
+  339  code .
+  340  go mod init DisysTime
+  341  `protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative gRPC/proto.proto`\n
+  342  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative gRPC/proto.proto`\n\n
+  343  --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative gRPC/proto.proto
+  344  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative gRPC/proto.proto
+  345  go mod tidy
+  346  go run server/server.go -port 5454`
+  347  go run server/server.go -port 5454
+  348  go mod tidy
+  349  go run server/server.go -port 5454
+  350  go run client/client.go -cPort 8080 -sPort 5454
+  351  hej
+  352  go run client/client.go -cPort 8080 -sPort 5454
+  353  cd desktop
+  354  cd Database
+  355  ls
+  356  cd Homework2
+  357  psql homework2 < HW2-DB.sql
+  358  code .
+  359  git pull
+  360  dotnet test
+  361  docker version
+  362  cd desktop
+  363  mkdir hello-docker
+  364  cd hello-docker
+  365  code .
+  366  node app.js
+  367  docker build
+  368  docker build -t hello-docker .
+  369  docker images ls
+  370  docker image ls
+  371  docker images
+  372  docker run hello-docker
+  373  docker run ubuntu
+  374  docker ps -a
+  375  docker run -it ubuntu
+  376  code .
+  377  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative gRPC/proto.proto
+  378  go run server/server.go -port 5454
+  379  go run client/client.go -cPort 8080 -sPort 5454
+  380  cd desktop
+  381  git clone https://github.com/rakulmaria/handin_03.git
+  382  cd handin_03
+  383  code .
+  384  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/proto.proto
+  385  go run server/server.go -port 5454
+  386  code .
+  387  go run server/server.go
+  388  code .
+  389  docker run -it ubuntu
+  390  code .
+  391  git pull
+  392  git status
+  393  git checkout -b Monica
+  394  git status
+  395  git pull
+  396  go mod init Handin_03
+  397  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto
+  398  go mod tidy
+  399  go run server/server.go -port 5454
+  400  go run client/client.go -cPort 8080 -sPort 5454
+  401  git add .
+  402  git commit -m"initial commit"
+  403  git push
+  404  git push --set-upstream origin Monica
+  405  git status
+  406  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto 
+  407  go run client/client.go -cPort 8080 -sPort 5454
+  408  go run server/server.go -port 5454
+  409  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto 
+  410  go run server/server.go -port 5454
+  411  go run client/client.go -cPort 8080 -sPort 5454
+  412  git add .
+  413  git commit -m "trying to make a client a a user chat"
+  414  git oush
+  415  git push
+  416  git status
+  417  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto
+  418  go run client/client.go -cPort 8080 -sPort 5454
+  419  go run server/server.go -port 5454
+  420  go run client/client.go -cPort 8080 -sPort 5454
+  421  go run server/server.go -port 5454
+  422  go run client/client.go -cPort 8080 -sPort 5454
+  423  go run server/server.go -port 5454
+  424  go run client/client.go -cPort 8080 -sPort 5454
+  425  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto
+  426  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto 
+  427  go mod tidy
+  428  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto 
+  429  go run client/client.go -cPort 8080 -sPort 5454
+  430  go run server/server.go -port 5454
+  431  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto 
+  432  go run server/server.go -port 5454
+  433  go run client/client.go -cPort 8080 -sPort 5454
+  434  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto  
+  435  go run client/client.go -cPort 8080 -sPort 5454
+  436  go run server/server.go -port 5454
+  437  code .
+  438  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto  
+  439  go run server/server.go -port 5454
+  440  go run client/client.go -cPort 8080 -sPort 5454
+  441  go run server/server.go -port 5454
+  442  go run client/client.go -cPort 8080 -sPort 5454
+  443  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto  
+  444  go run client/client.go -cPort 8080 -sPort 5454
+  445  go run server/server.go -port 5454
+  446  go run client/client.go -cPort 8080 -sPort 5454
+  447  git add .
+  448  git commit -m "it seems all clients recieve the messages now. Broadcast works"
+  449  git push
+  450  go run client/client.go -cPort 8080 -sPort 5454
+  451  go run server/server.go -port 5454
+  452  go run client/client.go -cPort 8080 -sPort 5454
+  453  go run server/server.go -port 5454
+  454  go run client/client.go -cPort 8080 -sPort 5454
+  455  go run server/server.go -port 5454
+  456  go run client/client.go -cPort 8080 -sPort 5454
+  457  go run server/server.go -port 5454
+  458  go run client/client.go -cPort 8080 -sPort 5454
+  459  go run server/server.go -port 5454
+  460  go run client/client.go -cPort 8080 -sPort 5454
+  461  code .
+  462  go run server/server.go -port 5454
+  463  go run client/client.go -cPort 8080 -sPort 5454
+  464  go run server/server.go -port 5454
+  465  go run client/client.go -cPort 8080 -sPort 5454
+  466  go run client/client.go -cPort 8081 -sPort 5454
+  467  go run client/client.go -cPort 4545 -sPort 5454
+  468  go run server/server.go -port 5454
+  469  go run client/client.go -cPort 8080 -sPort 5454
+  470  go run client/client.go -cPort 4545 -sPort 5454
+  471  ls
+  472  cd hello
+  473  dotnet run
+  474  dotnet hello.dll
+  475  code .
+  476  dotnet hello.pdb
+  477  cd desktop
+  478  git clone https://github.com/Clara-Lyngeraa/project-description.git
+  479  code .
+  480  cd
+  481  ..
+  482  cd..
+  483  pwd
+  484  cd desktop
+  485  git clone https://github.com/Clara-Lyngeraa/GitInsight.git
+  486  cd GitInsight
+  487  code .
+  488  git pull
+  489  dotnet run
+  490  cd GitInsight
+  491  dotnet run
+  492  git pull
+  493  dotnet test
+  494  ls
+  495  cd ..
+  496  ls
+  497  dotnet test
+  498  git pull
+  499  git status
+  500  git pull
+  501  git status
+  502  git pull
+  503  git config pull.rebase false
+  504  git status
+  505  git pull
+  506  code .
+  507  git pull
+  508  cd desktop
+  509  git clone https://github.com/Clara-Lyngeraa/GitInsight.git
+  510  cd GitInsight
+  511  code .
+  512  git pull
+  513  git status
+  514  dotnet run
+  515  cd GitInsight
+  516  dotnet run
+  517  dotnet test
+  518  cd ..
+  519  dotnet test
+  520  git pull
+  521  git status
+  522  dotnet test
+  523  dotnet remove  package LibGit2Sharp --version 0.26.2
+  524  dotnet remove package LibGit2Sharp
+  525  cd ..
+  526  cd GitInsight
+  527  dotnet remove package LibGit2Sharp
+  528  dotnet remove package LibGit2Sharp --version 0.26.2
+  529  ls
+  530  cd GitInsight
+  531  dotnet remove package LibGit2Sharp --version 0.26.2
+  532  dotnet remove package LibGit2Sharp
+  533  dotnet add package LibGit2Sharp --version 0.26.2
+  534  git add .
+  535  git commit -m "oprydning"
+  536  git push
+  537  dotnet remove package LibGit2Sharp
+  538  dotnet add package LibGit2Sharp --version 0.26.2
+  539  git add .
+  540  git commit -m "oprydning"
+  541  git push
+  542  dotnet run
+  543  git add .
+  544  git commit -m "oprydning"
+  545  git push
+  546  git add .
+  547  git commit -m "oprydning"
+  548  git push
+  549  dotnet run
+  550  dotnet test
+  551  pwd
+  552  cd desktop
+  553  giot clone https://github.com/libgit2/libgit2sharp.git
+  554  git clone https://github.com/libgit2/libgit2sharp.git
+  555  cd libgit2sharp
+  556  code .
+  557  dotnet run
+  558  ls 
+  559  ls -a
+  560  dotnet run
+  561  dotnet test
+  562  ls
+  563  cd ..
+  564  ls
+  565  dotnet test
+  566  code .
+  567  dotnet test
+  568  dotnet run
+  569  ls
+  570  cd GitInsight
+  571  dotnet run
+  572  git add .
+  573  git commit -m"starting setting up tests"
+  574  git push
+  575  cd ..
+  576  ls
+  577  git add .
+  578  git commit -m"method deleted"
+  579  git push
+  580  git status
+  581  code .
+  582  ls
+  583  git add .
+  584  git commit -m"Added a test, added description to methods"
+  585  git push
+  586  code .
+  587  go run server/server.go -port 5454
+  588  go run client/client.go -cPort 4545 -sPort 5454
+  589  git add .
+  590  git commit -m"Added initial client server connection with broadcast and publish method"
+  591  git push
+  592  git checkout main
+  593  git merge Monica
+  594  git push
+  595  go run server
+  596  go run server/server.go -port 5454
+  597  go run client/client.go -cPort 4545 -sPort 5454
+  598  go run server/server.go -port 5454
+  599  go run client/client.go -cPort 4545 -sPort 5454
+  600  go run server/server.go -port 5454
+  601  go run client/client.go -cPort 4545 -sPort 5454
+  602  go run server/server.go -port 5454
+  603  go run client/client.go -cPort 4545 -sPort 5454
+  604  go run server/server.go -port 5454
+  605  go run client/client.go -cPort 4545 -sPort 5454
+  606  go run server/server.go -port 5454
+  607  go run client/client.go -cPort 4545 -sPort 5454
+  608  go run server/server.go -port 5454
+  609  go run client/client.go -cPort 4545 -sPort 5454
+  610  go run server/server.go -port 5454
+  611  go run client/client.go -cPort 4545 -sPort 5454
+  612  go run server/server.go -port 5454
+  613  go run client/client.go -cPort 4545 -sPort 5454
+  614  go run server/server.go -port 5454
+  615  go run client/client.go -cPort 4545 -sPort 5454
+  616  go run server/server.go -port 5454
+  617  go run client/client.go -cPort 4545 -sPort 5454
+  618  go run server/server.go -port 5454
+  619  go run client/client.go -cPort 4545 -sPort 5454
+  620  go run cl
+  621  go run client/client.go -cPort 4545 -sPort 5454
+  622  git checkout -b Channels
+  623  git add .
+  624  git commit -m"We start working on channels"
+  625  git push
+  626  go run server/server.go -port 5454
+  627  go run client/client.go -cPort 4545 -sPort 5454
+  628  go run server/server.go -port 5454
+  629  go run client/client.go -cPort 4545 -sPort 5454
+  630  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto  
+  631  go run server/server.go -port 5454
+  632  go run client/client.go -cPort 4545 -sPort 5454
+  633  git add .
+  634  git commit -"Naming changed"
+  635  git commit -m"Naming changed"
+  636  git push
+  637  git checkout main
+  638  git merge Channels
+  639  go run server/server.go -port 5454
+  640  go run client/client.go -cPort 4545 -sPort 5454
+  641  git push
+  642  git status
+  643  go run server/server.go -port 5454
+  644  go run client/client.go -cPort 4545 -sPort 5454 name Monica
+  645  go run client/client.go -cPort 4545 -sPort 5454 -name Monica
+  646  go run server/server.go -port 5454
+  647  go run client/client.go -cPort 4545 -sPort 5454 -name Monica
+  648  go run server/server.go -port 5454
+  649  go run client/client.go -cPort 4545 -sPort 5454 -name Monica
+  650  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  651  git add .
+  652  git commit -m"Running"
+  653  git push
+  654  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto  \n
+  655  code .
+  656  git checkout leave_chat
+  657  go run server/server.go -port 5454
+  658  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  659  go run client/client.go -cPort 4545 -sPort 5454 -name Monica
+  660  go run server/server.go -port 5454
+  661  djfhkhf
+  662  go run server/server.go -port 5454
+  663  go run client/client.go -cPort 4545 -sPort 5454 -name Monica
+  664  go run server/server.go -port 5454
+  665  go run client/client.go -cPort 4545 -sPort 5454 -name Monica
+  666  go run server/server.go -port 5454
+  667  go run client/client.go -cPort 4545 -sPort 5454 -name Monica
+  668  go run client/client.go -cPort 5050 -sPort 5454 -name Clara
+  669  go run server/server.go -port 5454
+  670  go run client/client.go -cPort 5050 -sPort 5454 -name Clara
+  671  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  672  go run server/server.go -port 5454
+  673  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  674  go run server/server.go -port 5454
+  675  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  676  go run server/server.go -port 5454
+  677  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  678  go run client/client.go -cPort 5050 -sPort 5454 -name Monica
+  679  go run server/server.go -port 5454
+  680  go run client/client.go -cPort 5050 -sPort 5454 -name Monica
+  681  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  682  go run server/server.go -port 5454
+  683  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  684  go run server/server.go -port 5454
+  685  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  686  go run client/client.go -cPort 5050 -sPort 5454 -name Monica
+  687  go run server/server.go -port 5454
+  688  go run client/client.go -cPort 5050 -sPort 5454 -name Monica
+  689  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  690  go run server/server.go -port 5454
+  691  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  692  go run client/client.go -cPort 4545 -sPort 5454 -name Monica
+  693  go run server/server.go -port 5454
+  694  go run client/client.go -cPort 4545 -sPort 5454 -name Monica
+  695  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  696  go run server/server.go -port 5454
+  697  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  698  go run client/client.go -cPort 5050 -sPort 5454 -name Monica
+  699  go run server/server.go -port 5454
+  700  go run client/client.go -cPort 5050 -sPort 5454 -name Monica
+  701  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  702  go run server/server.go -port 5454
+  703  go run client/client.go -cPort 5050 -sPort 5454 -name Monica
+  704  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  705  go run server/server.go -port 5454
+  706  go run client/client.go -cPort 5050 -sPort 5454 -name Monica
+  707  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  708  go run server/server.go -port 5454
+  709  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  710  go run client/client.go -cPort 4545 -sPort 5454 -name Monica
+  711  git checkout -b LogWork
+  712  git add .
+  713  go run server/server.go -port 5454
+  714  go run client/client.go -cPort 4545 -sPort 5454 -name Monica
+  715  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  716  git add .
+  717  git commit -m"Working on Logging works with prints"
+  718  git push
+  719  git push --set-upstream origin LogWork
+  720  code .
+  721  dotnet run
+  722  ls
+  723  cd GitInsight
+  724  ls
+  725  dotnet run
+  726  -a
+  727  dotnet run
+  728  jdks
+  729  dotnet run
+  730  ls
+  731  cd GitInsight
+  732  dotnet run
+  733  code .
+  734  git status
+  735  code .
+  736  git sttaus
+  737  git status
+  738  dotnet run
+  739  ls
+  740  code .
+  741  git status
+  742  code .
+  743  git pull
+  744  code .
+  745  brew install git
+  746  code .
+  747  git status
+  748  git add .
+  749  git checkout -b Monica
+  750  git commit -m"Working on method frequency"
+  751  git push --set-upstream origin Monica
+  752  ls
+  753  dotnet test
+  754  dotnet run
+  755  ls
+  756  cd GitInsight
+  757  dotnet run
+  758  dotnet test
+  759  ls
+  760  cd..
+  761  cd ..
+  762  ls
+  763  dotnet test
+  764  dotnet run
+  765  ls
+  766  cd G
+  767  cd GitInsight
+  768  dotnet run
+  769  ls
+  770  cd ..
+  771  dotnet test
+  772  ls
+  773  cd GitInsight
+  774  dotnet run
+  775  ls
+  776  dotnet run
+  777  ls
+  778  cd ..
+  779  dotnet test
+  780  ls
+  781  cd GitInsight
+  782  dotnet run
+  783  ls
+  784  cd ..
+  785  dotnet test
+  786  cd GitInsight
+  787  dotnet run
+  788  git add .
+  789  git commit -m"Methods working. Ability to chose author or freq, print and tests working"
+  790  git push
+  791  cd ..
+  792  git push
+  793  git add .
+  794  git commit -m"Methods working. Ability to chose author or freq, print and tests working"
+  795  git push
+  796  git status
+  797  code .
+  798  git status
+  799  git push
+  800  git status
+  801  git checkout Monica
+  802  git status
+  803  ls
+  804  dotnet test
+  805  history
+  806  git status
+  807  code .
+  808  git pull
+  809  ls
+  810  dotnet test
+  811  code .
+  812  git pull
+  813  git checkout main
+  814  git pull
+  815  go run server/server.go -port 5454
+  816  go run client/client.go -cPort 4545 -sPort 5454 -name Clara
+  817  go run client/client.go -cPort 8080 -sPort 5454 -name Monica
+  818  go run server/server.go -port 5454
+  819  go run client/client.go -cPort 8080 -sPort 5454 -name Monica
+  820  go run server/server.go -port 5454
+  821  go run client/client.go -cPort 8080 -sPort 5454 -name Monica
+  822  go run client/client.go -cPort 8000 -sPort 5454 -name Clara
+  823  go run server/server.go -port 5454
+  824  go run client/client.go -cPort 8000 -sPort 5454 -name Clara
+  825  go run client/client.go -cPort 8000 -sPort 5454 -name Monica
+  826  go run server/server.go -port 5454
+  827  go run client/client.go -cPort 8000 -sPort 5454 -name Monica
+  828  go run client/client.go -cPort 8000 -sPort 5454 -name Clara
+  829  go run server/server.go -port 5454
+  830  go run client/client.go -cPort 8000 -sPort 5454 -name Clara
+  831  go run client/client.go -cPort 8000 -sPort 5454 -name Monica
+  832  go run server/server.go -port 5454
+  833  go run client/client.go -cPort 8000 -sPort 5454 -name Monica
+  834  go run server/server.go -port 5454
+  835  go run client/client.go -cPort 8000 -sPort 5454 -name Monica
+  836  go run client/client.go -cPort 8000 -sPort 5454 -name Clara
+  837  go run server/server.go -port 5454
+  838  go run client/client.go -cPort 8000 -sPort 5454 -name Clara
+  839  go run client/client.go -cPort 4000 -sPort 5454 -name Monica
+  840  go run server/server.go -port 5454
+  841  go run client/client.go -cPort 4000 -sPort 5454 -name Monica
+  842  go run client/client.go -cPort 8000 -sPort 5454 -name Clara
+  843  go run server/server.go -port 5454
+  844  go run client/client.go -cPort 8000 -sPort 5454 -name Clara
+  845  go run client/client.go -cPort 8000 -sPort 5454 -name Monica
+  846  go run server/server.go -port 5454
+  847  go run client/client.go -cPort 8000 -sPort 5454 -name Monica
+  848  go run client/client.go -cPort 8080 -sPort 5454 -name Clara
+  849  go run server/server.go -port 5454
+  850  go run client/client.go -cPort 8080 -sPort 5454 -name Clara
+  851  go run client/client.go -cPort 4000 -sPort 5454 -name Monica
+  852  go run server/server.go -port 5454
+  853  go run client/client.go -cPort 4000 -sPort 5454 -name Monica
+  854  go run client/client.go -cPort 4000 -sPort 5454 -name Clara
+  855  go run server/server.go -port 5454
+  856  go run client/client.go -cPort 4000 -sPort 5454 -name Clara
+  857  go run client/client.go -cPort 8000 -sPort 5454 -name Monica
+  858  go run server/server.go -port 5454
+  859  go run client/client.go -cPort 8000 -sPort 5454 -name Monica
+  860  go run client/client.go -cPort 8080 -sPort 5454 -name Clara
+  861  git add .
+  862  git commit -m"Added logging, changing print a bit to clear terminal a little"
+  863  git push
+  864  git status
+  865  git push
+  866  code .
+  867  go run server/server.go -port 5454
+  868  go run client/client.go -cPort 8080 -sPort 5454 -name Clara
+  869  go run server/server.go -port 5454
+  870  go run client/client.go -cPort 8080 -sPort 5454 -name Clara
+  871  go run client/client.go -cPort 8000 -sPort 5454 -name Monica
+  872  git sttaus
+  873  git status
+  874  git pull
+  875  git add .
+  876  git commit -m"Some printing and logging"
+  877  git push
+  878  go run server/server.go -port 5454
+  879  go run client/client.go -cPort 8000 -sPort 5454 -name Monica
+  880  go run client/client.go -cPort 4000 -sPort 5454 -name Clara
+  881  git checkout moreLamport
+  882  git fetcch
+  883  git fetch
+  884  git checkout moreLamport
+  885  git pull
+  886  go checkout main
+  887  git checkout main
+  888  git pull
+  889  go run server/server.go -port 5454
+  890  go run client/client.go -cPort 4000 -sPort 5454 -name Clara
+  891  go run client/client.go -cPort 4040 -sPort 5454 -name Monica
+  892  go run server/server.go -port 5454
+  893  go run client/client.go -cPort 4040 -sPort 5454 -name Clara
+  894  go run server/server.go -port 5454
+  895  go run client/client.go -cPort 4040 -sPort 5454 -name Clara
+  896  go run client/client.go -cPort 4040 -sPort 5454 -name Monica
+  897  go run server/server.go -port 5454
+  898  go run client/client.go -cPort 4040 -sPort 5454 -name Monica
+  899  go run client/client.go -cPort 4040 -sPort 5454 -name Clara
+  900  go run server/server.go -port 5454
+  901  go run client/client.go -cPort 4040 -sPort 5454 -name Clara
+  902  go run client/client.go -cPort 4040 -sPort 5454 -name Monica
+  903  go run server/server.go -port 5454
+  904  go run client/client.go -cPort 4040 -sPort 5454 -name Monica
+  905  go run client/client.go -cPort 4040 -sPort 5454 -name Clara
+  906  go run server/server.go -port 5454
+  907  go run client/client.go -cPort 4040 -sPort 5454 -name Monica
+  908  go run client/client.go -cPort 4040 -sPort 5454 -name Rakul
+  909  go run client/client.go -cPort 4040 -sPort 5454 -name Clara
+  910  git add .
+  911  git commit -m"Minor changes and logging"
+  912  git push
+  913  code .
+  914  git clone https://github.com/Clara-Lyngeraa/GitInsight.git
+  915  cd desktop
+  916  git clone https://github.com/Clara-Lyngeraa/GitInsight.git
+  917  cd GitInsight
+  918  code .
+  919  createdb gitInsightDB
+  920  dotnet add package Microsoft.EntityFrameworkCore.Design
+  921  cd
+  922  ls
+  923  dotnet add package Microsoft.EntityFrameworkCore.Design
+  924  git pull
+  925  ls
+  926  cd GitInsight
+  927  dotnet add package Microsoft.EntityFrameworkCore.Design
+  928  Microsoft.EntityFrameworkCore.Tools.DotNet
+  929  dotnet add package Microsoft.EntityFrameworkCore.Tools.DotNet
+  930  dotnet add package Microsoft.NETCore.App
+  931  dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+  932  dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL.Design
+  933  dotnet add package Microsoft.Data.SqlClient
+  934  cd ..
+  935  ls
+  936  dotnet sln add GitInsight.Entities
+  937  cd GitInsight.Entities
+  938  dotnet new classlib
+  939  cd ..
+  940  dotnet sln add GitInsight.Entities
+  941  dotnet add GitInsight reference GitInsight.Entities/
+  942  ls
+  943  cd GitInsight.Entities
+  944  dotnet add package Microsoft.EntityFrameworkCore
+  945  dotnet add package Microsoft.Data.SqlClient
+  946  dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+  947  code .
+  948  ls
+  949  cd ..
+  950  ls
+  951  cd GitInsight
+  952  dotnet add Microsoft.Extensions.Configuration.UserSecrets
+  953  dotnet add package Microsoft.Extensions.Configuration.UserSecrets
+  954  cd ..
+  955  cd GitInsight
+  956  cd GitInsight.Core
+  957  dotnet new classlib
+  958  ls
+  959  cd ..
+  960  cd GitInsight
+  961  dotnet add GitInsight reference GitInsight.Core/
+  962  dotnet sln add GitInsight.Core
+  963  dotnet add GitInsight.Entitites reference GitInsight.Core/
+  964  ls
+  965  dotnet add GitInsight.Entities reference GitInsight.Core/
+  966  password="1234"
+  967  echo $password
+  968  database="gitInsightDB"
+  969  connectionstring="Host=localhost;Username=postgres;Password=$password;Database=$database"
+  970  ls
+  971  cd GitInsight.Entities
+  972  dotnet add package Microsoft.Extensions.Configuration.UserSecrets
+  973  code .
+  974  echo $connectionString
+  975  echo $connectionstring
+  976  connectionstring="Host=localhost;Username=postgres;Password=1234;Database=gitInsightDB"
+  977  cd GitInsight.Entities
+  978  dotnet user-secrets init
+  979  dotnet user-secrets set "ConnectionStrings:gitInsightDB" "$connectionstring"
+  980  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+  981  docker ps
+  982  dotnet ef migrations add initialcreate
+  983  dotnet add package Microsoft.EntityFrameworkCore.Design
+  984  dotnet ef migrations add initialcreate
+  985  dotnet ef database update
+  986  docker exec -it 2b70890dc2db bash
+  987  dotnet ef migrations add initialcreate
+  988  dotnet ef database update
+  989  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -u postgres -d -p 5432:5432 postgres
+  990  dotnet ef database update
+  991  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -U postgres -d -p 5432:5432 postgres
+  992  dotnet user-secrets clear
+  993  dotnet user-secrets set "ConnectionStrings:gitInsightDB" "Host=localhost;Username=postgres;Port=6666;Database=gitInsightDB;Password=1234"
+  994  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -U postgres -d -p 6666:6666 postgres
+  995  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 6666:6666 postgres
+  996  dotnet ef database update
+  997  dotnet user-secrets list
+  998  brew services stop postgresql
+  999  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 1000  dotnet user-secrets set "ConnectionStrings:gitInsightDB" "Host=localhost;Username=postgres;Database=gitInsightDB;Password=1234"
+ 1001  dotnet ef migrations add initialcreate
+ 1002  dotnet ef database update
+ 1003  docker exec -it  bash
+ 1004  docker ps
+ 1005  docker exec -it a5e63f3c155f bash
+ 1006  cd ..
+ 1007  cd GitInsight
+ 1008  dotnet run
+ 1009  dotnet ef migrations add migration1
+ 1010  ls
+ 1011  cd ..
+ 1012  cd GitInsight.Entities
+ 1013  dotnet ef migrations add migration1
+ 1014  dotnet ef database update
+ 1015  cd ..
+ 1016  cd GitInsight
+ 1017  dotnet run
+ 1018  docker exec -it a5e63f3c155f bash
+ 1019  git add .
+ 1020  git commit -m"Setting up database"
+ 1021  git push
+ 1022  git checkout -b DatabaseSetup
+ 1023  history
+ 1024  history > history.txt
+ 1025  docker ps
+ 1026  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 1027  docker ps
+ 1028  docker exec -it 1283e0461575 bash
+ 1029  dotnet run
+ 1030  ls
+ 1031  cd GitInsight
+ 1032  dotnet run
+ 1033  docker ps
+ 1034  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 1035  docker exec -it 1283e0461575f4be1fb53fc0a375503a330303fe30f901030abbb3cbdf18a421 bash
+ 1036  dotnet run
+ 1037  echo $connectionstring
+ 1038  cd GitInsight.
+ 1039  cd GitInsight.Entities
+ 1040  cd ..
+ 1041  cd GitInsight.Entities
+ 1042  ls
+ 1043  dotnet user-secrets list
+ 1044  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 1045  dotnet ef migrations add initialcreate
+ 1046  dotnet ef database update
+ 1047  docker ps
+ 1048  docker exec -it 0f69e3425412 bash
+ 1049  git add .
+ 1050  git commit -"Database works. Added a description file for future setup of databases"
+ 1051  git commit -m"Database works. Added a description file for future setup of databases"
+ 1052  git push
+ 1053  code.
+ 1054  code .
+ 1055  ls
+ 1056  cd GitInsight.Tests
+ 1057  dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+ 1058  dotnet add package Microsoft.Data.Sqlite
+ 1059  ls
+ 1060  cd ..
+ 1061  ls
+ 1062  dotnet test --filter Inserting_CommitSignature_into_database
+ 1063  git add .
+ 1064  git commit -m"Changing name from ambigious Signature name and setting up in memory database in testsclass"
+ 1065  git push
+ 1066  git pull
+ 1067  git merge DatabaseSetup
+ 1068  git checkout -b DatabaseNew
+ 1069  git add .
+ 1070  git commit -m"Changing name from ambigious Signature name and setting up in memory database in testsclass"
+ 1071  git push --set-upstream origin DatabaseNew
+ 1072  git merge main
+ 1073  git checkout main
+ 1074  git merge DatabaseNew
+ 1075  dotnet test --filter Inserting_CommitSignature_into_database
+ 1076  git push
+ 1077  git checkout DatabaseNew
+ 1078  git status
+ 1079  git merge main
+ 1080  git checkout main
+ 1081  git merge DatabaseNew
+ 1082  git push
+ 1083  git status
+ 1084  dotnet test --filter Inserting_CommitSignature_into_database
+ 1085  code .
+ 1086  cd desktop
+ 1087  git clone https://github.com/rakulmaria/handin_04.git
+ 1088  cd handin_04
+ 1089  cd .
+ 1090  code .
+ 1091  git checkout -b MethodWork
+ 1092  git add .
+ 1093  git commit -m"First commit to branch"
+ 1094  git push --set-upstream origin MethodWork
+ 1095  code .
+ 1096  git pull
+ 1097  git stash
+ 1098  git pull
+ 1099  code .
+ 1100  ls
+ 1101  cd GitInsight.E
+ 1102  cd GitInsight.Entities
+ 1103  dotnet add package LibGit2Sharp" Version="0.26.2
+ 1104  dotnet add package LibGit2Sharp --version 0.26.2
+ 1105  code .
+ 1106  git add .
+ 1107  git commit -"Trying to add methods"
+ 1108  git commit m-"Trying to add methods"
+ 1109  git commit -m"Trying to add methods"
+ 1110  git push
+ 1111  git pull
+ 1112  git checkout main
+ 1113  git pull
+ 1114  dotnet test --filter create_returns_response_created
+ 1115  ls
+ 1116  dotnet test --filter create_returns_response_created
+ 1117  dotnet build
+ 1118  dotnet test
+ 1119  dotnet build
+ 1120  dotnet test
+ 1121  dotnet add GitInsight.Tests  reference GitInsight.Core
+ 1122  dotnet build
+ 1123  dotnet test
+ 1124  dotnet sln add GitInsight.Core
+ 1125  dotnet test
+ 1126  cd
+ 1127  ls
+ 1128  cd desktop
+ 1129  cd GitInsight
+ 1130  ls
+ 1131  cd GitInsight.Tests
+ 1132  dotnet add GitInsight.Tests  reference GitInsight.Entities
+ 1133  cd ..
+ 1134  dotnet add GitInsight.Tests  reference GitInsight.Entities
+ 1135  dotnet test
+ 1136  git add .
+ 1137  git checkout -b ClaraMonicaFredag
+ 1138  git add .
+ 1139  git commit -m"Working on it"
+ 1140  git push
+ 1141  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 1142  code .
+ 1143  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 1144  dotnet ef migrations add secondCreate
+ 1145  cd GitInsight.Entities
+ 1146  dotnet ef migrations add secondCreate
+ 1147  dotnet database update
+ 1148  dotnet ef database update
+ 1149  docker ps
+ 1150  docker exec -it 57e024324ef4  bash
+ 1151  dotnet test
+ 1152  git add .
+ 1153  git commit -m"Added new migrations"
+ 1154  git push
+ 1155  dotnet test
+ 1156  git add .
+ 1157  git commit -m"Tests working"
+ 1158  git push
+ 1159  git pull
+ 1160  code .
+ 1161  ls
+ 1162  cd GitInsight.Core
+ 1163  dotnet add package LibGit2Sharp --version 0.26.2
+ 1164  dotnet test
+ 1165  ls
+ 1166  cd ..
+ 1167  ls
+ 1168  dotnet test
+ 1169  ls
+ 1170  cd GitInsight.Entities
+ 1171  dotnet ef migrations add thirdMigration
+ 1172  dotnet ef database update
+ 1173  dotnet ef migrations add fourthMigration
+ 1174  dotnet ef database update
+ 1175  dotnet ef migrations add fourthMigration
+ 1176  dotnet ef migrations add fifthMigration
+ 1177  dotnet ef database update
+ 1178  dotnet ef migrations add sixthMigration
+ 1179  dotnet ef database update
+ 1180  dotnet ef migrations add sixthMigration
+ 1181  dotnet ef migrations add seventhMigration
+ 1182  dotnet ef database update
+ 1183  dotnet ef migrations add firstCreate
+ 1184  dotnet ef database update
+ 1185  docker run --name gitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 1186  dotnet ef migrations add firstCreate
+ 1187  dotnet ef migrations add secondCreate
+ 1188  dotnet ef database update
+ 1189  ls
+ 1190  cd ..
+ 1191  ls
+ 1192  dotnet test
+ 1193  code .
+ 1194  dotnet test --filter create_returns_response_created
+ 1195  git add .
+ 1196  git commit -m"For clara to test"
+ 1197  git push
+ 1198  dotnet test --filter create_returns_response_created
+ 1199  pwd
+ 1200  cd GitInsight.Tests
+ 1201  dotnet add package LibGit2Sharp --version 0.26.2
+ 1202  dotnet test --filter create_returns_response_created
+ 1203  dotnet test 
+ 1204  createdb E8KS
+ 1205  brew services start postgresql
+ 1206  createdb E8KS
+ 1207  createdb E8NS
+ 1208  createdb E8KL
+ 1209  createdb E8NL
+ 1210  cd desktop 
+ 1211  cd Database
+ 1212  ls
+ 1213  cd Lecture8_indices
+ 1214  psql -q E8NS < 1_CREATE_KEY.sql
+ 1215  ls
+ 1216  cd SQL
+ 1217  ls
+ 1218  psql -q E8NS < 1_CREATE_KEY.sql
+ 1219  psql -q E8NS < 2_FILL_20K.sql
+ 1220  createdb E8NS
+ 1221  psql -q E8NS < 1_CREATE_NOKEY.sql
+ 1222  psql -q E8NS < 2_FILL_20K.sql
+ 1223  psql -q E8KS < 1_CREATE_KEY.sql
+ 1224  psql -q E8NS < 2_FILL_20K.sql
+ 1225  psql -q E8NS < 3_QUERY_I.sql
+ 1226  psql -q E8NS < 3_QUERY_II.sql
+ 1227  psql -q E8KS < 3_QUERY_I.sql
+ 1228  psql -q E8KS < 3_QUERY_II.sql
+ 1229  code .
+ 1230  git pull
+ 1231  ls
+ 1232  cd GitInsight.Tests
+ 1233  git clone https://github.com/monicahardt/testingRepo.git
+ 1234  ls
+ 1235  dotnet test
+ 1236  code .
+ 1237  dotnet test
+ 1238  git add .
+ 1239  git commit -m"Added test for analyzedRepo. Think the exception happens because two testclasses make a temporary repo at the same path. Tests works with only one testclass"
+ 1240  git push
+ 1241  dotnet test
+ 1242  code .
+ 1243  dotnet test
+ 1244  ls
+ 1245  dotnet run
+ 1246  cd GitInsight
+ 1247  dotnet run
+ 1248  git add .
+ 1249  git commit -m"Work in progress not pretty"
+ 1250  git push
+ 1251  pwd
+ 1252  ls
+ 1253  cd GitInsight
+ 1254  dotnet add package CommandLineParser --version 2.9.1
+ 1255  git statyus
+ 1256  git status
+ 1257  git add .
+ 1258  git commit -m"Added options"
+ 1259  git push
+ 1260  dotnet test
+ 1261  dotnet add package CommandLineParser --version 2.9.1
+ 1262  ls
+ 1263  cd GitInsight
+ 1264  dotnet add package CommandLineParser --version 2.9.1
+ 1265  dotnet test
+ 1266  ls
+ 1267  cd ..
+ 1268  ls
+ 1269  dotnet test
+ 1270  git add .
+ 1271  git commit -m"test passing. Works, but not pretty. Having tried with the database but methods works according to tests"
+ 1272  git push
+ 1273  code .
+ 1274  git checkout -b MonicaTriesFixing
+ 1275  code .
+ 1276  dotnet test
+ 1277  git add .
+ 1278  git commit -m"All tests passing. Much better than before. Small things about datacommits not working optimally. Tried refactoring"
+ 1279  git push
+ 1280  git push --set-upstream origin MonicaTriesFixing
+ 1281  code .
+ 1282  dotnet test
+ 1283  git add .
+ 1284  git commit -"Needing more tests, added class to handle the frequency methods"
+ 1285  git commit -m"Needing more tests, added class to handle the frequency methods"
+ 1286  git push
+ 1287  git checkout main
+ 1288  git pull
+ 1289  git checkout MonicaTriesFixing
+ 1290  git merge main
+ 1291  git checkout main
+ 1292  git merge MonicaTriesFixing
+ 1293  dotnet test
+ 1294  git add .
+ 1295  git commmit -m"Mergede MonicaTriesFixing"
+ 1296  git commit -m"Mergede MonicaTriesFixing"
+ 1297  git push
+ 1298  git status
+ 1299  code .
+ 1300  dotnet add GitInsight.Core reference GitInsight.Entities
+ 1301  dotnet add GitInsight.Entities reference GitInsight.Core
+ 1302  ls
+ 1303  cd GitInsight.Core
+ 1304  dotnet add GitInsight.Core reference GitInsight.Entities
+ 1305  ls
+ 1306  cd ..
+ 1307  ls
+ 1308  dotnet add GitInsight.Core reference GitInsight.Entities
+ 1309  cd ..
+ 1310  dotnet add GitInsight.Core reference GitInsight.Entities
+ 1311  cd GitInsight.Core
+ 1312  cd GitInsight/GitInsight.Core
+ 1313  ls
+ 1314  dotnet add GitInsight.Core reference GitInsight.Entities
+ 1315  cd ..
+ 1316  dotnet add GitInsight.Core reference GitInsight.Entities
+ 1317  dotnet build
+ 1318  dotnet sln add GitInsight.Core
+ 1319  code .
+ 1320  git add .
+ 1321  git commit -m"Fixing createDTOS"
+ 1322  git push
+ 1323  docker run --name $database -e POSTGRES_PASSWORD=$password -d -p 5432:5432 postgres
+ 1324  docker run --name GitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 1325  brew services stop postgresql
+ 1326  docker run --name GitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 1327  code .
+ 1328  git pull
+ 1329  docker run --name GitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 1330  dotnet ef migrations add newMigrations
+ 1331  ls
+ 1332  cd GitInsight/GitInsight.Core
+ 1333  ls
+ 1334  cd GitInsight.Core
+ 1335  dotnet remove GitInsight.Core.csproj reference GitInsight.Entities.csproj
+ 1336  dotnet remove GitInsight.Core.csproj reference GitInsight.Entities\GitInsight.Entities.csproj
+ 1337  dotnet remove GitInsight.Core.csproj reference GitInsight.Entities.csproj
+ 1338  dotnet remove GitInsight.Core reference GitInsight.Entities
+ 1339  ls
+ 1340  cd ..
+ 1341  dotnet remove GitInsight.Core reference GitInsight.Entities
+ 1342  dotnet remove GitInsight.Core reference GitInsight.Entities\GitInsight.Entities
+ 1343  dotnet remove GitInsight.Core reference GitInsight.Entities/GitInsight.Entities
+ 1344  dotnet remove GitInsight.Core reference GitInsight/GitInsight.Entities
+ 1345  dotnet remove GitInsight.Core reference GitInsight\GitInsight.Entities
+ 1346  dotnet list GitInsight.Core reference
+ 1347  dotnet remove GitInsight.Core reference ..\GitInsight.Entities\GitInsight.Entities.csproj
+ 1348  dotnet remove GitInsight.Core.csproj reference ..\GitInsight.Entities\GitInsight.Entities.csproj
+ 1349  dotnet remove GitInsight.Core.csproj reference ..\GitInsight.Entities\GitInsight.Entities
+ 1350  dotnet remove GitInsight.Core reference ..\GitInsight.Entities\GitInsight.Entities
+ 1351  cd GitInsight.Core
+ 1352  dotnet remove GitInsight.Core reference ..\GitInsight.Entities\GitInsight.Entities
+ 1353  dotnet remove GitInsight.Core.csproj reference ..\GitInsight.Entities\GitInsight.Entities.csproj
+ 1354  ls
+ 1355  cd ..
+ 1356  dotnet remove GitInsight.Core.csproj reference ..\GitInsight.Entities\GitInsight.Entities.csproj
+ 1357  dotnet list GitInsight.Core reference
+ 1358  dotnet remove GitInsight.Core reference GitInsight.Entities
+ 1359  -?|-h|--help
+ 1360  dotnet remove GitInsight/GitInsight.Core.csproj reference GitInsight/GitInsight.Entities.csproj
+ 1361  dotnet remove GitInsight/GitInsight.Core/GitInsight.Core.csproj reference GitInsight/GitInsight.Entities.csproj
+ 1362  dotnet remove GitInsight/GitInsight.Core reference GitInsight/GitInsight.Entities
+ 1363  ls
+ 1364  dotnet remove GitInsight.Core reference GitInsight.Entities
+ 1365  dotnet remove GitInsight.Core reference GitInsight/GitInsight.Entities
+ 1366  dotnet list GitInsight.Core reference
+ 1367  docker run --name GitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 1368  dotnet ef migrations add newMigration
+ 1369  pwd
+ 1370  ls
+ 1371  cd GitInsight.Entities
+ 1372  dotnet ef migrations add newMigration
+ 1373  dotnet ef database update
+ 1374  dotnet test
+ 1375  pwd
+ 1376  cd ..
+ 1377  dotnet test
+ 1378  git add .
+ 1379  git commit -m"Added a few tests. Major issues with hashing fucks everything up. Update and create works.. except for hashing"
+ 1380  git push
+ 1381  code .
+ 1382  dotnet test
+ 1383  git checkout -b Testing
+ 1384  git add .
+ 1385  git commit -m"Testing all of it"
+ 1386  git push --set-upstream origin Testing
+ 1387  dotnet test
+ 1388  git add .
+ 1389  git commit -m"Should work"
+ 1390  git push
+ 1391  git merge main
+ 1392  git checkout main
+ 1393  git merge Testing
+ 1394  git checkout main
+ 1395  git merge Testing
+ 1396  dotnet test
+ 1397  git add .
+ 1398  git commit -m"Merged Testing"
+ 1399  git push
+ 1400  git pull
+ 1401  git merge Testing
+ 1402  git add .
+ 1403  git pull
+ 1404  git checkout Testing
+ 1405  git merge main
+ 1406  git add .
+ 1407  git commit -m"Merged main"
+ 1408  git push
+ 1409  git checkout main
+ 1410  git merge Testing
+ 1411  git add .
+ 1412  git commit -m"Merged testing"
+ 1413  git push
+ 1414  git pull
+ 1415  git checkout Testing
+ 1416  git status
+ 1417  git merge main
+ 1418  git checkout main
+ 1419  git status
+ 1420  git pull
+ 1421  git config pull.rebase false
+ 1422  git status
+ 1423  git pull
+ 1424  git status
+ 1425  dotnet test
+ 1426  git add .
+ 1427  git commit -m"Main updated"
+ 1428  git push
+ 1429  git checkout
+ 1430  git checkout Blazor_again
+ 1431  git status
+ 1432  git checkout Blazor_again
+ 1433  git pull
+ 1434  code .
+ 1435  cd desktop
+ 1436  git clone https://github.com/NaddiNadja/grpc101.git
+ 1437  cd desktop
+ 1438  git clone https://github.com/rakulmaria/handin_04.git
+ 1439  code .
+ 1440  git pull
+ 1441  go run . 0
+ 1442  go run .1
+ 1443  go run . 1
+ 1444  go run . 2
+ 1445  code .
+ 1446  go run . 0
+ 1447  go run . 1
+ 1448  go run . 0
+ 1449  go run . 1
+ 1450  go run . 2
+ 1451  git add .
+ 1452  git commit -m"Localhost runs"
+ 1453  git push
+ 1454  git pull
+ 1455  code .
+ 1456  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto  
+ 1457  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/interface.proto  
+ 1458  go mod tidy
+ 1459  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/interface.proto  
+ 1460  go mod tidy
+ 1461  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/interface.proto  
+ 1462  go mod tidy
+ 1463  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/interface.proto  
+ 1464  go mod tidy
+ 1465  go run . 0
+ 1466  go run . 1
+ 1467  go run . 0
+ 1468  go run . 1
+ 1469  go run . 2
+ 1470  go run . 0
+ 1471  go run . 1
+ 1472  go run . 2
+ 1473  go run . 0
+ 1474  go run . 1
+ 1475  go run . 2
+ 1476  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/interface.proto  
+ 1477  go mod tidy
+ 1478  git add .
+ 1479  git commit -m"maybe working. Last minut added lamportclock"
+ 1480  git push
+ 1481  code .
+ 1482  git pull
+ 1483  pwpwd
+ 1484  pwd
+ 1485  ls
+ 1486  dotnet test
+ 1487  git add .
+ 1488  git commit -m"All async now. All tests passing"
+ 1489  git push
+ 1490  dotnet test
+ 1491  git status
+ 1492  git checkout main
+ 1493  git status
+ 1494  git pull
+ 1495  git merge Blazer_again
+ 1496  git b
+ 1497  git branch
+ 1498  git merge Blazor_again
+ 1499  git add .
+ 1500  git commit -m"merged blazer_again branch into main"
+ 1501  git push
+ 1502  git status
+ 1503  git checkout -b MonicaRest
+ 1504  git add .
+ 1505  git commit -m"inital commit to this branch"
+ 1506  git push --set-upstream origin MonicaRest
+ 1507  git status
+ 1508  dotnet test
+ 1509  cd
+ 1510  cd desktop
+ 1511  git clone https://github.com/monicahardt/testingRepo.git
+ 1512  code .
+ 1513  dotnet run
+ 1514  ls
+ 1515  dotnet run Program.cs
+ 1516  dotnet run --project Program.cs
+ 1517  ls
+ 1518  dotnet run --project TestingRepo  Program.cs
+ 1519  dotnet run --project TestingRepo.Program
+ 1520  dotnet run Program.cs
+ 1521  ls
+ 1522  dotnet run --project TestingRepo
+ 1523  dotnet build
+ 1524  git add .
+ 1525  git commmit -m"First commit"
+ 1526  git commit -m"First commit"
+ 1527  git push
+ 1528  git add .
+ 1529  git commit -m"Second commit"
+ 1530  git push
+ 1531  git log
+ 1532  dotnet run
+ 1533  cd GitInsight
+ 1534  dotnet run
+ 1535  https://github.com/monicahardt/testingRepo
+ 1536  dotnet run
+ 1537  a
+ 1538  dotnet run
+ 1539  -a
+ 1540  dotnet run
+ 1541  https://github.com/monicahardt/testingRepo
+ 1542  dotnet run
+ 1543  https://github.com/monicahardt/testingRepo
+ 1544  dotnet run
+ 1545  cd GitInsight
+ 1546  dotnet run
+ 1547  f
+ 1548  dotnet run
+ 1549  https://github.com/monicahardt/testingRepo
+ 1550  dotnet run
+ 1551  -f
+ 1552  dotnet run -f
+ 1553  dotnet run https://github.com/monicahardt/testingRepo
+ 1554  dotnet run
+ 1555  https://github.com/monicahardt/testingRepo
+ 1556  dotnet run
+ 1557  d
+ 1558  dotnet run
+ 1559  f
+ 1560  dotnet run'
+ 1561  dotnet run
+ 1562  dotnet run -f
+ 1563  dotnet run -a
+ 1564  dotnet run -a true
+ 1565  dotnet run -f "hej"
+ 1566  dotnet run
+ 1567  --help
+ 1568  dotnet run
+ 1569  --ep
+ 1570  dotnet run
+ 1571  --help
+ 1572  dotnet GitInsight.dll
+ 1573  dotnet run --help
+ 1574  dotnet run ["hej"]
+ 1575  dotnet run -f https://github.com/monicahardt/testingRepo
+ 1576  dotnet run -o https://github.com/monicahardt/testingRepo
+ 1577  dotnet run -o https://github.com/monicahardt/testingRepo -a true
+ 1578  dotnet run -o https://github.com/monicahardt/testingRepo -a
+ 1579  dotnet run -o https://github.com/monicahardt/testingRepo
+ 1580  code .
+ 1581  dotnet run -o https://github.com/monicahardt/testingRepo
+ 1582  ls
+ 1583  cd GitInsight
+ 1584  dotnet run -o https://github.com/monicahardt/testingRepo
+ 1585  dotnet test
+ 1586  ls
+ 1587  cd ..
+ 1588  dotnet test
+ 1589  code .
+ 1590  ls
+ 1591  dotnet test
+ 1592  cd desktop
+ 1593  git clone https://github.com/itu-bdsa/lecture-code.git
+ 1594  cd lecture-code
+ 1595  code .
+ 1596  dotnet add  GitInsight.Server reference GitInsight.Entities 
+ 1597  dotnet new classlib
+ 1598  dotnet sln add GitInsight.Server
+ 1599  cd GitInsight.Server
+ 1600  dotnet new classlib
+ 1601  dotnet new classlib --force
+ 1602  dotnet add  GitInsight.Server reference GitInsight.Entities 
+ 1603  cd ..
+ 1604  dotnet add  GitInsight.Server reference GitInsight.Entities 
+ 1605  dotnet sln add GitInsight.Server
+ 1606  git add .
+ 1607  git commit -m"Interfaces and methods"
+ 1608  git push
+ 1609  git status
+ 1610  git checkout main
+ 1611  git pull
+ 1612  git checkout MonicaRest
+ 1613  git merge main
+ 1614  git checkout main
+ 1615  git merge MonicaRest
+ 1616  git add .
+ 1617  git commit -m"Merged MonicaRest into main"
+ 1618  git push
+ 1619  git pull
+ 1620  git status
+ 1621  git pull
+ 1622  cd MyApp.Client
+ 1623  dotnet watch
+ 1624  dotnet update
+ 1625  dotnet tool install --global dotnet-watch --version 2.2.0
+ 1626  dotnet watch
+ 1627  dotnet version
+ 1628  dotnet -version
+ 1629  dotnet --version
+ 1630  dotnet tool update
+ 1631  dotnet tool update -g
+ 1632  dotnet tool update --global
+ 1633  dotnet tool update Microsoft.AspNetCore.App
+ 1634  dotnet tool update Microsoft.AspNetCore.App --global
+ 1635  pwd
+ 1636  dotnet run
+ 1637  cd ..
+ 1638  pqd
+ 1639  pwd
+ 1640  code .
+ 1641  brew services start postgresql
+ 1642  brew services stop postgresql
+ 1643  git braches
+ 1644  git branches
+ 1645  git fetch
+ 1646  git -brach
+ 1647  git -branch
+ 1648  git checkout
+ 1649  git branches
+ 1650  git --help
+ 1651  git branch
+ 1652  git pull
+ 1653  git branch
+ 1654  git status
+ 1655  git checkout Blazer_no_work
+ 1656  git branch
+ 1657  git fetch
+ 1658  git branch
+ 1659  git pull
+ 1660  git checkout blazer_no_work
+ 1661  code .
+ 1662  git branch
+ 1663  git clone https://github.com/Clara-Lyngeraa/GitInsight.git
+ 1664  cd GitInsight
+ 1665  cd desktop
+ 1666  git clone https://github.com/Clara-Lyngeraa/GitInsight.git
+ 1667  code .
+ 1668  git status
+ 1669  git fetch
+ 1670  git branch
+ 1671  git checkout blazer_no_work
+ 1672  code .
+ 1673  git chekout main
+ 1674  git checkout main
+ 1675  git checkout MonicaRest
+ 1676  git checkout blazer_no_work
+ 1677  git checkout blazor_no_work
+ 1678  git pull
+ 1679  code .
+ 1680  git checkout main
+ 1681  git pull
+ 1682  git status
+ 1683  git pull
+ 1684  git status
+ 1685  cd BlazorApp
+ 1686  dotnet watch
+ 1687  git checkout MonicaGet
+ 1688  git checkout -b MonicaGet
+ 1689  dotnet watch
+ 1690  code .
+ 1691  cd MyApp.Client
+ 1692  dotnet watch
+ 1693  dotnet add package Microsoft.Extensions.Http
+ 1694  dotnet watch
+ 1695  dotnet add BlazorApp reference GitInsight.Entities
+ 1696  cd ..
+ 1697  dotnet add BlazorApp reference GitInsight.Entities
+ 1698  dotnet sln add BlazorApp
+ 1699  cd BlazorApp/
+ 1700  dotnet add package Microsoft.AspNetCore.Components.WebAssembly
+ 1701  dotnet add package Microsoft.AspNetCore.Components.WebAssembly --version 6.0.10
+ 1702  dotnet add package Microsoft.Authentication.WebAssembly.Msal --version 6.0.10
+ 1703  dotnet watch
+ 1704  cd BlazorApp/
+ 1705  dotnet watch
+ 1706  code .
+ 1707  cd BlazorApp/
+ 1708  dotnet watch
+ 1709  brew services start postgresql
+ 1710  createdb Homework3Part2
+ 1711  cd desktop
+ 1712  cd Database
+ 1713  ls
+ 1714  cd Homework3
+ 1715  ls
+ 1716  psql -q Homework3Part2 < HW3-P2-SQL.sql
+ 1717  cd desktop
+ 1718  pwd
+ 1719  cd ..
+ 1720  cd
+ 1721  cd desktop
+ 1722  sample pythonSriptToFD.py
+ 1723  python pythonSriptToFD.py
+ 1724  /Applications/Python\ 3.11/Update\ Shell\ Profile.command ; exit;
+ 1725  /Applications/Python\ 3.11/Install\ Certificates.command ; exit;
+ 1726  sample pythonSriptToFD.py
+ 1727  pwd
+ 1728  cd desktop
+ 1729  sample pythonSriptToFD.py
+ 1730  python3 --version
+ 1731  python3 -version
+ 1732  python3 
+ 1733  python -v
+ 1734  python3 -v
+ 1735  python3 -V
+ 1736  python -V
+ 1737  cd
+ 1738  cd '' && '/usr/local/bin/python3' pythonSriptToFD.py  && echo Exit status: $? && exit 1
+ 1739  cd desktop
+ 1740  cd '' && '/usr/local/bin/python3'  '<your script here>'  && echo Exit status: $? && exit 1
+ 1741  cd '' && '/usr/local/bin/python3' pythonSriptToFD.py  && echo Exit status: $? && exit 1
+ 1742  cd desktop
+ 1743  cd '' && '/usr/local/bin/python3' pythonSriptToFD.py  && echo Exit status: $? && exit 1
+ 1744  cd desktop
+ 1745  python3 pythonSriptToFD.py
+ 1746  python3 pythonSriptToFD.py > tmp
+ 1747  less tmp
+ 1748  psql Homework3Part2 postgres < tmp
+ 1749  psql Homework3Part2 < tmp
+ 1750  psql Homework3Part2 < tmp > FDAnalysis
+ 1751  cd desktop
+ 1752  cd Database
+ 1753  history
+ 1754  code .
+ 1755  git branch
+ 1756  git fetch
+ 1757  git branch
+ 1758  git pull
+ 1759  git branch
+ 1760  git status
+ 1761  git fetch
+ 1762  git branch
+ 1763  git checkout Selma
+ 1764  code .
+ 1765  git checkout man
+ 1766  git checkout main
+ 1767  git checkout Selma
+ 1768  git merge Selma
+ 1769  git checkout Selma
+ 1770  git status
+ 1771  git checkout Selma
+ 1772  git pull
+ 1773  git checkout Selma
+ 1774  git branch
+ 1775  git checkout main
+ 1776  git merge Selma
+ 1777  git add .
+ 1778  git push
+ 1779  git status
+ 1780  git pull
+ 1781  go run . 0
+ 1782  go run . 1
+ 1783  go run . 2
+ 1784  go run . 0
+ 1785  go run . 1
+ 1786  go run . 2
+ 1787  go run . 0
+ 1788  go run . 1
+ 1789  go run . 2
+ 1790  go run . 0
+ 1791  go run . 1
+ 1792  go run . 2
+ 1793  go run . 0
+ 1794  go run . 1
+ 1795  go run . 2
+ 1796  go run . 0
+ 1797  go run . 1
+ 1798  go run . 2
+ 1799  go run . 0
+ 1800  go run . 1
+ 1801  go run . 2
+ 1802  go run . 0
+ 1803  go run . 1
+ 1804  go run . 2
+ 1805  go run . 0
+ 1806  go run . 1
+ 1807  go run . 2
+ 1808  go run . 0
+ 1809  go run . 1
+ 1810  go run . 2
+ 1811  go run . 0
+ 1812  go run . 1
+ 1813  go run . 2
+ 1814  go run . 0
+ 1815  go run . 1
+ 1816  go run . 2
+ 1817  go run . 0
+ 1818  go run . 1
+ 1819  go run . 2
+ 1820  go run . 0
+ 1821  go run . 1
+ 1822  go run . 2
+ 1823  go run . 0
+ 1824  go run . 1
+ 1825  go run . 2
+ 1826  go run . 0
+ 1827  go run . 1
+ 1828  go run . 2
+ 1829  go run . 1
+ 1830  go run . 0
+ 1831  go run . 1
+ 1832  go run . 2
+ 1833  go run . 0
+ 1834  go run . 1
+ 1835  go run . 2
+ 1836  go run . 0
+ 1837  go run . 1
+ 1838  go run . 2
+ 1839  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/interface.proto
+ 1840  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/interface.proto  
+ 1841  go run . 0
+ 1842  go run . 1
+ 1843  go run . 2
+ 1844  go run . 0
+ 1845  go run . 1
+ 1846  go run . 2
+ 1847  go run . 0
+ 1848  go run . 1
+ 1849  go run . 2
+ 1850  go run . 0
+ 1851  go run . 1
+ 1852  go run . 2
+ 1853  go run . 0
+ 1854  go run . 1
+ 1855  go run . 2
+ 1856  go run . 0
+ 1857  go run . 1
+ 1858  go run . 2
+ 1859  git add .
+ 1860  git commit -m "it ain't crashing"
+ 1861  git push
+ 1862  code . 
+ 1863  go run . 0
+ 1864  go run . 1
+ 1865  go run . 2
+ 1866  go run . 0
+ 1867  go run . 1
+ 1868  go run . 2
+ 1869  git checkout -b testing
+ 1870  go run . 0
+ 1871  go run . 1
+ 1872  go run . 2
+ 1873  go run . 0
+ 1874  go run . 1
+ 1875  go run . 2
+ 1876  go run . 0
+ 1877  go run . 1
+ 1878  go run . 2
+ 1879  go run . 0
+ 1880  go run . 1
+ 1881  go run . 2
+ 1882  go run . 0
+ 1883  go run . 1
+ 1884  go run . 2
+ 1885  go run . 0
+ 1886  go run . 1
+ 1887  go run . 2
+ 1888  go run . 0
+ 1889  go run . 1
+ 1890  go run . 2
+ 1891  go run . 0
+ 1892  go run . 1
+ 1893  go run . 2
+ 1894  go run . 0
+ 1895  go run . 1
+ 1896  go run . 2
+ 1897  go run . 0
+ 1898  go run . 1
+ 1899  go run . 2
+ 1900  go run . 0
+ 1901  go run . 1
+ 1902  go run . 2
+ 1903  go run . 0
+ 1904  go run . 1
+ 1905  go run . 2
+ 1906  go run . 0
+ 1907  go run . 1
+ 1908  go run . 2
+ 1909  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/interface.proto  
+ 1910  go run . 0
+ 1911  go run . 1
+ 1912  go run . 2
+ 1913  go run . 0
+ 1914  go run . 1
+ 1915  go run . 2
+ 1916  git add 
+ 1917  git add .
+ 1918  git commit -m"maybe it works?"
+ 1919  git push
+ 1920  git push --set-upstream origin testing
+ 1921  code .
+ 1922  git checkout main
+ 1923  git status
+ 1924  git pull
+ 1925  code .
+ 1926  git checkout -b monicahttp
+ 1927  cd BlazorApp/
+ 1928  dotnet watch
+ 1929  cd BlazorApp/
+ 1930  dotnet watch
+ 1931  dotnet add package Microsoft.AspNetCore.Components.WebAssembly.Authentication
+ 1932  dotnet add package Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+ 1933  dotnet add package Microsoft.Extensions.Http
+ 1934  dotnet add package Microsoft.AspNetCore.Components.WebAssembly --version 6.0.10
+ 1935  dotnet add package Microsoft.AspNetCore.Components.WebAssembly.DevServer
+ 1936  code .
+ 1937  cd BlazorApp/
+ 1938  dotnet watch
+ 1939  code .
+ 1940  dotnet add package Microsoft.AspNetCore.Components.WebAssembly.DevServer
+ 1941  dotnet watch
+ 1942  dotnet add package Microsoft.AspNetCore.Components.WebAssembly
+ 1943  dotnet watch
+ 1944  dotnet add package Microsoft.AspNetCore.Components.WebAssembly --version 6.0.10
+ 1945  dotnet watch
+ 1946  dotnet -version
+ 1947  dotnet -v
+ 1948  dotnet watch
+ 1949  dotnet -veersion
+ 1950  .NET Framework 4.8.4250.0
+ 1951  dotnet Framework
+ 1952  brew update
+ 1953  dotnet add package Microsoft.AspNetCore.Components.WebAssembly.DevServer --version 6.0.10
+ 1954  dotnet watch
+ 1955  cd BlazorApp/
+ 1956  dotnet add BlazorApp reference GitInsight.Server
+ 1957  cd ..
+ 1958  dotnet add BlazorApp reference GitInsight.Server
+ 1959  cd BlazorApp/
+ 1960  dotnet watch
+ 1961  dotnet build
+ 1962  code .
+ 1963  cd BlazorApp/
+ 1964  dotnet watch
+ 1965  git add .
+ 1966  git commit -m"nothing works"
+ 1967  git push --set-upstream origin monicahttp
+ 1968  code .
+ 1969  dotnet watch
+ 1970  git add .
+ 1971  cd ..
+ 1972  pwd
+ 1973  cd GitInsight
+ 1974  code .
+ 1975  git add .
+ 1976  git commit -m"deleted all blazor"
+ 1977  git push
+ 1978  cd ..
+ 1979  cd GitInsight
+ 1980  ls
+ 1981  dotnet new blazorwasm -o GitInsight.Client
+ 1982  cd GitInsight.Client
+ 1983  dotnet watch
+ 1984  code .
+ 1985  cd ..
+ 1986  dotnet add GitInsight.Client reference GitInsight.Entities
+ 1987  ls
+ 1988  cd GitInsight.Client
+ 1989  dotnet watch
+ 1990  git add .
+ 1991  git commit -m"Seems to work with blazor webassembly"
+ 1992  git push
+ 1993  cd ..
+ 1994  cd GitInsight.Server
+ 1995  dotnet run
+ 1996  git add .
+ 1997  git commit -m"Commiting to merge with main"
+ 1998  git push
+ 1999  git merge main
+ 2000  git checkout main
+ 2001  git merge monicahttp
+ 2002  cd GitInsight.Client
+ 2003  dotnet watch
+ 2004  git add .
+ 2005  git commit m-"merged monicahttp"
+ 2006  git push
+ 2007  dotnet watch
+ 2008  git checkout -b swag
+ 2009  cd GitInsight.Server
+ 2010  dotnet run
+ 2011  cd ..
+ 2012  dotnet add GitInsight.Server reference GitInsight.Core
+ 2013  cd GitInsight.Server
+ 2014  dotnet run
+ 2015  code .
+ 2016  cd GitInsight.Server
+ 2017  dotnet run
+ 2018  code .
+ 2019  dotnet run
+ 2020  brew services stop postgresql
+ 2021  dotnet run
+ 2022  dotnet user-secrets list
+ 2023  cd ..
+ 2024  dotnet user-secrets list
+ 2025  cd GitInsight.Entities
+ 2026  dotnet user-secrets list
+ 2027  docker run --name GitInsightDB -e POSTGRES_PASSWORD=1234 -d -p 5432:5432 postgres
+ 2028  docker exec -it 9889903f9df7b7c26c9c6e8bee520142eaa9dafa25e7b6a8678c7c9201299d83 bach
+ 2029  docker exec -it 9889903f9df7b7c26c9c6e8bee520142eaa9dafa25e7b6a8678c7c9201299d83 bash
+ 2030  dotnet ef migrations add someNewMaybe
+ 2031  dotnet ef database update
+ 2032  docker ps
+ 2033  docker exec -it 9889903f9df7 bash
+ 2034  cd ..
+ 2035  cd GitInsight.Server
+ 2036  dotnet run
+ 2037  dotnet test
+ 2038  cd ..
+ 2039  ls
+ 2040  dotnet test
+ 2041  cd GitInsight.Server
+ 2042  dotnet run
+ 2043  dotnet ef migrations add someNewMaybe2
+ 2044  cd ..
+ 2045  cd GitInsight.Entities
+ 2046  dotnet ef migrations add someNewMaybe2
+ 2047  dotnet ef database update
+ 2048  cd ..
+ 2049  cd GitInsight.Server
+ 2050  dotnet run
+ 2051  git add .
+ 2052  git commit -m"Something works. Found a repo with a getrequest. Works with our database and swagger. Det fedt"
+ 2053  git push
+ 2054  dotnet run
+ 2055  cd GitInsight.Server
+ 2056  dotnet run
+ 2057  cd GitInsight.Server
+ 2058  dotnet run
+ 2059  dotnet ef migrations add someNewMaybe3
+ 2060  cd ..
+ 2061  cd GitInsight.Entities
+ 2062  dotnet ef migrations add someNewMaybe3
+ 2063  dotnet ef database update
+ 2064  cd ..
+ 2065  cd GitInsight.Server
+ 2066  dotnet run
+ 2067  git add .
+ 2068  git commit -m"Getrequest works with swagger. Frequency method runs"
+ 2069  git push
+ 2070  git status
+ 2071  cd GitInsight.Server
+ 2072  dotnet run
+ 2073  git status
+ 2074  git checkout main
+ 2075  cd ..
+ 2076  git checkout main
+ 2077  git checkout swag
+ 2078  git merge main
+ 2079  git checkout main
+ 2080  git merge swag
+ 2081  cd GitInsight.Server
+ 2082  dotnet run
+ 2083  git add .
+ 2084  git commit -m"merged swag into main"
+ 2085  git push
+ 2086  code .
+ 2087  git status
+ 2088  git pull
+ 2089  code .
+ 2090  git checkout main
+ 2091  git checkout -b blazorRazor
+ 2092  git status
+ 2093  cd GitInsight.Server
+ 2094  dotnet run
+ 2095  dotnet add GitInsight.Server reference GitInsight.Client
+ 2096  cd ..
+ 2097  dotnet add GitInsight.Server reference GitInsight.Client
+ 2098  cd GitInsight.Server
+ 2099  dotnet add package Microsoft.AspNetCore.Components.WebAssembly.Server --version 6.0.10
+ 2100  dotnet run
+ 2101  cd ..
+ 2102  cd GitInsight.Client
+ 2103  dotnet watch
+ 2104  cd ..
+ 2105  ls
+ 2106  dotnet new blazorwasm -o GitInsight.Client --pwa
+ 2107  cd GitInsight.Client
+ 2108  dotnet add GitInsight.Client reference GitInsight.Entities
+ 2109  cd ..
+ 2110  dotnet add GitInsight.Client reference GitInsight.Entities
+ 2111  cd GitInsight.Client
+ 2112  dotnet watch
+ 2113  dotnet add package Microsoft.Extensions.Http --version 6.0.0
+ 2114  dotnet watch
+ 2115  git add .
+ 2116  git commit -m"something"
+ 2117  git push
+ 2118  dotnet watch
+ 2119  code .
+ 2120  cd GitInsight.Client
+ 2121  dotnet watch
+ 2122  code .
+ 2123  dotnet watch
+ 2124  cd MyApp.Client
+ 2125  dotnet watch
+ 2126  git add .
+ 2127  git commit -m"Nothing new"
+ 2128  git push
+ 2129  dotnet watch
+ 2130  git add .
+ 2131  git commit -m".,,,"
+ 2132  git pushh
+ 2133  git push
+ 2134  git status
+ 2135  git add .
+ 2136  dotnet new blazorwasm -o GitInsight.Server --pwa
+ 2137  code .
+ 2138  cd GitInsight.Client
+ 2139  dotnet watch
+ 2140  cd ..
+ 2141  dotnet new webapi -o GitInsight.Server
+ 2142  cd GitInsight.Client
+ 2143  dotnet watch
+ 2144  code .
+ 2145  cd desktop
+ 2146  git clone https://github.com/Clara-Lyngeraa/GitInsight.git
+ 2147  cd GitInsight
+ 2148  code .
+ 2149  git checkout blazorRazor
+ 2150  git pull
+ 2151  code .
+ 2152  cd GitInsight.Client
+ 2153  dotnet run
+ 2154  cd
+ 2155  cd desktop
+ 2156  git clone https://github.com/monicahardt/handin_05.git
+ 2157  code .
+ 2158  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative grpc/proto.proto  
+ 2159  go mod init Handin_05
+ 2160  go mod tidy
+ 2161  git checkout master
+ 2162  git pull
+ 2163  go mod init
+ 2164  go mod tidy
+ 2165  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/proto.proto  
+ 2166  go add .
+ 2167  git add .
+ 2168  git commit -"inital setup done"
+ 2169  git commit -m"initial setup"
+ 2170  git push
+ 2171  go mod tidy
+ 2172  protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/proto.proto  
+ 2173  go mod init
+ 2174  go mod tidy
+ 2175  git pull
+ 2176  git config pull.rebase false
+ 2177  cd desktop
+ 2178  git clone https://github.com/monicahardt/handin_05.git
+ 2179  cd handin_05
+ 2180  code .
+ 2181  cd GitInsight.Client
+ 2182  dotnet run
+ 2183  cd ..
+ 2184  cd GitInsight.Server
+ 2185  dotnet run
+ 2186  dotnet watch
+ 2187  dotnet run
+ 2188  cd GitInsight.Server
+ 2189  dotnet run
+ 2190  cd GitInsight.Server
+ 2191  dotnet run
+ 2192  cd GitInsight.Client
+ 2193  dotnet watch
+ 2194  code .
+ 2195  git add .
+ 2196  git commit -m"fucked up"
+ 2197  git push
+ 2198  git checkout main
+ 2199  cd GitInsight.Client
+ 2200  dotnet watch
+ 2201  cd GitInsight.Server
+ 2202  dotnet run
+ 2203  cd ..
+ 2204  cd GitInsight.Client
+ 2205  dotnet watch
+ 2206  cd GitInsight.Server
+ 2207  dotnet run
+ 2208  cd ..
+ 2209  cd GitInsight.Client
+ 2210  dotnet watch
+ 2211  cd GitInsight.Server
+ 2212  code .
+ 2213  cd GitInsight.Client
+ 2214  dotnet watch
+ 2215  cd GitInsight.Client
+ 2216  cd ..
+ 2217  cd GitInsight.Server
+ 2218  dotnet run
+ 2219  cd ..
+ 2220  cd GitInsight.Client
+ 2221  dotnet watch
+ 2222  code .
+ 2223  git pull
+ 2224  cd GitInsight.Server
+ 2225  dotnet run
+ 2226  cd ..
+ 2227  cd GitInsight.Client
+ 2228  dotnet watch
+ 2229  cd desktop
+ 2230  git clone https://github.com/Clara-Lyngeraa/GitInsight.git
+ 2231  cd GitInsight
+ 2232  code .
+ 2233  git pull
+ 2234  cd GitInsight.Server
+ 2235  dotnet run
+ 2236  cd GitInsight.Client
+ 2237  dotnet watch
+ 2238  code .
+ 2239  dotnet sln add GitInsight.Server
+ 2240  dotnet sln add GitInsight.Client
+ 2241  cd GitInsight.Server
+ 2242  cd GitInsight.Client
+ 2243  dotnet run
+ 2244  dotnet watch
+ 2245  dotnet run
+ 2246  dotnet watch
+ 2247  dotnet run
+ 2248  dotnet watch
+ 2249  dotnet run
+ 2250  dotnet watch
+ 2251  dotnet run
+ 2252  dotnet watch
+ 2253  dotnet run
+ 2254  dotnet watch
+ 2255  dotnet run
+ 2256  dotnet watch
+ 2257  dotnet run
+ 2258  dotnet watch
+ 2259  dotnet run
+ 2260  dotnet watch
+ 2261  dotnet run
+ 2262  dotnet watch
+ 2263  dotnet run
+ 2264  dotnet watch
+ 2265  dotnet run
+ 2266  dotnet watch
+ 2267  dotnet run
+ 2268  dotnet watch
+ 2269  dotnet run
+ 2270  dotnet watch
+ 2271  dotnet run
+ 2272  dotnet watch
+ 2273  dotnet run
+ 2274  dotnet watch
+ 2275  dotnet run
+ 2276  dotnet watch
+ 2277  dotnet run
+ 2278  dotnet watch
+ 2279  dotnet run
+ 2280  dotnet watch
+ 2281  dotnet run
+ 2282  dotnet watch
+ 2283  dotnet run
+ 2284  dotnet watch
+ 2285  dotnet run
+ 2286  dotnet watch
+ 2287  dotnet run
+ 2288  dotnet watch
+ 2289  dotnet run
+ 2290  dotnet watch
+ 2291  dotnet run
+ 2292  dotnet watch
+ 2293  git checkout -b Monica
+ 2294  git add .
+ 2295  git commit -m"seeing frequency result in blazor client window"
+ 2296  git push --set-upstream origin Monica
+ 2297  code .
+ 2298  cd GitInsight.Server
+ 2299  dotnet run
+ 2300  cd GitInsight.Server
+ 2301  dotnet run
+ 2302  cd ..
+ 2303  cd GitInsight.Client
+ 2304  dotnet watch
+ 2305  dotnet 
+ 2306  dotnet watch
+ 2307  dotnet run
+ 2308  dotnet watch
+ 2309  dotnet run
+ 2310  dotnet watch
+ 2311  dotnet run
+ 2312  dotnet watch
+ 2313  dotnet run
+ 2314  dotnet watch
+ 2315  dotnet run
+ 2316  dotnet watch
+ 2317  dotnet run
+ 2318  dotnet watch
+ 2319  dotnet run
+ 2320  dotnet watch
+ 2321  dotnet run
+ 2322  dotnet watch
+ 2323  dotnet run
+ 2324  dotnet watch
+ 2325  dotnet run
+ 2326  dotnet watch
+ 2327  dotnet run
+ 2328  dotnet watch
+ 2329  dotnet run
+ 2330  dotnet watch
+ 2331  dotnet run
+ 2332  dotnet watch
+ 2333  dotnet run
+ 2334  dotnet watch
+ 2335  dotnet run
+ 2336  dotnet watch
+ 2337  docker ps
+ 2338  docker exec -it 9889903f9df7 bash
+ 2339* dotnet run
+ 2340  cd GitInsight.Client
+ 2341  cd ..
+ 2342  cd GitInsight.Client
+ 2343  dotnet watch
+ 2344  docker ps
+ 2345  docker exec -it 9889903f9df7 bash
+ 2346  docker ps
+ 2347  docker exec -it 9889903f9df7 bash
+ 2348  history > database psql.txt

@@ -1,68 +1,51 @@
-﻿@* @page "/fetchdata"
-@inject HttpClient Http
-@using GitInsight.Entities
-
-<PageTitle>Weather forecast</PageTitle>
-
-<h1>Weather forecast</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
-
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-
-@code {
-    private WeatherForecast[]? forecasts;
-
-    protected override async Task OnInitializedAsync()
-    {
-        try 
-        {
-            forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("weatherforecast");
-        } catch (Exception e)
-        {
-            Console.WriteLine("Stooooop");
-        }
-        
-    }
-
-} *@
-
+﻿
 @page "/fetchdata"
 @inject HttpClient Http
 @using GitInsight.Entities
+@using System.Net
+
 
 <PageTitle>GitInsight</PageTitle>
 
 <h1>GitInsight frequency</h1>
 
+<h2>insert link to the repository you wish to analyze</h2>
 
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmitAsync">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="pathToRepo" @bind-Value="model.pathToRepo" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private startModel model = new();
+    private IEnumerable<string> results;
+    private string inputURL {get;set;}
+
+    private async void HandleValidSubmitAsync()
+    {
+        Console.WriteLine("printing path to repo inserted: " + model.pathToRepo);
+        inputURL = WebUtility.UrlEncode(model.pathToRepo);
+    
+        try 
+        {
+            results = await Http.GetFromJsonAsync<IEnumerable<string>>($"AnalyzedRepo/{inputURL}");
+            foreach(string s in results){
+                Console.WriteLine(s);
+            }
+                
+        
+        } catch (Exception e)
+        {
+            Console.WriteLine("Something went wrong when get request was called");
+            
+        }    
+    }
+}
+    
 @if (results == null)
 {
     <p><em>Could not run get request</em></p>
@@ -90,26 +73,10 @@ else
     </table>
 } 
 
- @* <input type="text" @bind="@inputURL" @oninput="@((e) => { inputURL=(string)e.Value;})"/> *@
 
-@code {
-    private IEnumerable<string> results;
-    private string inputURL;
-    protected override async Task OnInitializedAsync()
-    {
-        inputURL = "https:%2F%2Fgithub.com%2Fmonicahardt%2FtestingRepo";
-        try 
-        {
-            results = await Http.GetFromJsonAsync<IEnumerable<string>>($"AnalyzedRepo/{inputURL}");
-                
-        
-        } catch (Exception e)
-        {
-            Console.WriteLine("Stooooop");
-            Console.WriteLine(results.First());
-        }
-        
-    }
+   
 
-}
+
+
+
 

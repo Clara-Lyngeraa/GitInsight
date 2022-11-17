@@ -29,6 +29,9 @@ private GitInsightContext _context;
         response = Response.Created;
     } else {
         response = Response.Conflict;
+      Console.WriteLine("The response to the create function was conflict");
+      Console.WriteLine("A repo with id: " + analyzedRepo.Id + " and path: " + analyzedRepo.Path + " already exists in the database");
+    
     }
         var created = new AnalyzedRepoDTO(analyzedRepo.Id, analyzedRepo.Path, analyzedRepo.State, analyzedRepo.CommitsInRepo);
         return (response, created);
@@ -46,6 +49,7 @@ private GitInsightContext _context;
     
     public async Task<Response> UpdateAsync(AnalyzedRepoUpdateDTO updateDTO){
        
+       Console.WriteLine("update was called");
         var repoInDB = await _context.AnalyzedRepos.FindAsync(updateDTO.Path);
 
          if (repoInDB == null)

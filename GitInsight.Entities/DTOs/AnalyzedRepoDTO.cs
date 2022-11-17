@@ -10,11 +10,11 @@ public record AnalyzedRepoUpdateDTO{
     public DateTime State;
     public ICollection<DataCommit> CommitsInRepo;
     public string Path;
-    public AnalyzedRepoUpdateDTO(Repository repo)
+    public AnalyzedRepoUpdateDTO(Repository repo, string path)
     {
         //RepositoryIdString = Utilities.getRepoHashedID(repo);  
         State = repo.Commits.Last().Author.When.Date;
-        Path = repo.Info.Path;
+        Path = path;
         CommitsInRepo = new List<DataCommit>();;
         
         foreach(Commit c in repo.Commits)
@@ -32,11 +32,11 @@ public record AnalyzedRepoCreateDTO
     public DateTime State;
     public ICollection<DataCommit> CommitsInRepo = null!;
     public string Path;
-    public AnalyzedRepoCreateDTO(Repository repo)
+    public AnalyzedRepoCreateDTO(Repository repo, string path)
     {
         var list = repo.Commits.OrderBy(c => c.Author.When.Date);
         
-        Path = repo.Info.Path;
+        Path = path;
         CommitsInRepo = new List<DataCommit>();
         if(list.Count() > 0){
              State = list.Last().Author.When.Date;

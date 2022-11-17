@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GitInsight.Entities.Migrations
 {
     [DbContext(typeof(GitInsightContext))]
-    [Migration("20221115142020_someNewMaybe2")]
-    partial class someNewMaybe2
+    [Migration("20221117110411_initialCreate")]
+    partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,8 +53,9 @@ namespace GitInsight.Entities.Migrations
                     b.Property<int?>("AnalyzedRepoId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("character varying(48)");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");

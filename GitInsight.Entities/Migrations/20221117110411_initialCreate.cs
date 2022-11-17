@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace GitInsight.Entities.Migrations
 {
-    public partial class firstCreate : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,8 +15,8 @@ namespace GitInsight.Entities.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    RepositoryIdString = table.Column<string>(type: "text", nullable: true),
-                    State = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Path = table.Column<string>(type: "text", nullable: false),
+                    State = table.Column<string>(type: "character varying(48)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,18 +27,14 @@ namespace GitInsight.Entities.Migrations
                 name: "DataCommits",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    StringId = table.Column<string>(type: "text", nullable: true),
-                    RepositoryId = table.Column<string>(type: "text", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: false),
-                    Date = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    StringId = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Date = table.Column<string>(type: "character varying(48)", nullable: false),
                     AnalyzedRepoId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DataCommits", x => x.Id);
+                    table.PrimaryKey("PK_DataCommits", x => x.StringId);
                     table.ForeignKey(
                         name: "FK_DataCommits_AnalyzedRepos_AnalyzedRepoId",
                         column: x => x.AnalyzedRepoId,
