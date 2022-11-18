@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Octokit;
 
 namespace GitInsight.Server.Controllers;
 
@@ -8,16 +9,25 @@ namespace GitInsight.Server.Controllers;
 
 public class GithubAPIController: ControllerBase{
 
-    private HttpClient client;
+    
 
     public GithubAPIController(){
-        client = new HttpClient();
-        client.BaseAddress = new Uri("https://api.github.com");
-        var token = "<token>";
 
-        client.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("AppName", "1.0"));
-        client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Token", token);
+        var client = new GitHubClient(new ProductHeaderValue("hej"));
+        var tokenAuth = new Credentials("PAT_Token");
+        client.Credentials = tokenAuth;
+        var data = client.Repository.GetAllForCurrent();
+        
+
+
+
+        // client = new HttpClient();
+        // client.BaseAddress = new Uri("https://api.github.com");
+        // var token = "<token>";
+
+        // client.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("AppName", "1.0"));
+        // client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+        // client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Token", token);
 
         
 
