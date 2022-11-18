@@ -22,10 +22,17 @@ public class ForkController
         _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Token", token);
     }
 
+    public IEnummerable<Fork> getForkList()
+    {
+        //Tænke denne metode skulle bruges til at få en liste af forks vi kunne bruge i forks.razor
+        var forks = new List<>();
+        return forks;
+    }
 
 
 
 
+}
 //     [HttpGet("{url}")]
 //   public async Task<IEnumerable<string>> Get(string url) 
 //   {
@@ -41,4 +48,3 @@ public class ForkController
 
 
   
-}
