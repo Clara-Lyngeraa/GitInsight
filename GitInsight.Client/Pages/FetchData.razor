@@ -71,10 +71,8 @@ else
             @foreach (string s in results)
             {
                 <tr>
-                    @if(authorModeOn){
                     <td>@s.Split(" ").First()</td>
                     <td>@s.Split(" ").Last()</td>
-                    }
                 </tr>
             }
         </tbody>

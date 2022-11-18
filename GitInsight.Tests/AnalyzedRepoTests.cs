@@ -193,61 +193,7 @@ public class AnalyzedRepoTests: IDisposable
         }
 
         
-        [Fact (Skip = "moved method to other class for now")]
-            public async void FindCommitsInRepo_returns_correct_list_of_datacommits_with_firsttime_repo()
-            {
-                // //Assert
-            
-                // //Act
-                // var actualList = await _repo.findCommitsInRepoAsync(testRepo);
-
-                // //Arrange
-                // actualList.Count().Should().Be(4);
-            }
-
-
-            [Fact (Skip = "moved method to other class for now")]
-            public async void FindCommitsInRepo_returns_correct_list_of_datacommits_with_known_repo_not_up_to_date()
-            {
-                // //Assert
-                //  var createDTO = new AnalyzedRepoCreateDTO(testRepo);
-                // _repo.CreateAsync(createDTO);
-
-                // Signature sig5 = new Signature("Person4", "person5@itu.dk", new DateTimeOffset(new DateTime(2022,11,30)));
-                //  testRepo.Commit("new Commit", sig5,sig5, new CommitOptions (){AllowEmptyCommit = true});
-
-            
-                // //Act
-                // var actualList = await _repo.findCommitsInRepoAsync(testRepo);
-
-                // //Arrange
-                // actualList.Count().Should().Be(5);
-                // Assert.Equal(_context.AnalyzedRepos.Find(testRepo.Info.Path).State, sig5.When);
-            }
-
-            [Fact (Skip = "moved method to other class for now")]
-            public async void FindCommitsInRepo_returns_correct_list_of_datacommits_with_known_repo_up_to_date()
-            {
-            //     //Assert
-            //      var createDTO = new AnalyzedRepoCreateDTO(testRepo);
-            //     _repo.CreateAsync(createDTO);
-
-            //     //Act
-            //     var actualList = await _repo.findCommitsInRepoAsync(testRepo);
-
-            //     //Arrange
-            //     actualList.Count().Should().Be(4);
-            //     Assert.Equal(_context.AnalyzedRepos.Find(testRepo.Info.Path).State, testRepo.Commits.OrderBy(c => c.Author.When.Date).Last().Author.When.Date);
-            }
-    
-    }
-
-
-
-
-
-
-    
+}
 
 
 

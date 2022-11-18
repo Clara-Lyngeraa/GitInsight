@@ -22,6 +22,7 @@ public class AnalyzedRepoController: ControllerBase{
     commitAnalyzer = new CommitAnalyzer();
   }
 
+
 [HttpGet("{url}/{authorMode}")]
   public async Task<IEnumerable<string>> Get(string url, bool authorMode) 
   {
@@ -42,12 +43,13 @@ public class AnalyzedRepoController: ControllerBase{
     } 
     Directory.Delete("/Users/monicahardt/Desktop/GitInsight/GitInsight.Server/ClonedRepo",true);
 
-
+    var sortedListOfDC = currentAnalyzedRepo.commitsInRepo.OrderByDescending(c => c.Date);
     if(authorMode){
-      var resultOfAnalysis = commitAnalyzer.getFrequencyAuthorMode(currentAnalyzedRepo!.commitsInRepo);
+      
+      var resultOfAnalysis = commitAnalyzer.getFrequencyAuthorMode(sortedListOfDC);
       return resultOfAnalysis;
     } else {
-      var resultOfAnalysis = commitAnalyzer.getFrequency(currentAnalyzedRepo!.commitsInRepo);
+      var resultOfAnalysis = commitAnalyzer.getFrequency(sortedListOfDC);
       return resultOfAnalysis;
     }
   }

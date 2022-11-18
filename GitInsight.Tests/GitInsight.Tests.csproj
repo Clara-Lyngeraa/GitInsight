@@ -14,6 +14,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="LibGit2Sharp" Version="0.27.0-preview-0182" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.10" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
@@ -32,6 +33,7 @@
     <ProjectReference Include="..\GitInsight\GitInsight.csproj" />
     <ProjectReference Include="..\GitInsight.Core\GitInsight.Core.csproj" />
     <ProjectReference Include="..\GitInsight.Entities\GitInsight.Entities.csproj" />
+    <ProjectReference Include="..\GitInsight.Server\GitInsight.Server.csproj" />
   </ItemGroup>
 
 </Project>
