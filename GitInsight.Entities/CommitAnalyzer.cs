@@ -30,5 +30,12 @@ public class CommitAnalyzer{
        
     }
 
+      public  IEnumerable<Fork> GetForkList()
+    {
+       
+        IEnumerable<Fork>? forks = new List<Fork>();
+        return forks;
+    }
+
 
 }

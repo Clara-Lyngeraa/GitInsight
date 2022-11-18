@@ -1,0 +1,63 @@
+
+@page "/forks"
+@inject HttpClient Http
+@using GitInsight.Entities
+@using System.Net
+
+
+<PageTitle>GitInsight</PageTitle>
+
+<h1>GitInsight forks</h1>
+
+<h2>insert link to the repository you want forks from</h2>
+
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmitAsync">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="pathToRepo" @bind-Value="model.pathToRepo" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private startModel model = new();
+    private IEnumerable<string> results;
+    private string inputURL {get;set;}
+
+    private async void HandleValidSubmitAsync()
+    {
+        inputURL = WebUtility.UrlEncode(model.pathToRepo);
+    
+        try 
+        {
+            results = await Http.GetFromJsonAsync<IEnumerable<string>>($"Fork/{inputURL}");
+            foreach(string s in results){
+                Console.WriteLine(s);
+            }
+                
+        
+        } catch (Exception e)
+        {
+            Console.WriteLine("Something went wrong when get request was called");
+            
+        }    
+    }
+}
+    
+@if (results == null)
+{
+    <p><em>Could not run get request</em></p>
+}
+else
+{
+    Console.WriteLine("Here we do something");
+} 
+
+
+   
+
+
+
+
+
