@@ -1,5 +1,5 @@
 ﻿
-@page "/fetchdata"
+@page "/commitfrequency"
 @inject HttpClient Http
 @using GitInsight.Entities
 @using System.Net
@@ -17,6 +17,7 @@
 
     <InputText id="pathToRepo" @bind-Value="model.pathToRepo" />
 
+    <button @onclick="setAuthorModeOn">Authormode</button>
     <button type="submit">Submit</button>
 </EditForm>
 
@@ -24,7 +25,12 @@
     private startModel model = new();
     private IEnumerable<string> results;
     private string inputURL {get;set;}
+    private bool authorModeOn;
 
+    private void setAuthorModeOn(){
+        authorModeOn = true;
+        Console.WriteLine("Authormode was chosen");
+    }
     private async void HandleValidSubmitAsync()
     {
         Console.WriteLine("printing path to repo inserted: " + model.pathToRepo);
@@ -32,7 +38,7 @@
     
         try 
         {
-            results = await Http.GetFromJsonAsync<IEnumerable<string>>($"AnalyzedRepo/{inputURL}");
+            results = await Http.GetFromJsonAsync<IEnumerable<string>>($"AnalyzedRepo/{inputURL}/{authorModeOn}");
             foreach(string s in results){
                 Console.WriteLine(s);
             }
@@ -43,6 +49,7 @@
             Console.WriteLine("Something went wrong when get request was called");
             
         }    
+        authorModeOn = false;
     }
 }
     
@@ -64,9 +71,10 @@ else
             @foreach (string s in results)
             {
                 <tr>
+                    @if(authorModeOn){
                     <td>@s.Split(" ").First()</td>
                     <td>@s.Split(" ").Last()</td>
-                   
+                    }
                 </tr>
             }
         </tbody>

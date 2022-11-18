@@ -14,16 +14,18 @@ public class AnalyzedRepoController: ControllerBase{
   //private readonly ILogger<AnalyzedRepoController> _logger;
   private readonly IAnalyzedRepoRepository _repository;
 
+  private CommitAnalyzer commitAnalyzer;
+
   public AnalyzedRepoController(IAnalyzedRepoRepository repo)
   {
     _repository = repo;
-    
+    commitAnalyzer = new CommitAnalyzer();
   }
 
-[HttpGet("{url}")]
-  public async Task<IEnumerable<string>> Get(string url) 
+[HttpGet("{url}/{authorMode}")]
+  public async Task<IEnumerable<string>> Get(string url, bool authorMode) 
   {
-    Console.WriteLine("Got the url: " + url);
+  
     var urlToUse = WebUtility.UrlDecode(url);
     var repo = new Repository(Repository.Clone(urlToUse,"ClonedRepo"));
     var createDTO = new AnalyzedRepoCreateDTO(repo, url);
@@ -38,10 +40,16 @@ public class AnalyzedRepoController: ControllerBase{
       currentAnalyzedRepo = await _repository.FindAsync(dto.Id);
       }
     } 
-    var commitAnalyzer = new CommitAnalyzer();
-    var resultOfAnalysis = commitAnalyzer.getFrequency(currentAnalyzedRepo!.commitsInRepo);
     Directory.Delete("/Users/monicahardt/Desktop/GitInsight/GitInsight.Server/ClonedRepo",true);
-    return resultOfAnalysis;
+
+
+    if(authorMode){
+      var resultOfAnalysis = commitAnalyzer.getFrequencyAuthorMode(currentAnalyzedRepo!.commitsInRepo);
+      return resultOfAnalysis;
+    } else {
+      var resultOfAnalysis = commitAnalyzer.getFrequency(currentAnalyzedRepo!.commitsInRepo);
+      return resultOfAnalysis;
+    }
   }
 }
 
