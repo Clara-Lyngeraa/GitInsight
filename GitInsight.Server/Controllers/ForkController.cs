@@ -1,11 +1,7 @@
-using Microsoft.Extensions.Configuration;
-using Extensions.HttpExtensions.Http;
-
 namespace GitInsight.Server.Controllers;
 
 public class ForkController
 {
-
     private readonly HttpClient _client;
 
     public ForkController()
